@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makelele Jerseys — Original & Custom Football Jerseys, Lagos</title>
+<meta name="description" content="Shop authentic club jerseys, Super Eagles kits, retro collections and custom football shirts. Same-day Lagos delivery, nationwide shipping. Order on WhatsApp.">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportingGoodsStore",
+  "name": "Makelele Jerseys",
+  "description": "Original & Custom Football Jerseys in Lagos, Nigeria.",
+  "areaServed": "Nigeria",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lagos Island",
+    "addressRegion": "Lagos",
+    "addressCountry": "NG"
+  },
+  "sameAs": [
+    "https://x.com/MakeleleJerseys",
+    "https://www.instagram.com/makelele.jerseys",
+    "https://www.tiktok.com/@makelelefootballjerseys"
+  ],
+  "telephone": "+2347030112427",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "312"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0A0C0F;
+    --bg-card: #14181D;
+    --bg-elevated: #1B2027;
+    --line: rgba(245,246,247,0.09);
+    --white: #F5F6F7;
+    --muted: #8D95A3;
+    --muted-2: #5C6472;
+    --pitch: #2BE37A;
+    --pitch-dim: rgba(43,227,122,0.14);
+    --gold: #E7B449;
+    --gold-dim: rgba(231,180,73,0.14);
+    --danger-red: #E5533D;
+
+    --font-display: 'Anton', 'Arial Narrow', sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'Space Mono', monospace;
+
+    --container: 1180px;
+    --radius: 14px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--pitch);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pitch);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before{
+    content:'';
+    width: 22px; height: 2px;
+    background: var(--pitch);
+    display: inline-block;
+  }
+
+  h1,h2,h3{
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.02;
+    font-weight: 400;
+  }
+
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 26px;
+    border-radius: 10px;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{
+    background: var(--pitch);
+    color: #06170D;
+    box-shadow: 0 0 0 1px rgba(43,227,122,0.3), 0 12px 30px -10px rgba(43,227,122,0.55);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(43,227,122,0.4), 0 16px 36px -8px rgba(43,227,122,0.7); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover{ border-color: rgba(245,246,247,0.35); background: rgba(255,255,255,0.03); }
+  .btn-block{ width: 100%; }
+  .btn svg{ width: 18px; height: 18px; flex-shrink:0; }
+
+  /* ============ NAV ============ */
+  .nav{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(10,12,15,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 20px;
+    max-width: var(--container); margin:0 auto;
+  }
+  .logo{
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    display:flex; align-items:center; gap:9px;
+  }
+  .logo .dot{ width:8px; height:8px; border-radius:50%; background: var(--pitch); }
+  .nav-links{ display:none; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); }
+  .nav-links a:hover{ color: var(--white); }
+  .nav-cta{ display:none; }
+  .nav-cta-mobile .btn{ padding: 10px 16px; font-size: 13px; }
+  @media(min-width: 860px){
+    .nav-links{ display:flex; }
+    .nav-cta{ display:inline-flex; }
+    .nav-cta-mobile{ display:none; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position: relative;
+    padding: 56px 0 64px;
+    overflow: hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(600px 400px at 85% -10%, var(--pitch-dim), transparent 60%),
+      radial-gradient(500px 350px at -10% 40%, var(--gold-dim), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative; z-index:1;
+    display:grid;
+    gap: 40px;
+  }
+  .hero-copy{ max-width: 640px; }
+  .hero h1{
+    font-size: clamp(38px, 9vw, 74px);
+    margin-bottom: 20px;
+  }
+  .hero h1 .accent{ color: var(--pitch); }
+  .hero-sub{
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 30px;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap: 12px; margin-bottom: 34px; }
+  .badges{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 460px;
+  }
+  .badge{
+    display:flex; align-items:center; gap:8px;
+    font-size: 12.5px; color: var(--muted);
+    font-weight: 500;
+  }
+  .badge svg{ width:15px; height:15px; color: var(--pitch); flex-shrink:0; }
+
+  .hero-visual{
+    position: relative;
+    height: 380px;
+    border-radius: var(--radius);
+    background: linear-gradient(160deg, var(--bg-elevated), var(--bg-card));
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    overflow: hidden;
+  }
+  .hero-visual::after{
+    content:'';
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(115deg, transparent, transparent 60px, rgba(255,255,255,0.02) 60px, rgba(255,255,255,0.02) 120px);
+  }
+
+  /* jersey illustration (signature motif, pure CSS/SVG — no licensed art) */
+  .jersey-shell{ position:relative; z-index:2; width: 230px; }
+  .jersey-nameset{
+    position:absolute; z-index: 3;
+    top: 46%; left:50%; transform: translate(-50%,-50%);
+    text-align:center;
+  }
+  .jersey-nameset .name{
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: rgba(10,12,15,0.85);
+  }
+  .jersey-nameset .num{
+    font-family: var(--font-display);
+    font-size: 66px;
+    color: rgba(10,12,15,0.85);
+    line-height: 1;
+  }
+
+  @media(min-width: 900px){
+    .hero-inner{ grid-template-columns: 1.05fr 0.95fr; align-items:center; gap: 30px; }
+    .hero-visual{ height: 480px; }
+    .jersey-shell{ width: 300px; }
+  }
+
+  /* ============ SECTION SCAFFOLD ============ */
+  section{ padding: 68px 0; position: relative; }
+  .section-head{ max-width: 620px; margin-bottom: 40px; }
+  .section-head h2{ font-size: clamp(30px, 5.5vw, 46px); margin-bottom: 10px; }
+  .section-head p{ color: var(--muted); font-size: 15.5px; }
+  .divider{
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--pitch) 0 22px, transparent 22px 34px);
+    opacity: 0.55;
+  }
+
+  /* ============ TRUST ============ */
+  .trust-grid{
+    display:grid; gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media(min-width:640px){ .trust-grid{ grid-template-columns: 1fr 1fr; } }
+  @media(min-width:980px){ .trust-grid{ grid-template-columns: repeat(4,1fr); } }
+  .trust-card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .trust-card:hover{ border-color: rgba(43,227,122,0.4); transform: translateY(-3px); }
+  .trust-icon{
+    width: 42px; height:42px; border-radius: 10px;
+    background: var(--pitch-dim);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 18px;
+  }
+  .trust-icon svg{ width:22px; height:22px; color: var(--pitch); }
+  .trust-card h3{
+    font-family: var(--font-body); text-transform:none;
+    font-size: 16.5px; font-weight: 700; margin-bottom: 8px;
+  }
+  .trust-card p{ font-size: 13.5px; color: var(--muted); }
+
+  /* ============ CATEGORIES ============ */
+  .cat-scroll{
+    display:grid; gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media(min-width:640px){ .cat-scroll{ grid-template-columns: 1fr 1fr; } }
+  @media(min-width:1000px){ .cat-scroll{ grid-template-columns: repeat(4,1fr); } }
+
+  .cat-card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display:flex; flex-direction:column;
+  }
+  .cat-visual{
+    height: 170px;
+    position: relative;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .cat-visual svg{ width: 92px; height:92px; }
+  .cat-body{ padding: 18px 20px 22px; flex:1; display:flex; flex-direction:column; }
+  .cat-body h3{ font-family: var(--font-body); text-transform:none; font-size: 17px; font-weight:700; margin-bottom:6px; }
+  .cat-body p{ font-size: 13px; color: var(--muted); margin-bottom: 18px; flex:1; }
+  .cat-body .btn{ padding: 11px 18px; font-size: 13px; }
+
+  .kit-red{ background: linear-gradient(160deg,#3a0d0d,#170707); }
+  .kit-gunners{ background: linear-gradient(160deg,#2b0c14,#170708); }
+  .kit-royal{ background: linear-gradient(160deg,#0c1a3a,#070a17); }
+  .kit-green{ background: linear-gradient(160deg,#0c2b17,#07130c); }
+
+  /* ============ PRODUCT GRID ============ */
+  .prod-grid{
+    display:grid; gap: 18px;
+    grid-template-columns: repeat(2,1fr);
+  }
+  @media(min-width:640px){ .prod-grid{ grid-template-columns: repeat(3,1fr); } }
+  @media(min-width:1000px){ .prod-grid{ grid-template-columns: repeat(4,1fr); } }
+
+  .prod-card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .prod-visual{
+    aspect-ratio: 1/1;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .prod-visual svg{ width: 60%; height: 60%; }
+  .prod-tag{
+    position:absolute; top:10px; left:10px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.06em; text-transform:uppercase;
+    background: rgba(10,12,15,0.65); color: var(--gold);
+    padding: 4px 8px; border-radius: 6px;
+    border: 1px solid rgba(231,180,73,0.3);
+  }
+  .prod-body{ padding: 14px 15px 18px; }
+  .prod-body .team{ font-size: 11px; color: var(--muted-2); font-family: var(--font-mono); text-transform: uppercase; letter-spacing:0.05em; margin-bottom: 4px; }
+  .prod-body h3{ font-family: var(--font-body); text-transform:none; font-size: 14.5px; font-weight:700; margin-bottom: 8px; }
+  .prod-meta{ display:flex; align-items:center; justify-content:space-between; font-size: 11.5px; color:var(--muted); margin-bottom: 14px; }
+  .prod-body .btn{ font-size: 12.5px; padding: 10px 12px; }
+
+  /* ============ CUSTOM SECTION ============ */
+  .custom-section{
+    background: linear-gradient(160deg, #101922 0%, #0A0C0F 60%);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .custom-inner{ display:grid; gap: 34px; align-items:center; }
+  @media(min-width:900px){ .custom-inner{ grid-template-columns: 1fr 1fr; } }
+  .custom-copy h2{ font-size: clamp(30px, 6vw, 48px); margin-bottom: 16px; }
+  .custom-copy p{ color: var(--muted); font-size: 15.5px; margin-bottom: 26px; max-width: 460px; }
+  .custom-steps{ display:flex; flex-direction:column; gap: 12px; margin-bottom: 28px; }
+  .custom-step{ display:flex; gap: 12px; align-items:flex-start; font-size: 14px; color: var(--white); }
+  .custom-step svg{ width:18px; height:18px; color: var(--pitch); margin-top:2px; flex-shrink:0; }
+
+  .custom-preview{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px;
+  }
+  .custom-preview-visual{
+    height: 260px;
+    background: linear-gradient(160deg,#141d29,#0c1218);
+    border-radius: 10px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow:hidden;
+  }
+  .custom-fields{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .custom-field{
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .custom-field label{
+    display:block; font-size: 10px; text-transform:uppercase; letter-spacing:0.06em;
+    color: var(--muted-2); font-family: var(--font-mono); margin-bottom: 3px;
+  }
+  .custom-field .val{ font-size: 14px; font-weight: 600; color: var(--white); }
+
+  /* ============ REVIEWS ============ */
+  .review-grid{
+    display:grid; gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media(min-width:700px){ .review-grid{ grid-template-columns: repeat(3,1fr); } }
+  .review-card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .stars{ display:flex; gap:3px; margin-bottom: 14px; }
+  .stars svg{ width:15px; height:15px; color: var(--gold); }
+  .review-card p{ font-size: 14px; color: var(--white); margin-bottom: 18px; line-height:1.6; }
+  .reviewer{ display:flex; align-items:center; gap: 10px; }
+  .reviewer-avatar{
+    width: 34px; height:34px; border-radius:50%;
+    background: var(--bg-elevated);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-size: 12px; color: var(--pitch);
+    font-weight: 700; border: 1px solid var(--line);
+  }
+  .reviewer-name{ font-size: 13px; font-weight:600; }
+  .reviewer-loc{ font-size: 11.5px; color: var(--muted-2); }
+
+  /* ============ HOW IT WORKS ============ */
+  .steps-grid{
+    display:grid; gap: 24px;
+    grid-template-columns: 1fr;
+    counter-reset: step;
+  }
+  @media(min-width:760px){ .steps-grid{ grid-template-columns: repeat(3,1fr); } }
+  .step-card{ position:relative; padding-top: 6px; }
+  .step-num{
+    font-family: var(--font-display);
+    font-size: 64px;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(43,227,122,0.5);
+    line-height: 1;
+    margin-bottom: 14px;
+    display:block;
+  }
+  .step-card h3{ font-family: var(--font-body); text-transform:none; font-size: 17px; font-weight:700; margin-bottom: 8px; }
+  .step-card p{ font-size: 14px; color: var(--muted); }
+  .step-connector{
+    display:none;
+  }
+  @media(min-width:760px){
+    .step-card:not(:last-child)::after{
+      content:'';
+      position:absolute; top: 34px; left: 100%;
+      width: 24px; height: 1px;
+      background: repeating-linear-gradient(90deg, var(--muted-2) 0 4px, transparent 4px 8px);
+    }
+  }
+
+  /* ============ LOCATION ============ */
+  .location-section{
+    background: var(--bg-card);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .location-inner{ display:grid; gap: 30px; }
+  @media(min-width:860px){ .location-inner{ grid-template-columns: 1fr 1fr; align-items:center; } }
+  .location-copy h2{ font-size: clamp(28px,5.5vw,42px); margin-bottom: 14px; }
+  .location-copy p{ color: var(--muted); font-size: 15px; margin-bottom: 24px; max-width: 440px; }
+  .zone-list{ display:flex; flex-wrap:wrap; gap: 9px; }
+  .zone-pill{
+    font-size: 12.5px; font-weight:600;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--bg-elevated); border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .zone-pill.nationwide{ color: var(--pitch); border-color: rgba(43,227,122,0.35); }
+
+  .map-visual{
+    height: 280px; border-radius: var(--radius);
+    background:
+      radial-gradient(circle at 30% 30%, rgba(43,227,122,0.12), transparent 55%),
+      linear-gradient(160deg, var(--bg-elevated), #0e1116);
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    position: relative;
+    overflow:hidden;
+  }
+  .map-pin{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .map-pin svg{ width:38px; height:38px; color: var(--pitch); }
+  .map-pin span{ font-family: var(--font-mono); font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ============ FAQ ============ */
+  .faq-list{ display:flex; flex-direction:column; gap: 12px; max-width: 720px; }
+  .faq-item{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .faq-q{
+    width:100%; display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 20px; text-align:left;
+    font-size: 15px; font-weight: 600; color: var(--white);
+  }
+  .faq-q svg{ width:18px; height:18px; color: var(--pitch); flex-shrink:0; transition: transform .2s ease; }
+  .faq-item[open] .faq-q svg{ transform: rotate(45deg); }
+  .faq-a{ padding: 0 20px 20px; font-size: 14px; color: var(--muted); line-height:1.6; }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta{
+    text-align:center;
+    padding: 80px 0;
+    background: radial-gradient(700px 400px at 50% 0%, var(--pitch-dim), transparent 65%);
+    border-top: 1px solid var(--line);
+  }
+  .final-cta h2{ font-size: clamp(34px,8vw,60px); margin-bottom: 16px; }
+  .final-cta p{ color: var(--muted); font-size: 16px; margin-bottom: 32px; max-width: 460px; margin-left:auto; margin-right:auto; }
+  .final-cta .btn{ padding: 19px 38px; font-size: 16.5px; }
+
+  /* ============ FOOTER ============ */
+  footer{ padding: 50px 0 100px; border-top: 1px solid var(--line); }
+  .footer-inner{ display:flex; flex-direction:column; gap: 30px; }
+  @media(min-width:760px){ .footer-inner{ flex-direction:row; justify-content:space-between; align-items:flex-start; } }
+  .footer-brand .logo{ margin-bottom: 8px; }
+  .footer-brand p{ font-size: 13px; color: var(--muted-2); max-width: 260px; }
+  .footer-social{ display:flex; gap: 12px; }
+  .footer-social a{
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    transition: border-color .2s ease, color .2s ease;
+    color: var(--muted);
+  }
+  .footer-social a:hover{ border-color: var(--pitch); color: var(--pitch); }
+  .footer-social svg{ width:17px; height:17px; }
+  .footer-bottom{ margin-top: 40px; font-size: 12px; color: var(--muted-2); text-align:center; }
+
+  /* ============ STICKY WHATSAPP ============ */
+  .sticky-wa{
+    position: fixed; bottom: 18px; right: 18px; z-index: 200;
+    width: 58px; height:58px; border-radius: 50%;
+    background: var(--pitch);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 30px -8px rgba(43,227,122,0.65);
+    animation: pulse-wa 2.6s ease-in-out infinite;
+  }
+  .sticky-wa svg{ width:28px; height:28px; color:#06170D; }
+  @keyframes pulse-wa{
+    0%,100%{ box-shadow: 0 10px 30px -8px rgba(43,227,122,0.65); }
+    50%{ box-shadow: 0 10px 40px -4px rgba(43,227,122,0.9); }
+  }
+  @media (prefers-reduced-motion: reduce){ .sticky-wa{ animation: none; } }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo"><span class="dot"></span>Makelele Jerseys</a>
+    <ul class="nav-links">
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#custom">Custom Kits</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-primary nav-cta" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" onclick="trackWA('nav')">
+      Order On WhatsApp
+    </a>
+    <a class="btn btn-primary nav-cta-mobile" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" onclick="trackWA('nav-mobile')">
+      Order
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <h1>Wear Your Club. <span class="accent">Ready To Wear.</span></h1>
+      <p class="hero-sub">Shop authentic club kits, national team jerseys, retro collections, and custom football shirts — with fast delivery across Lagos and Nigeria.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" onclick="trackWA('hero-primary')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
+          Order On WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#collection">View Latest Jerseys</a>
+      </div>
+      <div class="badges">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Authentic Quality</div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Custom Printing Available</div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Same-Day Lagos Delivery</div>
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Nationwide Shipping</div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg class="jersey-shell" viewBox="0 0 200 220" fill="none">
+        <path d="M60 10 L20 40 L35 65 L55 52 L55 200 Q100 212 145 200 L145 52 L165 65 L180 40 L140 10 Q120 24 100 24 Q80 24 60 10Z" fill="#2BE37A"/>
+        <path d="M55 52 L55 62 L100 78 L145 62 L145 52 L100 68 Z" fill="#0A0C0F" opacity="0.15"/>
+      </svg>
+      <div class="jersey-nameset">
+        <div class="name">MAKELELE</div>
+        <div class="num">10</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- ============ TRUST ============ -->
+<section id="trust">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why Fans Trust Us</div>
+      <h2>Why Football Fans Choose Makelele</h2>
+      <p>Every doubt a first-time buyer has, answered before you even ask.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg></div>
+        <h3>Authentic Jerseys</h3>
+        <p>Verified quality jerseys with premium fabric, stitching, and finishing.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4zm10-14l3 3"/></svg></div>
+        <h3>Custom Printing</h3>
+        <p>Add your name, favourite number, and team details.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></div>
+        <h3>Fast Delivery</h3>
+        <p>Quick delivery across Lagos and shipping nationwide.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-6a4 4 0 110 8 4 4 0 010-8zm7 2a4 4 0 100-8 4 4 0 000 8zM5 8a4 4 0 100-8 4 4 0 000 8z"/></svg></div>
+        <h3>Trusted By Fans</h3>
+        <p>312+ satisfied customers and counting across Nigeria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section id="collection">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Collection</div>
+      <h2>Shop By Category</h2>
+      <p>Club kits, national colours, retro classics, and custom team orders.</p>
+    </div>
+    <div class="cat-scroll">
+      <div class="cat-card">
+        <div class="cat-visual kit-red">
+          <svg viewBox="0 0 100 100" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 90 Q50 96 72 90 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.92"/></svg>
+        </div>
+        <div class="cat-body">
+          <h3>Club Jerseys</h3>
+          <p>Manchester United, Arsenal, Chelsea, Liverpool, Real Madrid, Barcelona, PSG.</p>
+          <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Club%20Jersey" target="_blank" rel="noopener" onclick="trackWA('cat-club')">Order Now</a>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-visual kit-green">
+          <svg viewBox="0 0 100 100" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 90 Q50 96 72 90 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.92"/></svg>
+        </div>
+        <div class="cat-body">
+          <h3>National Teams</h3>
+          <p>Nigeria Super Eagles kits and World Cup jerseys for true patriots.</p>
+          <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20order%20a%20National%20Team%20Jersey" target="_blank" rel="noopener" onclick="trackWA('cat-national')">Order Now</a>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-visual kit-gunners">
+          <svg viewBox="0 0 100 100" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 90 Q50 96 72 90 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.92"/></svg>
+        </div>
+        <div class="cat-body">
+          <h3>Retro Collection</h3>
+          <p>Classic football designs from the golden era of the game.</p>
+          <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20order%20a%20Retro%20Jersey" target="_blank" rel="noopener" onclick="trackWA('cat-retro')">Order Now</a>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-visual kit-royal">
+          <svg viewBox="0 0 100 100" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 90 Q50 96 72 90 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.92"/></svg>
+        </div>
+        <div class="cat-body">
+          <h3>Custom Team Kits</h3>
+          <p>Bulk kits for schools, teams, and groups — fully personalised.</p>
+          <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20order%20Custom%20Team%20Kits" target="_blank" rel="noopener" onclick="trackWA('cat-custom')">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PRODUCTS ============ -->
+<section id="featured">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Featured This Week</div>
+      <h2>Featured Jerseys</h2>
+      <p>Our most-ordered kits right now — all customisable with name and number.</p>
+    </div>
+    <div class="prod-grid">
+
+      <div class="prod-card">
+        <div class="prod-visual kit-red"><span class="prod-tag">Home Kit</span>
+          <svg viewBox="0 0 100 110" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 100 Q50 106 72 100 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.9"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="team">Manchester Red</div>
+          <h3>Home Jersey 25/26</h3>
+          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
+          <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Manchester%20Red%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-1')">Buy On WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-visual kit-gunners"><span class="prod-tag">Home Kit</span>
+          <svg viewBox="0 0 100 110" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 100 Q50 106 72 100 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.9"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="team">North London</div>
+          <h3>Home Jersey 25/26</h3>
+          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
+          <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20North%20London%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-2')">Buy On WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-visual kit-royal"><span class="prod-tag">Away Kit</span>
+          <svg viewBox="0 0 100 110" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 100 Q50 106 72 100 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.9"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="team">Madrid White</div>
+          <h3>Away Jersey 25/26</h3>
+          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
+          <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Madrid%20White%20Away%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-3')">Buy On WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-visual kit-green"><span class="prod-tag">Home Kit</span>
+          <svg viewBox="0 0 100 110" fill="none"><path d="M30 8 L10 22 L18 36 L28 30 L28 100 Q50 106 72 100 L72 30 L82 36 L90 22 L70 8 Q60 15 50 15 Q40 15 30 8Z" fill="#F5F6F7" opacity="0.9"/></svg>
+        </div>
+        <div class="prod-body">
+          <div class="team">Super Eagles</div>
+          <h3>Home Jersey 25/26</h3>
+          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
+          <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Super%20Eagles%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-4')">Buy On WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CUSTOM JERSEY ============ -->
+<section class="custom-section" id="custom">
+  <div class="wrap custom-inner">
+    <div class="custom-copy">
+      <div class="eyebrow">Make It Yours</div>
+      <h2>Create A Jersey With Your Name On It</h2>
+      <p>Choose your club, player number, and personal name. Perfect for fans, birthdays, teams, and special occasions.</p>
+      <div class="custom-steps">
+        <div class="custom-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Pick any club or national kit</div>
+        <div class="custom-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Send your name and number</div>
+        <div class="custom-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>We print and deliver, fast</div>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20create%20a%20custom%20jersey" target="_blank" rel="noopener" onclick="trackWA('custom-cta')">Create My Custom Jersey</a>
+    </div>
+
+    <div class="custom-preview">
+      <div class="custom-preview-visual">
+        <svg viewBox="0 0 200 220" width="150" fill="none">
+          <path d="M60 10 L20 40 L35 65 L55 52 L55 200 Q100 212 145 200 L145 52 L165 65 L180 40 L140 10 Q120 24 100 24 Q80 24 60 10Z" fill="#E7B449"/>
+        </svg>
+        <div class="jersey-nameset" style="top:52%;">
+          <div class="name" style="color:rgba(10,12,15,0.85)">YOUR NAME</div>
+          <div class="num" style="color:rgba(10,12,15,0.85)">07</div>
+        </div>
+      </div>
+      <div class="custom-fields">
+        <div class="custom-field"><label>Club</label><div class="val">Any Team</div></div>
+        <div class="custom-field"><label>Size</label><div class="val">S – XXL</div></div>
+        <div class="custom-field"><label>Number</label><div class="val">00 – 99</div></div>
+        <div class="custom-field"><label>Delivery</label><div class="val">Lagos: Same-Day</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Social Proof</div>
+      <h2>Trusted By Football Fans Across Nigeria</h2>
+      <p>312+ five-star reviews from fans just like you.</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p>"Fabric felt exactly like the original. Ordered on WhatsApp at night, jersey was at my door in Lekki by afternoon."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">TA</div>
+          <div><div class="reviewer-name">Tunde A.</div><div class="reviewer-loc">Lekki, Lagos</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p>"Got my son's name and number printed for his birthday. Stitching was clean, no peeling after months of wear."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">FO</div>
+          <div><div class="reviewer-name">Funmi O.</div><div class="reviewer-loc">Ikeja, Lagos</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 7.5l6.4-.6z"/></svg>
+        </div>
+        <p>"Ordered 15 kits for our five-a-side team. Correct sizes, printed numbers matched, delivered nationwide to Abuja on time."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">CE</div>
+          <div><div class="reviewer-name">Chuka E.</div><div class="reviewer-loc">Abuja</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Ordering, Simplified</div>
+      <h2>How It Works</h2>
+      <p>Three steps from browsing to unboxing.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num">01</span>
+        <h3>Choose Your Jersey</h3>
+        <p>Pick a club kit, national team jersey, retro design, or start a custom order.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">02</span>
+        <h3>Send Your Details</h3>
+        <p>Message us your size and any customisation — name, number, and club.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">03</span>
+        <h3>Confirm & Receive</h3>
+        <p>Confirm your order and get it delivered to your door, Lagos or nationwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="location-section">
+  <div class="wrap location-inner">
+    <div class="location-copy">
+      <div class="eyebrow">Where We Deliver</div>
+      <h2>Based In Lagos. Delivering Across Nigeria.</h2>
+      <p>Pickup available on Lagos Island, with same-day delivery across the mainland and island — plus nationwide shipping to every state.</p>
+      <div class="zone-list">
+        <span class="zone-pill">Lekki</span>
+        <span class="zone-pill">Victoria Island</span>
+        <span class="zone-pill">Surulere</span>
+        <span class="zone-pill">Yaba</span>
+        <span class="zone-pill">Ikeja</span>
+        <span class="zone-pill">Ajah</span>
+        <span class="zone-pill nationwide">Nationwide Delivery</span>
+      </div>
+    </div>
+    <div class="map-visual" aria-hidden="true">
+      <div class="map-pin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11a7 7 0 1114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span>Lagos Island, Nigeria</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Questions</div>
+      <h2>Frequently Asked</h2>
+      <p>Still deciding? Here's what most fans ask before ordering.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">Are your jerseys original?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a">Every jersey is quality-checked for fabric, stitching, and finishing before it leaves us — so what you see is what you get.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Do you offer custom printing?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a">Yes. Send us your name, number, and club, and we'll print it exactly as requested.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What sizes are available?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a">We stock sizes from S to XXL for adults, plus kids' sizes for younger fans.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Do you deliver outside Lagos?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a">Yes, we ship nationwide across Nigeria. Lagos orders qualify for same-day delivery.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How fast is delivery?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a">Same-day within Lagos on most orders. Nationwide delivery typically takes 2–4 working days.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How do I place an order?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a">Tap any "Order On WhatsApp" button, tell us your jersey, size, and customisation, and we'll take it from there.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Ready To Wear Your Team Colours?</h2>
+    <p>Send us a message now and get your preferred jersey delivered.</p>
+    <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" onclick="trackWA('final-cta')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
+      Chat On WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><span class="dot"></span>Makelele Jerseys</div>
+      <p>Original & Custom Football Jerseys, Lagos.</p>
+    </div>
+    <div class="footer-social">
+      <a href="https://x.com/MakeleleJerseys" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.9L4.4 22H1.3l8.1-9.3L1 2h7l4.9 6.3zM17.6 20h1.9L6.5 4H4.4z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/makelele.jerseys" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@makelelefootballjerseys" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.7 4.7 0 01-3.8-4.7h-3.3v14.4a2.9 2.9 0 11-2.9-2.9c.3 0 .6 0 .9.1V9.4a6.1 6.1 0 00-.9-.1A6.2 6.2 0 100.4 15.5a6.2 6.2 0 006.2 6.2 6.2 6.2 0 006.2-6.2V8.4a8 8 0 004.6 1.5V6.6a4.7 4.7 0 01-.8-.8z"/></svg>
+      </a>
+      <a href="https://wa.me/2347030112427" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="trackWA('footer')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    © 2026 Makelele Jerseys, Lagos. Original football jerseys, Super Eagles kits & custom football jerseys — delivered across Nigeria.
+  </div>
+</footer>
+
+<!-- ============ STICKY WHATSAPP ============ -->
+<a class="sticky-wa" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" onclick="trackWA('sticky')">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
+</a>
+
+<script>
+  // WhatsApp click tracking hook — wires into GA4/Meta Pixel if present on the live site.
+  function trackWA(source){
+    try{
+      if (typeof gtag === 'function') {
+        gtag('event', 'whatsapp_click', { source: source });
+      }
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'WhatsAppClick', { source: source });
+      }
+      console.log('[track] whatsapp_click:', source);
+    } catch(e){}
+  }
+</script>
+
+</body>
+</html>
