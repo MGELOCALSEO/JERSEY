@@ -433,6 +433,34 @@ section{ padding: 68px 0; position: relative; }
   position: relative;
   overflow:hidden;
 }
+.jersey-nameset{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 70%;
+  pointer-events: none;
+  transition: opacity .15s ease;
+}
+.jersey-nameset .name{
+  font-family: var(--font-display);
+  font-size: clamp(16px, 3.2vw, 24px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity .15s ease;
+}
+.jersey-nameset .num{
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1;
+  transition: opacity .15s ease;
+}
+.preview-update{
+  opacity: 0.6;
+}
 .custom-fields{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .custom-field{
   background: var(--bg-elevated);
@@ -445,6 +473,29 @@ section{ padding: 68px 0; position: relative; }
   color: var(--muted-2); font-family: var(--font-mono); margin-bottom: 3px;
 }
 .custom-field .val{ font-size: 14px; font-weight: 600; color: var(--white); }
+.custom-field select.val,
+.custom-field input.val{
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.custom-field select.val option{
+  background: var(--bg-elevated);
+  color: var(--white);
+}
+.custom-field input.val::placeholder{
+  color: var(--muted-2);
+  font-weight: 400;
+}
 
 /* ============ REVIEWS ============ */
 .review-grid{

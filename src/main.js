@@ -79,7 +79,7 @@ function trackWA(source){
     '/images/arsenal-fc-2026-27-home-kit.jpg',
     '/images/arsenal-fc-2026-27-away-kit.jpg',
     '/images/arsenal-fc-2026-27-third-kit.jpg'
-  ];
+  ];H
   let idx = 0;
   setInterval(() => {
     idx = (idx + 1) % images.length;
@@ -210,6 +210,48 @@ window.submitCustomOrder = function(e){
   container.addEventListener('mouseleave', start);
 
   start();
+})();
+
+(function livePreview(){
+  const nameInput = document.getElementById('preview-name');
+  const numInput = document.getElementById('preview-number');
+  const clubInput = document.getElementById('preview-club');
+  const sizeInput = document.getElementById('preview-size');
+  const nameEl = document.querySelector('.jersey-nameset .name');
+  const numEl = document.querySelector('.jersey-nameset .num');
+  const ctaBtn = document.querySelector('.custom-copy .btn-primary');
+  if(!nameInput || !nameEl) return;
+
+  function updatePreview(){
+    nameEl.textContent = nameInput.value.toUpperCase() || 'YOUR NAME';
+    numEl.textContent = numInput.value || '07';
+    nameEl.classList.add('preview-update');
+    numEl.classList.add('preview-update');
+    clearTimeout(nameEl._timer);
+    nameEl._timer = setTimeout(() => nameEl.classList.remove('preview-update'), 200);
+    clearTimeout(numEl._timer);
+    numEl._timer = setTimeout(() => numEl.classList.remove('preview-update'), 200);
+  }
+
+  function updateCTA(){
+    if(!ctaBtn) return;
+    const club = clubInput ? clubInput.value : 'a jersey';
+    const name = nameInput.value.trim();
+    const number = numInput.value.trim();
+    const size = sizeInput ? sizeInput.value : '';
+    let msg = 'Hi Makelele Jerseys, I\'d like to create a custom jersey:'
+      + '\nClub: ' + club
+      + '\nName: ' + (name || 'N/A')
+      + '\nNumber: ' + (number || 'N/A')
+      + '\nSize: ' + (size || 'N/A');
+    ctaBtn.href = 'https://wa.me/2347030112427?text=' + encodeURIComponent(msg);
+  }
+
+  nameInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
+  numInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
+  if(clubInput) clubInput.addEventListener('change', updateCTA);
+  if(sizeInput) sizeInput.addEventListener('change', updateCTA);
+  updatePreview();
 })();
 
 (function cycleNational(){
