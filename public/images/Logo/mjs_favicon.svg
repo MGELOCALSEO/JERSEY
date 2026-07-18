@@ -1,0 +1,15 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldFav" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d391"/>
+      <stop offset="100%" stop-color="#1fae72"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Solid background circle -->
+  <circle cx="50" cy="50" r="48" fill="#0a0f1a" stroke="url(#goldFav)" stroke-width="4"/>
+
+  <!-- Bold monogram, thick strokes for legibility at small sizes -->
+  <text x="50" y="68" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900"
+        fill="url(#goldFav)" text-anchor="middle">MJS</text>
+</svg>

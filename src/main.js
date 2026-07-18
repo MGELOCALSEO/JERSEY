@@ -10,6 +10,13 @@ document.addEventListener('click', function(e){
   }
 });
 
+(() => {
+  const avif = new Image();
+  avif.onload = () => document.documentElement.dataset.avif = '1';
+  avif.onerror = () => document.documentElement.dataset.avif = '0';
+  avif.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMj8LAfS8PgAWAAQIABmhbBc=';
+})();
+
 function trackWA(source){
   try{
     if (typeof gtag === 'function') {
@@ -22,124 +29,94 @@ function trackWA(source){
   } catch(e){}
 }
 
-(function cycleClub(){
-  const img = document.getElementById('club-imgs');
-  if(!img) return;
-  const images = [
-    '/images/manchester-united-2026-27-home-kit.jpg',
-    '/images/fc-barcelona-2026-27-away-kit.jpg',
-    '/images/chelsea-fc-2026-27-home-kit.jpg',
-    '/images/real-madrid-2026-27-third-kit.jpg',
-    '/images/arsenal-fc-2026-27-home-kit.jpg',
-    '/images/bayern-munchen-2026-27-home-kit.jpg',
-    '/images/fc-barcelona-2026-27-fourth-kit.jpg',
-    '/images/liverpool-fc-2026-27-home-kit.jpg',
-    '/images/manchester-united-2026-27-away-kit.jpg',
-    '/images/real-madrid-2026-27-away-kit.jpg',
-    '/images/arsenal-fc-2026-27-away-kit.jpg',
-    '/images/fc-barcelona-2026-27-third-kit.jpg',
-    '/images/real-madrid-2026-27-home-kit.jpg',
-    '/images/arsenal-fc-2026-27-third-kit.jpg',
-    '/images/fc-barcelona-2026-27-home-kit.jpg',
-  ];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-  }, 2000);
+function cycleImages(id, list, ms){
+  const el = document.getElementById(id);
+  if(!el) return;
+  let i = 0;
+  setInterval(() => { i = (i + 1) % list.length; el.src = list[i]; }, ms);
+}
+
+cycleImages('club-imgs', [
+  '/images/manchester-united-2026-27-home-kit.jpg',
+  '/images/fc-barcelona-2026-27-away-kit.jpg',
+  '/images/chelsea-fc-2026-27-home-kit.jpg',
+  '/images/real-madrid-2026-27-third-kit.jpg',
+  '/images/arsenal-fc-2026-27-home-kit.jpg',
+  '/images/bayern-munchen-2026-27-home-kit.jpg',
+  '/images/fc-barcelona-2026-27-fourth-kit.jpg',
+  '/images/liverpool-fc-2026-27-home-kit.jpg',
+  '/images/manchester-united-2026-27-away-kit.jpg',
+  '/images/real-madrid-2026-27-away-kit.jpg',
+  '/images/arsenal-fc-2026-27-away-kit.jpg',
+  '/images/fc-barcelona-2026-27-third-kit.jpg',
+  '/images/real-madrid-2026-27-home-kit.jpg',
+  '/images/arsenal-fc-2026-27-third-kit.jpg',
+  '/images/fc-barcelona-2026-27-home-kit.jpg',
+], 3500);
+
+cycleImages('retro-imgs', [
+  '/images/manchester-united-1998-99-home-kit.jpg',
+  '/images/manchester-united-2007-08-home-kit.jpg',
+  '/images/arsenal-fc-2005-06-home-kit.jpg',
+  '/images/chelsea-fc-2012-13-home-kit.jpg',
+  '/images/fc-barcelona-2010-11-home-kit.jpg',
+  '/images/liverpool-fc-2017-18-home-kit.jpg',
+  '/images/real-madrid-1998-99-home-kit.jpg',
+  '/images/ac-milan-2006-07-home-kit.jpg',
+  '/images/nigeria-1994-95-home-kit.jpg',
+], 3500);
+
+const products = [
+  { id:'prod-1', team:'Manchester United', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/manchester-united-2026-27-home-kit.jpg','/images/manchester-united-2026-27-away-kit.jpg'] },
+  { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/arsenal-fc-2026-27-home-kit.jpg','/images/arsenal-fc-2026-27-away-kit.jpg','/images/arsenal-fc-2026-27-third-kit.jpg'] },
+  { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/real-madrid-2026-27-home-kit.jpg','/images/real-madrid-2026-27-away-kit.jpg','/images/real-madrid-2026-27-third-kit.jpg'] },
+  { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/nigeria-2026-home-kit.jpg','/images/nigeria-2026-away-kit.jpg'] },
+];
+
+(function renderProducts(){
+  const grid = document.getElementById('prod-grid');
+  if(!grid) return;
+  grid.innerHTML = products.map(p => `
+    <div class="prod-card" data-id="${p.id}">
+      <div class="prod-visual">
+        <span class="prod-tag">${p.tag}</span>
+        <img id="${p.id}-img" src="${p.images[0]}" alt="${p.team} ${p.name}" loading="lazy">
+      </div>
+      <div class="prod-body">
+        <div class="team">${p.team}</div>
+        <h3>${p.name}</h3>
+        <div class="prod-meta"><span>${p.sizes}</span><span>Custom ✓</span></div>
+        <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20${encodeURIComponent(p.team + ' ' + p.name)}" target="_blank" rel="noopener" data-wa="prod-${p.id}">Buy On WhatsApp</a>
+        <button class="btn btn-ghost btn-block" data-custom="${p.id}">Custom</button>
+      </div>
+    </div>
+  `).join('');
+
+  products.forEach(p => cycleImages(p.id + '-img', p.images, 3500));
 })();
 
-(function cycleRetro(){
-  const img = document.getElementById('retro-imgs');
-  if(!img) return;
-  const images = [
-    '/images/manchester-united-1998-99-home-kit.jpg',
-    '/images/manchester-united-2007-08-home-kit.jpg',
-    '/images/arsenal-fc-2005-06-home-kit.jpg',
-    '/images/chelsea-fc-2012-13-home-kit.jpg',
-    '/images/fc-barcelona-2010-11-home-kit.jpg',
-    '/images/liverpool-fc-2017-18-home-kit.jpg',
-    '/images/real-madrid-1998-99-home-kit.jpg',
-    '/images/ac-milan-2006-07-home-kit.jpg',
-    '/images/nigeria-1994-95-home-kit.jpg'
-  ];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-  }, 2000);
-})();
+function openWA(url, label){
+  window.open(url, '_blank');
+  trackWA(label);
+}
 
-(function cycleProd1(){
-  const img = document.getElementById('prod-1-img');
-  if(!img) return;
-  const images = [
-    '/images/manchester-united-2026-27-home-kit.jpg',
-    '/images/manchester-united-2026-27-away-kit.jpg'
-  ];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-  }, 2000);
-})();
-
-(function cycleProd2(){
-  const img = document.getElementById('prod-2-img');
-  if(!img) return;
-  const images = [
-    '/images/arsenal-fc-2026-27-home-kit.jpg',
-    '/images/arsenal-fc-2026-27-away-kit.jpg',
-    '/images/arsenal-fc-2026-27-third-kit.jpg'
-  ];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-  }, 2000);
-})();
-
-(function cycleProd3(){
-  const img = document.getElementById('prod-3-img');
-  if(!img) return;
-  const images = [
-    '/images/real-madrid-2026-27-home-kit.jpg',
-    '/images/real-madrid-2026-27-away-kit.jpg',
-    '/images/real-madrid-2026-27-third-kit.jpg'
-  ];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-  }, 2000);
-})();
-
-(function cycleProd4(){
-  const img = document.getElementById('prod-4-img');
-  if(!img) return;
-  const images = [
-    '/images/nigeria-2026-home-kit.jpg',
-    '/images/nigeria-2026-away-kit.jpg'
-  ];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-  }, 2000);
-})();
-
-window.openCustomModal = function(btn){
+function openCustomModal(btn){
   const card = btn.closest('.prod-card');
-  const team = card.querySelector('.team').textContent;
-  const kit = card.querySelector('h3').textContent;
-  const imgSrc = card.querySelector('img').src;
-
-  document.getElementById('modal-preview-img').src = imgSrc;
-  document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit;
-  document.getElementById('custom-form').dataset.team = team;
-  document.getElementById('custom-form').dataset.kit = kit;
+  if(card){
+    const team = card.querySelector('.team').textContent;
+    const kit = card.querySelector('h3').textContent;
+    const img = document.getElementById('modal-preview-img');
+    if(img) img.src = card.querySelector('img').src;
+    document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit;
+    document.getElementById('custom-form').dataset.team = team;
+    document.getElementById('custom-form').dataset.kit = kit;
+  } else {
+    document.getElementById('modal-jersey-label').textContent = 'Custom Jersey';
+    delete document.getElementById('custom-form').dataset.team;
+    delete document.getElementById('custom-form').dataset.kit;
+  }
   document.getElementById('custom-modal').classList.remove('hidden');
-};
+}
 
 window.closeCustomModal = function(e){
   if(e && e.target !== e.currentTarget && !e.key) return;
@@ -148,6 +125,24 @@ window.closeCustomModal = function(e){
 
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape') window.closeCustomModal(e);
+});
+
+document.addEventListener('click', function(e){
+  const orderBtn = e.target.closest('[data-order]');
+  if(orderBtn){
+    const card = orderBtn.closest('.prod-card');
+    const team = card.querySelector('.team').textContent;
+    const kit = card.querySelector('h3').textContent;
+    const msg = 'Hi Makelele Jerseys, I\'d like to order the ' + team + ' ' + kit;
+    window.open('https://wa.me/2347030112427?text=' + encodeURIComponent(msg), '_blank');
+    trackWA('order-now');
+    return;
+  }
+  const customBtn = e.target.closest('[data-custom]');
+  if(customBtn){ openCustomModal(customBtn); return; }
+  if(e.target.id === 'start-custom-btn' || e.target.closest('#start-custom-btn')){ openCustomModal(e.target); return; }
+  const waBtn = e.target.closest('[data-wa]');
+  if(waBtn){ openWA(waBtn.href, waBtn.dataset.wa); return; }
 });
 
 window.submitCustomOrder = function(e){
@@ -159,10 +154,10 @@ window.submitCustomOrder = function(e){
   const size = document.getElementById('custom-size').value;
   const location = document.getElementById('custom-location').value.trim();
 
-  let msg = 'Hi Makelele Jerseys, I\'d like to order:\n'
-    + '\nTeam: ' + team
-    + '\nKit: ' + kit
-    + '\nName: ' + (name || 'N/A')
+  let msg = 'Hi Makelele Jerseys, I\'d like to order:\n';
+  if(team) msg += '\nTeam: ' + team;
+  if(kit) msg += '\nKit: ' + kit;
+  msg += '\nName: ' + (name || 'N/A')
     + '\nNumber: ' + (number || 'N/A')
     + '\nSize: ' + size
     + '\nDelivery Location: ' + location;
@@ -171,19 +166,6 @@ window.submitCustomOrder = function(e){
   trackWA('custom-submit');
   window.closeCustomModal();
 };
-
-(function modalPreviewSync(){
-  const form = document.getElementById('custom-form');
-  if(!form) return;
-  form.addEventListener('input', function(e){
-    if(e.target.id === 'custom-name'){
-      document.getElementById('modal-preview-name').textContent = e.target.value.trim().toUpperCase() || 'YOUR NAME';
-    }
-    if(e.target.id === 'custom-number'){
-      document.getElementById('modal-preview-number').textContent = e.target.value.trim() || '00';
-    }
-  });
-})();
 
 (function countdown(){
   const finalDate = new Date('2026-07-19T18:00:00-04:00').getTime();
@@ -240,90 +222,23 @@ window.submitCustomOrder = function(e){
   container.addEventListener('mouseenter', stop);
   container.addEventListener('mouseleave', start);
 
+  container.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowLeft'){ prev(); reset(); }
+    if(e.key === 'ArrowRight'){ next(); reset(); }
+  });
+
   start();
 })();
 
-(function livePreview(){
-  const nameInput = document.getElementById('preview-name');
-  const numInput = document.getElementById('preview-number');
-  const clubInput = document.getElementById('preview-club');
-  const sizeInput = document.getElementById('preview-size');
-  const nameEl = document.querySelector('.jersey-nameset .name');
-  const numEl = document.querySelector('.jersey-nameset .num');
-  const ctaBtn = document.querySelector('.custom-copy .btn-primary');
-  const jerseyImg = document.getElementById('jersey-img');
-  if(!nameInput || !nameEl) return;
-
-  const teamImages = {
-    'Manchester United': '/images/manchester-united-2026-27-home-kit.jpg',
-    'Arsenal':           '/images/arsenal-fc-2026-27-home-kit.jpg',
-    'Chelsea':           '/images/chelsea-fc-2026-27-home-kit.jpg',
-    'Liverpool':         '/images/liverpool-fc-2026-27-home-kit.jpg',
-    'Real Madrid':       '/images/real-madrid-2026-27-home-kit.jpg',
-    'FC Barcelona':      '/images/fc-barcelona-2026-27-home-kit.jpg',
-    'Bayern Munich':     '/images/bayern-munchen-2026-27-home-kit.jpg',
-    'Super Eagles':      '/images/nigeria-2026-home-kit.jpg',
-    'Argentina':         '/images/argentina-2026-home-kit.jpg',
-    'Spain':             '/images/spain-2026-home-kit.jpg'
-  };
-
-  function updateJersey(){
-    const team = clubInput ? clubInput.value : 'Any Team';
-    const src = teamImages[team] || '/images/jersey-custom.svg';
-    if(jerseyImg) jerseyImg.src = src;
-  }
-
-  function updatePreview(){
-    nameEl.textContent = nameInput.value.toUpperCase() || 'YOUR NAME';
-    numEl.textContent = numInput.value || '07';
-    nameEl.classList.add('preview-update');
-    numEl.classList.add('preview-update');
-    clearTimeout(nameEl._timer);
-    nameEl._timer = setTimeout(() => nameEl.classList.remove('preview-update'), 200);
-    clearTimeout(numEl._timer);
-    numEl._timer = setTimeout(() => numEl.classList.remove('preview-update'), 200);
-  }
-
-  function updateCTA(){
-    if(!ctaBtn) return;
-    const club = clubInput ? clubInput.value : 'a jersey';
-    const name = nameInput.value.trim();
-    const number = numInput.value.trim();
-    const size = sizeInput ? sizeInput.value : '';
-    let msg = 'Hi Makelele Jerseys, I\'d like to create a custom jersey:'
-      + '\nClub: ' + club
-      + '\nName: ' + (name || 'N/A')
-      + '\nNumber: ' + (number || 'N/A')
-      + '\nSize: ' + (size || 'N/A');
-    ctaBtn.href = 'https://wa.me/2347030112427?text=' + encodeURIComponent(msg);
-  }
-
-  nameInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
-  numInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
-  if(clubInput) clubInput.addEventListener('change', function(){ updateJersey(); updateCTA(); });
-  if(sizeInput) sizeInput.addEventListener('change', updateCTA);
-  updatePreview();
-  updateJersey();
-})();
-
-(function cycleNational(){
-  const img = document.getElementById('national-imgs');
-  if(!img) return;
-  const images = [
-    '/images/nigeria-2026-home-kit.jpg',
-    '/images/nigeria-2026-away-kit.jpg',
-    '/images/argentina-2026-home-kit.jpg',
-    '/images/argentina-2026-away-kit.jpg',
-    '/images/england-2026-home-kit.jpg',
-    '/images/england-2026-away-kit.jpg',
-    '/images/france-2026-home-kit.jpg',
-    '/images/france-2026-away-kit.jpg',
-    '/images/spain-2026-home-kit.jpg',
-    '/images/spain-2026-away-kit.jpg'
-  ];
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % images.length;
-    img.src = images[idx];
-  }, 2000);
-})();
+cycleImages('national-imgs', [
+  '/images/nigeria-2026-home-kit.jpg',
+  '/images/nigeria-2026-away-kit.jpg',
+  '/images/argentina-2026-home-kit.jpg',
+  '/images/argentina-2026-away-kit.jpg',
+  '/images/england-2026-home-kit.jpg',
+  '/images/england-2026-away-kit.jpg',
+  '/images/france-2026-home-kit.jpg',
+  '/images/france-2026-away-kit.jpg',
+  '/images/spain-2026-home-kit.jpg',
+  '/images/spain-2026-away-kit.jpg',
+], 3500);
