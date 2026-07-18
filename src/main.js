@@ -116,6 +116,44 @@ function trackWA(source){
   }, 2000);
 })();
 
+window.openCustomModal = function(team, kit){
+  document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit;
+  document.getElementById('custom-form').dataset.team = team;
+  document.getElementById('custom-form').dataset.kit = kit;
+  document.getElementById('custom-modal').classList.remove('hidden');
+};
+
+window.closeCustomModal = function(e){
+  if(e && e.target !== e.currentTarget && !e.key) return;
+  document.getElementById('custom-modal').classList.add('hidden');
+};
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') window.closeCustomModal(e);
+});
+
+window.submitCustomOrder = function(e){
+  e.preventDefault();
+  const team = e.target.dataset.team;
+  const kit = e.target.dataset.kit;
+  const name = document.getElementById('custom-name').value.trim();
+  const number = document.getElementById('custom-number').value.trim();
+  const size = document.getElementById('custom-size').value;
+  const location = document.getElementById('custom-location').value.trim();
+
+  let msg = 'Hi Makelele Jerseys, I\'d like to order:\n'
+    + '\nTeam: ' + team
+    + '\nKit: ' + kit
+    + '\nName: ' + (name || 'N/A')
+    + '\nNumber: ' + (number || 'N/A')
+    + '\nSize: ' + size
+    + '\nDelivery Location: ' + location;
+
+  window.open('https://wa.me/2347030112427?text=' + encodeURIComponent(msg), '_blank');
+  trackWA('custom-submit');
+  window.closeCustomModal();
+};
+
 (function cycleNational(){
   const img = document.getElementById('national-imgs');
   if(!img) return;
