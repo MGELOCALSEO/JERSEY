@@ -279,7 +279,7 @@
           <h3>Home Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Manchester%20United%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-1')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Manchester United', 'Home Jersey 25/26', document.getElementById('prod-1-img').src)">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal(this)">Custom</button>
         </div>
       </div>
 
@@ -292,7 +292,7 @@
           <h3>Home Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Arsenal%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-2')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Arsenal', 'Home Jersey 25/26', document.getElementById('prod-2-img').src)">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal(this)">Custom</button>
         </div>
       </div>
 
@@ -305,7 +305,7 @@
           <h3>Away Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Madrid%20White%20Away%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-3')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Madrid White', 'Away Jersey 25/26', document.getElementById('prod-3-img').src)">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal(this)">Custom</button>
         </div>
       </div>
 
@@ -318,7 +318,7 @@
           <h3>Home Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Super%20Eagles%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-4')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Super Eagles', 'Home Jersey 25/26', document.getElementById('prod-4-img').src)">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal(this)">Custom</button>
         </div>
       </div>
 
@@ -343,10 +343,12 @@
 
     <div class="custom-preview">
       <div class="custom-preview-visual">
-        <img src="/images/jersey-custom.svg" alt="" width="150" class="jersey-shell">
-        <div class="jersey-nameset" style="top:52%;">
-          <div class="name" style="color:rgba(10,12,15,0.85)">YOUR NAME</div>
-          <div class="num" style="color:rgba(10,12,15,0.85)">07</div>
+        <svg id="jersey-svg" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" width="150" class="jersey-shell">
+          <path id="jersey-body" d="M60 12 L22 38 L36 62 L55 50 L55 198 Q100 208 145 198 L145 50 L164 62 L178 38 L140 12 Q120 18 100 18 Q80 18 60 12Z" fill="#E5E7EB"/>
+        </svg>
+        <div class="jersey-nameset" style="top:20%;">
+          <div class="name" style="color:#0A0C0F">YOUR NAME</div>
+          <div class="num" style="color:#0A0C0F">07</div>
         </div>
       </div>
       <div class="custom-fields">

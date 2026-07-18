@@ -128,9 +128,13 @@ function trackWA(source){
   }, 2000);
 })();
 
-window.openCustomModal = function(team, kit, imgSrc){
-  const img = document.getElementById('modal-preview-img');
-  if(img) img.src = imgSrc || '';
+window.openCustomModal = function(btn){
+  const card = btn.closest('.prod-card');
+  const team = card.querySelector('.team').textContent;
+  const kit = card.querySelector('h3').textContent;
+  const imgSrc = card.querySelector('img').src;
+
+  document.getElementById('modal-preview-img').src = imgSrc;
   document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit;
   document.getElementById('custom-form').dataset.team = team;
   document.getElementById('custom-form').dataset.kit = kit;
@@ -249,6 +253,30 @@ window.submitCustomOrder = function(e){
   const ctaBtn = document.querySelector('.custom-copy .btn-primary');
   if(!nameInput || !nameEl) return;
 
+  const teamColors = {
+    'Any Team':        { fill: '#E5E7EB', text: '#0A0C0F' },
+    'Manchester United': { fill: '#DA291C', text: '#FFFFFF' },
+    'Arsenal':         { fill: '#EF0107', text: '#FFFFFF' },
+    'Chelsea':         { fill: '#034694', text: '#FFFFFF' },
+    'Liverpool':       { fill: '#C8102E', text: '#FFFFFF' },
+    'Real Madrid':     { fill: '#FEBE10', text: '#0A0C0F' },
+    'FC Barcelona':    { fill: '#A50044', text: '#FFFFFF' },
+    'PSG':             { fill: '#004170', text: '#FFFFFF' },
+    'Bayern Munich':   { fill: '#DC052D', text: '#FFFFFF' },
+    'Super Eagles':    { fill: '#008751', text: '#FFFFFF' },
+    'Argentina':       { fill: '#75AADB', text: '#0A0C0F' },
+    'Spain':           { fill: '#C60B1E', text: '#FFFFFF' }
+  };
+
+  function updateColors(){
+    const team = clubInput ? clubInput.value : 'Any Team';
+    const colors = teamColors[team] || teamColors['Any Team'];
+    const path = document.getElementById('jersey-body');
+    if(path) path.setAttribute('fill', colors.fill);
+    nameEl.style.color = colors.text;
+    numEl.style.color = colors.text;
+  }
+
   function updatePreview(){
     nameEl.textContent = nameInput.value.toUpperCase() || 'YOUR NAME';
     numEl.textContent = numInput.value || '07';
@@ -276,9 +304,10 @@ window.submitCustomOrder = function(e){
 
   nameInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
   numInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
-  if(clubInput) clubInput.addEventListener('change', updateCTA);
+  if(clubInput) clubInput.addEventListener('change', function(){ updateColors(); updateCTA(); });
   if(sizeInput) sizeInput.addEventListener('change', updateCTA);
   updatePreview();
+  updateColors();
 })();
 
 (function cycleNational(){
