@@ -154,6 +154,61 @@ window.submitCustomOrder = function(e){
   window.closeCustomModal();
 };
 
+(function countdown(){
+  const finalDate = new Date('2026-07-19T18:00:00-04:00').getTime();
+  const dEl = document.getElementById('cd-days');
+  const hEl = document.getElementById('cd-hours');
+  const mEl = document.getElementById('cd-mins');
+  const sEl = document.getElementById('cd-secs');
+  if(!dEl) return;
+
+  function tick(){
+    const now = Date.now();
+    let diff = finalDate - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    dEl.textContent = d;
+    hEl.textContent = String(h).padStart(2,'0');
+    mEl.textContent = String(m).padStart(2,'0');
+    sEl.textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+(function heroSlideshow(){
+  const container = document.getElementById('hero-slideshow');
+  if(!container) return;
+  const slides = container.querySelectorAll('.slide');
+  const prevBtn = container.querySelector('.slide-arrow-prev');
+  const nextBtn = container.querySelector('.slide-arrow-next');
+  let current = 0, interval;
+
+  function goTo(idx){
+    slides[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+  }
+
+  function prev(){ goTo((current - 1 + slides.length) % slides.length); }
+  function next(){ goTo((current + 1) % slides.length); }
+
+  prevBtn.addEventListener('click', function(){ prev(); reset(); });
+  nextBtn.addEventListener('click', function(){ next(); reset(); });
+
+  function start(){ interval = setInterval(next, 4000); }
+  function stop(){ clearInterval(interval); }
+  function reset(){ stop(); start(); }
+
+  container.addEventListener('mouseenter', stop);
+  container.addEventListener('mouseleave', start);
+
+  start();
+})();
+
 (function cycleNational(){
   const img = document.getElementById('national-imgs');
   if(!img) return;

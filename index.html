@@ -62,8 +62,47 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
-  <div class="wrap hero-inner">
+  <div class="hero-visual" id="hero-slideshow">
+    <div class="slide active">
+      <img src="/images/hero-1.avif" alt="">
+      <div class="slide-shade"></div>
+    </div>
+    <div class="slide">
+      <img src="/images/hero-2.avif" alt="">
+      <div class="slide-shade"></div>
+    </div>
+    <div class="slide">
+      <img src="/images/hero-3.avif" alt="">
+      <div class="slide-shade"></div>
+    </div>
+    <div class="slide">
+      <img src="/images/hero-4.avif" alt="">
+      <div class="slide-shade"></div>
+    </div>
+    <button class="slide-arrow slide-arrow-prev" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="slide-arrow slide-arrow-next" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <div class="wrap hero-overlay">
+    <div class="hero-brand">
+      <svg class="hero-brand-svg" viewBox="0 0 200 220" fill="none"><path d="M60 10 L20 40 L35 65 L55 52 L55 200 Q100 212 145 200 L145 52 L165 65 L180 40 L140 10 Q120 24 100 24 Q80 24 60 10Z" fill="#2BE37A"/><path d="M55 52 L55 62 L100 78 L145 62 L145 52 L100 68 Z" fill="#0A0C0F" opacity="0.15"/></svg>
+      <div class="hero-brand-text">
+        <span class="hero-brand-name">MAKELELE</span>
+        <span class="hero-brand-sub">JERSEYS</span>
+      </div>
+    </div>
     <div class="hero-copy">
+      <div class="eyebrow">World Cup Final 2026</div>
+      <div class="hero-countdown" id="wc-countdown">
+        <div class="cd-block"><span class="cd-num" id="cd-days">0</span><span class="cd-label">Days</span></div>
+        <div class="cd-block"><span class="cd-num" id="cd-hours">0</span><span class="cd-label">Hrs</span></div>
+        <div class="cd-block"><span class="cd-num" id="cd-mins">0</span><span class="cd-label">Min</span></div>
+        <div class="cd-block"><span class="cd-num" id="cd-secs">0</span><span class="cd-label">Sec</span></div>
+      </div>
       <h1>Wear Your Club. <span class="accent">Ready To Wear.</span></h1>
       <p class="hero-sub">Shop authentic club kits, national team jerseys, retro collections, and custom football shirts — with fast delivery across Lagos and Nigeria.</p>
       <div class="hero-ctas">
@@ -78,14 +117,6 @@
         <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Custom Printing Available</div>
         <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Same-Day Lagos Delivery</div>
         <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Nationwide Shipping</div>
-      </div>
-    </div>
-
-    <div class="hero-visual" aria-hidden="true">
-      <img src="/images/jersey-hero.svg" alt="" class="jersey-shell">
-      <div class="jersey-nameset">
-        <div class="name">MAKELELE</div>
-        <div class="num">10</div>
       </div>
     </div>
   </div>
