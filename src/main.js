@@ -185,12 +185,15 @@ window.submitCustomOrder = function(e){
   const slides = container.querySelectorAll('.slide');
   const prevBtn = container.querySelector('.slide-arrow-prev');
   const nextBtn = container.querySelector('.slide-arrow-next');
+  const texts = document.querySelectorAll('.slide-text');
   let current = 0, interval;
 
   function goTo(idx){
     slides[current].classList.remove('active');
+    if(texts[current]) texts[current].classList.remove('active');
     current = idx;
     slides[current].classList.add('active');
+    if(texts[current]) texts[current].classList.add('active');
   }
 
   function prev(){ goTo((current - 1 + slides.length) % slides.length); }
@@ -199,7 +202,7 @@ window.submitCustomOrder = function(e){
   prevBtn.addEventListener('click', function(){ prev(); reset(); });
   nextBtn.addEventListener('click', function(){ next(); reset(); });
 
-  function start(){ interval = setInterval(next, 4000); }
+  function start(){ interval = setInterval(next, 3000); }
   function stop(){ clearInterval(interval); }
   function reset(){ stop(); start(); }
 
