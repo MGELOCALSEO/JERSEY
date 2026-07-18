@@ -91,7 +91,7 @@ function trackWA(source){
     '/images/arsenal-fc-2026-27-home-kit.jpg',
     '/images/arsenal-fc-2026-27-away-kit.jpg',
     '/images/arsenal-fc-2026-27-third-kit.jpg'
-  ];H
+  ];
   let idx = 0;
   setInterval(() => {
     idx = (idx + 1) % images.length;
@@ -128,7 +128,9 @@ function trackWA(source){
   }, 2000);
 })();
 
-window.openCustomModal = function(team, kit){
+window.openCustomModal = function(team, kit, imgSrc){
+  const img = document.getElementById('modal-preview-img');
+  if(img) img.src = imgSrc || '';
   document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit;
   document.getElementById('custom-form').dataset.team = team;
   document.getElementById('custom-form').dataset.kit = kit;
@@ -165,6 +167,19 @@ window.submitCustomOrder = function(e){
   trackWA('custom-submit');
   window.closeCustomModal();
 };
+
+(function modalPreviewSync(){
+  const form = document.getElementById('custom-form');
+  if(!form) return;
+  form.addEventListener('input', function(e){
+    if(e.target.id === 'custom-name'){
+      document.getElementById('modal-preview-name').textContent = e.target.value.trim().toUpperCase() || 'YOUR NAME';
+    }
+    if(e.target.id === 'custom-number'){
+      document.getElementById('modal-preview-number').textContent = e.target.value.trim() || '00';
+    }
+  });
+})();
 
 (function countdown(){
   const finalDate = new Date('2026-07-19T18:00:00-04:00').getTime();

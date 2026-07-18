@@ -6,6 +6,28 @@
 <title>Makelele Jerseys — Original & Custom Football Jerseys, Lagos</title>
 <meta name="description" content="Shop authentic club jerseys, Super Eagles kits, retro collections and custom football shirts. Same-day Lagos delivery, nationwide shipping. Order on WhatsApp.">
 
+<!-- Open Graph / Social -->
+<meta property="og:title" content="Makelele Jerseys — Original & Custom Football Jerseys, Lagos">
+<meta property="og:description" content="Shop authentic club jerseys, Super Eagles kits, retro collections and custom football shirts. Same-day Lagos delivery, nationwide shipping. Order on WhatsApp.">
+<meta property="og:image" content="https://www.makelelejersey.com/images/jersey-hero.svg">
+<meta property="og:url" content="https://www.makelelejersey.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Makelele Jerseys">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Makelele Jerseys — Original & Custom Football Jerseys, Lagos">
+<meta name="twitter:description" content="Shop authentic club jerseys, Super Eagles kits, retro collections and custom football shirts. Same-day Lagos delivery, nationwide shipping.">
+
+<!-- Browser -->
+<meta name="theme-color" content="#0A0C0F">
+<link rel="canonical" href="https://www.makelelejersey.com">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/images/jersey-hero.svg">
+
+<meta name="msvalidate.01" content="C97FA57CD33B857B31F06405A56E390E">
+
 <!-- Schema.org -->
 <script type="application/ld+json">
 {
@@ -257,7 +279,7 @@
           <h3>Home Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Manchester%20United%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-1')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Manchester United', 'Home Jersey 25/26')">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Manchester United', 'Home Jersey 25/26', document.getElementById('prod-1-img').src)">Custom</button>
         </div>
       </div>
 
@@ -270,7 +292,7 @@
           <h3>Home Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Arsenal%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-2')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Arsenal', 'Home Jersey 25/26')">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Arsenal', 'Home Jersey 25/26', document.getElementById('prod-2-img').src)">Custom</button>
         </div>
       </div>
 
@@ -283,7 +305,7 @@
           <h3>Away Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Madrid%20White%20Away%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-3')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Madrid White', 'Away Jersey 25/26')">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Madrid White', 'Away Jersey 25/26', document.getElementById('prod-3-img').src)">Custom</button>
         </div>
       </div>
 
@@ -296,7 +318,7 @@
           <h3>Home Jersey 25/26</h3>
           <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
           <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20Super%20Eagles%20Home%20Jersey%2025%2F26" target="_blank" rel="noopener" onclick="trackWA('prod-4')">Buy On WhatsApp</a>
-          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Super Eagles', 'Home Jersey 25/26')">Custom</button>
+          <button class="btn btn-ghost btn-block" onclick="openCustomModal('Super Eagles', 'Home Jersey 25/26', document.getElementById('prod-4-img').src)">Custom</button>
         </div>
       </div>
 
@@ -560,6 +582,11 @@
     <button class="modal-close" onclick="closeCustomModal()">&times;</button>
     <h3>Customise Your Jersey</h3>
     <p class="modal-jersey" id="modal-jersey-label">Manchester United — Home Jersey 25/26</p>
+    <div class="modal-preview">
+      <img id="modal-preview-img" src="" alt="">
+      <div class="preview-name" id="modal-preview-name">YOUR NAME</div>
+      <div class="preview-number" id="modal-preview-number">00</div>
+    </div>
     <form id="custom-form" onsubmit="submitCustomOrder(event)">
       <label>
         <span>Your Name</span>

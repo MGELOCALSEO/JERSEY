@@ -728,3 +728,44 @@ footer{ padding: 50px 0 100px; border-top: 1px solid var(--line); }
 .modal-card input:focus,
 .modal-card select:focus{ border-color: var(--pitch); }
 .modal-card select option{ background: var(--bg-elevated); color: var(--white); }
+.modal-preview{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  background: var(--bg-card);
+}
+.modal-preview img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.preview-name{
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 4vw, 24px);
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+}
+.preview-number{
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(42px, 12vw, 72px);
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+  line-height: 1;
+}
