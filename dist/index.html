@@ -37,8 +37,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-BcsNm-PX.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-MIg5ifBy.css">
+  <script type="module" crossorigin src="./assets/index-cznfA_qn.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-LPMurmUh.css">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 </head>
 <body>
 
@@ -52,6 +53,9 @@
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
+    <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
     <a class="btn btn-primary nav-cta" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" onclick="trackWA('nav')">
       Order On WhatsApp
     </a>
@@ -326,10 +330,41 @@
         </div>
       </div>
       <div class="custom-fields">
-        <div class="custom-field"><label>Club</label><div class="val">Any Team</div></div>
-        <div class="custom-field"><label>Size</label><div class="val">S – XXL</div></div>
-        <div class="custom-field"><label>Number</label><div class="val">00 – 99</div></div>
-        <div class="custom-field"><label>Delivery</label><div class="val">Lagos: Same-Day</div></div>
+        <div class="custom-field">
+          <label>Club</label>
+          <select id="preview-club" class="val">
+            <option value="Any Team">Any Team</option>
+            <option value="Manchester United">Manchester United</option>
+            <option value="Arsenal">Arsenal</option>
+            <option value="Chelsea">Chelsea</option>
+            <option value="Liverpool">Liverpool</option>
+            <option value="Real Madrid">Real Madrid</option>
+            <option value="FC Barcelona">FC Barcelona</option>
+            <option value="PSG">PSG</option>
+            <option value="Bayern Munich">Bayern Munich</option>
+            <option value="Super Eagles">Super Eagles</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Spain">Spain</option>
+          </select>
+        </div>
+        <div class="custom-field">
+          <label>Your Name</label>
+          <input type="text" id="preview-name" class="val" placeholder="YOUR NAME" maxlength="14" autocomplete="off">
+        </div>
+        <div class="custom-field">
+          <label>Number</label>
+          <input type="text" id="preview-number" class="val" placeholder="07" maxlength="2" autocomplete="off">
+        </div>
+        <div class="custom-field">
+          <label>Size</label>
+          <select id="preview-size" class="val">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>

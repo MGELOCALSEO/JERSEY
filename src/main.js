@@ -1,3 +1,15 @@
+window.toggleNav = function(){
+  const nav = document.querySelector('.nav');
+  nav.classList.toggle('nav-open');
+};
+
+document.addEventListener('click', function(e){
+  const nav = document.querySelector('.nav');
+  if(nav.classList.contains('nav-open') && !nav.contains(e.target)){
+    nav.classList.remove('nav-open');
+  }
+});
+
 function trackWA(source){
   try{
     if (typeof gtag === 'function') {
