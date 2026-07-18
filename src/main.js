@@ -251,30 +251,26 @@ window.submitCustomOrder = function(e){
   const nameEl = document.querySelector('.jersey-nameset .name');
   const numEl = document.querySelector('.jersey-nameset .num');
   const ctaBtn = document.querySelector('.custom-copy .btn-primary');
+  const jerseyImg = document.getElementById('jersey-img');
   if(!nameInput || !nameEl) return;
 
-  const teamColors = {
-    'Any Team':        { fill: '#E5E7EB', text: '#0A0C0F' },
-    'Manchester United': { fill: '#DA291C', text: '#FFFFFF' },
-    'Arsenal':         { fill: '#EF0107', text: '#FFFFFF' },
-    'Chelsea':         { fill: '#034694', text: '#FFFFFF' },
-    'Liverpool':       { fill: '#C8102E', text: '#FFFFFF' },
-    'Real Madrid':     { fill: '#FEBE10', text: '#0A0C0F' },
-    'FC Barcelona':    { fill: '#A50044', text: '#FFFFFF' },
-    'PSG':             { fill: '#004170', text: '#FFFFFF' },
-    'Bayern Munich':   { fill: '#DC052D', text: '#FFFFFF' },
-    'Super Eagles':    { fill: '#008751', text: '#FFFFFF' },
-    'Argentina':       { fill: '#75AADB', text: '#0A0C0F' },
-    'Spain':           { fill: '#C60B1E', text: '#FFFFFF' }
+  const teamImages = {
+    'Manchester United': '/images/manchester-united-2026-27-home-kit.jpg',
+    'Arsenal':           '/images/arsenal-fc-2026-27-home-kit.jpg',
+    'Chelsea':           '/images/chelsea-fc-2026-27-home-kit.jpg',
+    'Liverpool':         '/images/liverpool-fc-2026-27-home-kit.jpg',
+    'Real Madrid':       '/images/real-madrid-2026-27-home-kit.jpg',
+    'FC Barcelona':      '/images/fc-barcelona-2026-27-home-kit.jpg',
+    'Bayern Munich':     '/images/bayern-munchen-2026-27-home-kit.jpg',
+    'Super Eagles':      '/images/nigeria-2026-home-kit.jpg',
+    'Argentina':         '/images/argentina-2026-home-kit.jpg',
+    'Spain':             '/images/spain-2026-home-kit.jpg'
   };
 
-  function updateColors(){
+  function updateJersey(){
     const team = clubInput ? clubInput.value : 'Any Team';
-    const colors = teamColors[team] || teamColors['Any Team'];
-    const path = document.getElementById('jersey-body');
-    if(path) path.setAttribute('fill', colors.fill);
-    nameEl.style.color = colors.text;
-    numEl.style.color = colors.text;
+    const src = teamImages[team] || '/images/jersey-custom.svg';
+    if(jerseyImg) jerseyImg.src = src;
   }
 
   function updatePreview(){
@@ -304,10 +300,10 @@ window.submitCustomOrder = function(e){
 
   nameInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
   numInput.addEventListener('input', function(){ updatePreview(); updateCTA(); });
-  if(clubInput) clubInput.addEventListener('change', function(){ updateColors(); updateCTA(); });
+  if(clubInput) clubInput.addEventListener('change', function(){ updateJersey(); updateCTA(); });
   if(sizeInput) sizeInput.addEventListener('change', updateCTA);
   updatePreview();
-  updateColors();
+  updateJersey();
 })();
 
 (function cycleNational(){
