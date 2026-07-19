@@ -67,12 +67,12 @@ cycleImages('retro-imgs', [
 ], 3500);
 
 const products = [
-  { id:'prod-1', team:'Manchester United', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/manchester-united-2026-27-home-kit.jpg'] },
-  { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/arsenal-fc-2026-27-home-kit.jpg'] },
-  { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/club/real-madrid-2026-27-home-kit.png'] },
-  { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/national/nigeria-2026-home-kit.jpg'] },
-  { id:'prod-5', team:'FC Barcelona', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/fc-barcelona-2026-27-home-kit.jpg'] },
-  { id:'prod-6', team:'Chelsea', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/ChealseaHome.png'] },
+  { id:'prod-1', team:'Manchester United', name:'Home Jersey 25/26', tag:'Home Kit', cat:'club', price:'₦35,000', images:['/images/club/manchester-united-2026-27-home-kit.jpg'] },
+  { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', cat:'club', price:'₦35,000', images:['/images/club/arsenal-fc-2026-27-home-kit.jpg'] },
+  { id:'prod-3', team:'Real Madrid', name:'Home Jersey 25/26', tag:'Home Kit', cat:'club', price:'₦35,000', images:['/images/club/real-madrid-2026-27-home-kit.png'] },
+  { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', cat:'national', price:'₦30,000', images:['/images/national/nigeria-2026-home-kit.jpg'] },
+  { id:'prod-5', team:'FC Barcelona', name:'Home Jersey 25/26', tag:'Home Kit', cat:'club', price:'₦35,000', images:['/images/club/fc-barcelona-2026-27-home-kit.jpg'] },
+  { id:'prod-6', team:'Chelsea', name:'Home Jersey 25/26', tag:'Home Kit', cat:'club', price:'₦35,000', images:['/images/club/ChealseaHome.png'] },
 ];
 
 (function renderProducts(){
@@ -82,14 +82,14 @@ const products = [
     <div class="prod-card" data-id="${p.id}">
       <div class="prod-visual">
         <span class="prod-tag">${p.tag}</span>
+        <span class="cat-prod-price">${p.price}</span>
         <img id="${p.id}-img" src="${p.images[0]}" alt="${p.team} ${p.name}" loading="lazy">
       </div>
       <div class="prod-body">
         <div class="team">${p.team}</div>
         <h3>${p.name}</h3>
-        <div class="prod-meta"><span>${p.sizes}</span><span>Custom ✓</span></div>
-        <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20${encodeURIComponent(p.team + ' ' + p.name)}" target="_blank" rel="noopener" data-wa="prod-${p.id}">Buy On WhatsApp</a>
-        <button class="btn btn-ghost btn-block" data-custom="${p.id}">Custom</button>
+        <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
+        <button class="btn btn-primary btn-block" data-custom="${p.id}" data-cat="${p.cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
     </div>
   `).join('');
