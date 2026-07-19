@@ -301,7 +301,7 @@ window.submitCustomOrder = function(e){
 };
 
 (function countdown(){
-  const finalDate = new Date('2026-07-19T23:59:59').getTime();
+  const finalDate = new Date('2026-07-19T20:00:00+01:00').getTime();
   const dEl = document.getElementById('cd-days');
   const hEl = document.getElementById('cd-hours');
   const mEl = document.getElementById('cd-mins');
