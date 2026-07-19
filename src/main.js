@@ -37,40 +37,40 @@ function cycleImages(id, list, ms){
 }
 
 cycleImages('club-imgs', [
-  '/images/manchester-united-2026-27-home-kit.jpg',
-  '/images/fc-barcelona-2026-27-away-kit.jpg',
-  '/images/chelsea-fc-2026-27-home-kit.jpg',
-  '/images/real-madrid-2026-27-third-kit.jpg',
-  '/images/arsenal-fc-2026-27-home-kit.jpg',
-  '/images/bayern-munchen-2026-27-home-kit.jpg',
-  '/images/fc-barcelona-2026-27-fourth-kit.jpg',
-  '/images/liverpool-fc-2026-27-home-kit.jpg',
-  '/images/manchester-united-2026-27-away-kit.jpg',
-  '/images/real-madrid-2026-27-away-kit.jpg',
-  '/images/arsenal-fc-2026-27-away-kit.jpg',
-  '/images/fc-barcelona-2026-27-third-kit.jpg',
-  '/images/real-madrid-2026-27-home-kit.jpg',
-  '/images/arsenal-fc-2026-27-third-kit.jpg',
-  '/images/fc-barcelona-2026-27-home-kit.jpg',
+  '/images/club/manchester-united-2026-27-home-kit.jpg',
+  '/images/club/fc-barcelona-2026-27-away-kit.jpg',
+  '/images/club/chelsea-fc-2026-27-home-kit.jpg',
+  '/images/club/real-madrid-2026-27-third-kit.jpg',
+  '/images/club/arsenal-fc-2026-27-home-kit.jpg',
+  '/images/club/bayern-munchen-2026-27-home-kit.jpg',
+  '/images/club/fc-barcelona-2026-27-fourth-kit.jpg',
+  '/images/club/liverpool-fc-2026-27-home-kit.jpg',
+  '/images/club/manchester-united-2026-27-away-kit.jpg',
+  '/images/club/real-madrid-2026-27-away-kit.jpg',
+  '/images/club/arsenal-fc-2026-27-away-kit.jpg',
+  '/images/club/fc-barcelona-2026-27-third-kit.jpg',
+  '/images/club/real-madrid-2026-27-home-kit.jpg',
+  '/images/club/arsenal-fc-2026-27-third-kit.jpg',
+  '/images/club/fc-barcelona-2026-27-home-kit.jpg',
 ], 3500);
 
 cycleImages('retro-imgs', [
-  '/images/manchester-united-1998-99-home-kit.jpg',
-  '/images/manchester-united-2007-08-home-kit.jpg',
-  '/images/arsenal-fc-2005-06-home-kit.jpg',
-  '/images/chelsea-fc-2012-13-home-kit.jpg',
-  '/images/fc-barcelona-2010-11-home-kit.jpg',
-  '/images/liverpool-fc-2017-18-home-kit.jpg',
-  '/images/real-madrid-1998-99-home-kit.jpg',
-  '/images/ac-milan-2006-07-home-kit.jpg',
-  '/images/nigeria-1994-95-home-kit.jpg',
+  '/images/retro/manchester-united-1998-99-home-kit.jpg',
+  '/images/retro/manchester-united-2007-08-home-kit.jpg',
+  '/images/retro/arsenal-fc-2005-06-home-kit.jpg',
+  '/images/retro/chelsea-fc-2012-13-home-kit.jpg',
+  '/images/retro/fc-barcelona-2010-11-home-kit.jpg',
+  '/images/retro/liverpool-fc-2017-18-home-kit.jpg',
+  '/images/retro/real-madrid-1998-99-home-kit.jpg',
+  '/images/retro/ac-milan-2006-07-home-kit.jpg',
+  '/images/retro/nigeria-1994-95-home-kit.jpg',
 ], 3500);
 
 const products = [
-  { id:'prod-1', team:'Manchester United', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/manchester-united-2026-27-home-kit.jpg','/images/manchester-united-2026-27-away-kit.jpg'] },
-  { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/arsenal-fc-2026-27-home-kit.jpg','/images/arsenal-fc-2026-27-away-kit.jpg','/images/arsenal-fc-2026-27-third-kit.jpg'] },
-  { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/real-madrid-2026-27-home-kit.jpg','/images/real-madrid-2026-27-away-kit.jpg','/images/real-madrid-2026-27-third-kit.jpg'] },
-  { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/nigeria-2026-home-kit.jpg','/images/nigeria-2026-away-kit.jpg'] },
+  { id:'prod-1', team:'Manchester United', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/manchester-united-2026-27-home-kit.jpg','/images/club/manchester-united-2026-27-away-kit.jpg'] },
+  { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/arsenal-fc-2026-27-home-kit.jpg','/images/club/arsenal-fc-2026-27-away-kit.jpg','/images/club/arsenal-fc-2026-27-third-kit.jpg'] },
+  { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/club/real-madrid-2026-27-home-kit.jpg','/images/club/real-madrid-2026-27-away-kit.jpg','/images/club/real-madrid-2026-27-third-kit.jpg'] },
+  { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/national/nigeria-2026-home-kit.jpg','/images/national/nigeria-2026-away-kit.jpg'] },
 ];
 
 (function renderProducts(){
@@ -231,14 +231,135 @@ window.submitCustomOrder = function(e){
 })();
 
 cycleImages('national-imgs', [
-  '/images/nigeria-2026-home-kit.jpg',
-  '/images/nigeria-2026-away-kit.jpg',
-  '/images/argentina-2026-home-kit.jpg',
-  '/images/argentina-2026-away-kit.jpg',
-  '/images/england-2026-home-kit.jpg',
-  '/images/england-2026-away-kit.jpg',
-  '/images/france-2026-home-kit.jpg',
-  '/images/france-2026-away-kit.jpg',
-  '/images/spain-2026-home-kit.jpg',
-  '/images/spain-2026-away-kit.jpg',
+  '/images/national/nigeria-2026-home-kit.jpg',
+  '/images/national/nigeria-2026-away-kit.jpg',
+  '/images/national/argentina-2026-home-kit.jpg',
+  '/images/national/argentina-2026-away-kit.jpg',
+  '/images/national/england-2026-home-kit.jpg',
+  '/images/national/england-2026-away-kit.jpg',
+  '/images/national/france-2026-home-kit.jpg',
+  '/images/national/france-2026-away-kit.jpg',
+  '/images/national/spain-2026-home-kit.jpg',
+  '/images/national/spain-2026-away-kit.jpg',
 ], 3500);
+
+/* ============ CATEGORY PRODUCT DATA ============ */
+const clubProducts = [
+  { team:'Manchester United', kit:'Home 25/26', img:'/images/club/manchester-united-2026-27-home-kit.jpg' },
+  { team:'FC Barcelona', kit:'Away 25/26', img:'/images/club/fc-barcelona-2026-27-away-kit.jpg' },
+  { team:'Chelsea', kit:'Home 25/26', img:'/images/club/chelsea-fc-2026-27-home-kit.jpg' },
+  { team:'Real Madrid', kit:'Third 25/26', img:'/images/club/real-madrid-2026-27-third-kit.jpg' },
+  { team:'Arsenal', kit:'Home 25/26', img:'/images/club/arsenal-fc-2026-27-home-kit.jpg' },
+  { team:'Bayern Munchen', kit:'Home 25/26', img:'/images/club/bayern-munchen-2026-27-home-kit.jpg' },
+  { team:'FC Barcelona', kit:'Fourth 25/26', img:'/images/club/fc-barcelona-2026-27-fourth-kit.jpg' },
+  { team:'Liverpool', kit:'Home 25/26', img:'/images/club/liverpool-fc-2026-27-home-kit.jpg' },
+  { team:'Manchester United', kit:'Away 25/26', img:'/images/club/manchester-united-2026-27-away-kit.jpg' },
+  { team:'Real Madrid', kit:'Away 25/26', img:'/images/club/real-madrid-2026-27-away-kit.jpg' },
+  { team:'Arsenal', kit:'Away 25/26', img:'/images/club/arsenal-fc-2026-27-away-kit.jpg' },
+  { team:'FC Barcelona', kit:'Third 25/26', img:'/images/club/fc-barcelona-2026-27-third-kit.jpg' },
+  { team:'Real Madrid', kit:'Home 25/26', img:'/images/club/real-madrid-2026-27-home-kit.jpg' },
+  { team:'Arsenal', kit:'Third 25/26', img:'/images/club/arsenal-fc-2026-27-third-kit.jpg' },
+  { team:'FC Barcelona', kit:'Home 25/26', img:'/images/club/fc-barcelona-2026-27-home-kit.jpg' },
+];
+
+const nationalProducts = [
+  { team:'Nigeria', kit:'Home 25/26', img:'/images/national/nigeria-2026-home-kit.jpg' },
+  { team:'Nigeria', kit:'Away 25/26', img:'/images/national/nigeria-2026-away-kit.jpg' },
+  { team:'Argentina', kit:'Home 25/26', img:'/images/national/argentina-2026-home-kit.jpg' },
+  { team:'Argentina', kit:'Away 25/26', img:'/images/national/argentina-2026-away-kit.jpg' },
+  { team:'England', kit:'Home 25/26', img:'/images/national/england-2026-home-kit.jpg' },
+  { team:'England', kit:'Away 25/26', img:'/images/national/england-2026-away-kit.jpg' },
+  { team:'France', kit:'Home 25/26', img:'/images/national/france-2026-home-kit.jpg' },
+  { team:'France', kit:'Away 25/26', img:'/images/national/france-2026-away-kit.jpg' },
+  { team:'Spain', kit:'Home 25/26', img:'/images/national/spain-2026-home-kit.jpg' },
+  { team:'Spain', kit:'Away 25/26', img:'/images/national/spain-2026-away-kit.jpg' },
+];
+
+const retroProducts = [
+  { team:'Manchester United', kit:'Home 98/99', img:'/images/retro/manchester-united-1998-99-home-kit.jpg' },
+  { team:'Manchester United', kit:'Home 07/08', img:'/images/retro/manchester-united-2007-08-home-kit.jpg' },
+  { team:'Arsenal', kit:'Home 05/06', img:'/images/retro/arsenal-fc-2005-06-home-kit.jpg' },
+  { team:'Chelsea', kit:'Home 12/13', img:'/images/retro/chelsea-fc-2012-13-home-kit.jpg' },
+  { team:'FC Barcelona', kit:'Home 10/11', img:'/images/retro/fc-barcelona-2010-11-home-kit.jpg' },
+  { team:'Liverpool', kit:'Home 17/18', img:'/images/retro/liverpool-fc-2017-18-home-kit.jpg' },
+  { team:'Real Madrid', kit:'Home 98/99', img:'/images/retro/real-madrid-1998-99-home-kit.jpg' },
+  { team:'AC Milan', kit:'Home 06/07', img:'/images/retro/ac-milan-2006-07-home-kit.jpg' },
+  { team:'Nigeria', kit:'Home 94/95', img:'/images/retro/nigeria-1994-95-home-kit.jpg' },
+];
+
+const catConfig = {
+  club:  { name:'Club Jerseys', sub: 'Browse our Player Version club kits.', price:'\u20A655,000', addon:'+ \u20A65,000 Custom', label:'Player Version', list: clubProducts },
+  national: { name:'National Teams', sub: 'National Team kits at great prices.', price:'\u20A630,000', addon:'+ \u20A65,000 Custom', label:'Official Kit', list: nationalProducts },
+  retro: { name:'Retro Collection', sub: 'Classic designs from football\'s golden era.', price:'\u20A640,000', addon:'+ \u20A65,000 Custom', label:'Retro Classic', list: retroProducts },
+};
+
+function renderCategory(cat){
+  const view = document.getElementById('category-view');
+  const grid = document.getElementById('cv-grid');
+  const title = document.getElementById('cv-title');
+  const sub = document.getElementById('cv-subtitle');
+  if(!view || !grid || !title || !sub || !catConfig[cat]) return false;
+  const cfg = catConfig[cat];
+  title.textContent = cfg.name;
+  sub.textContent = cfg.sub;
+  grid.innerHTML = cfg.list.map(p => `
+    <div class="cat-prod-card">
+      <div class="cat-prod-visual">
+        <span class="cat-prod-price">${cfg.price}</span>
+        <span class="cat-prod-addon">${cfg.addon}</span>
+        <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
+      </div>
+      <div class="cat-prod-body">
+        <div class="team">${p.team}</div>
+        <h3>${p.kit}</h3>
+        <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=${encodeURIComponent('Hi Makelele Jerseys, I\'d like to order the ' + p.team + ' ' + p.kit + ' \u2014 ' + cfg.price)}" target="_blank" rel="noopener" onclick="trackWA('cat-${cat}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order on WhatsApp</a>
+      </div>
+    </div>
+  `).join('');
+  return true;
+}
+
+function showHome(){
+  const hc = document.getElementById('home-content');
+  hc.classList.remove('home-hidden');
+  hc.style.removeProperty('display');
+  document.getElementById('category-view').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function showCategory(cat){
+  if(!renderCategory(cat)) return;
+  const hc = document.getElementById('home-content');
+  hc.classList.add('home-hidden');
+  hc.style.setProperty('display', 'none', 'important');
+  document.getElementById('category-view').classList.remove('hidden');
+  document.body.style.overflow = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleHash(){
+  const hash = location.hash.slice(1);
+  console.log('handleHash:', hash);
+  if(hash === 'club' || hash === 'national' || hash === 'retro'){
+    showCategory(hash);
+  } else {
+    const hc = document.getElementById('home-content');
+    const wasHidden = hc.classList.contains('home-hidden') || hc.style.display === 'none';
+    showHome();
+    if(wasHidden && hash){
+      requestAnimationFrame(() => {
+        const el = document.getElementById(hash);
+        if(el) el.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }
+}
+
+document.getElementById('cv-back-btn').addEventListener('click', function(e){
+  e.preventDefault();
+  location.hash = '';
+});
+
+window.addEventListener('hashchange', handleHash);
+window.addEventListener('load', handleHash);
+document.addEventListener('DOMContentLoaded', handleHash);
