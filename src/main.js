@@ -69,7 +69,6 @@ cycleImages('retro-imgs', [
 const products = [
   { id:'prod-1', team:'Manchester United', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/manchester-united-2026-27-home-kit.jpg','/images/club/manchester-united-2026-27-away-kit.jpg'] },
   { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/arsenal-fc-2026-27-home-kit.jpg','/images/club/arsenal-fc-2026-27-away-kit.jpg','/images/club/arsenal-fc-2026-27-third-kit.jpg'] },
-  { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/club/real-madrid-2026-27-home-kit.png','/images/club/real-madrid-2026-27-away-kit.jpg','/images/club/real-madrid-2026-27-third-kit.jpg'] },
   { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/national/nigeria-2026-home-kit.jpg','/images/national/nigeria-2026-away-kit.jpg'] },
   { id:'prod-5', team:'FC Barcelona', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/fc-barcelona-2026-27-home-kit.jpg','/images/club/fc-barcelona-2026-27-away-kit.jpg','/images/club/fc-barcelona-2026-27-third-kit.jpg'] },
   { id:'prod-6', team:'Chelsea', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/ChealseaHome.png'] },
