@@ -44,14 +44,10 @@ cycleImages('club-imgs', [
   '/images/club/manchester-united-2026-27-home-kit.jpg',
   '/images/club/fc-barcelona-2026-27-away-kit.jpg',
   '/images/club/ChealseaHome.png',
-  '/images/club/real-madrid-2026-27-third-kit.jpg',
   '/images/club/arsenal-fc-2026-27-home-kit.jpg',
   '/images/club/bayern-munchen-2026-27-home-kit.jpg',
-  '/images/club/fc-barcelona-2026-27-fourth-kit.jpg',
   '/images/club/liverpool-fc-2026-27-home-kit.jpg',
-  '/images/club/manchester-united-2026-27-away-kit.jpg',
   '/images/club/real-madrid-2026-27-away-kit.jpg',
-  '/images/club/arsenal-fc-2026-27-away-kit.jpg',
   '/images/club/fc-barcelona-2026-27-third-kit.jpg',
   '/images/club/real-madrid-2026-27-home-kit.png',
   '/images/club/arsenal-fc-2026-27-third-kit.jpg',
@@ -305,7 +301,7 @@ window.submitCustomOrder = function(e){
 };
 
 (function countdown(){
-  const finalDate = new Date('2026-07-19T18:00:00-04:00').getTime();
+  const finalDate = new Date('2026-07-19T23:59:59').getTime();
   const dEl = document.getElementById('cd-days');
   const hEl = document.getElementById('cd-hours');
   const mEl = document.getElementById('cd-mins');
@@ -401,14 +397,10 @@ const clubProducts = [
   { team:'Manchester United', kit:'Home 25/26', img:'/images/club/manchester-united-2026-27-home-kit.jpg' },
   { team:'FC Barcelona', kit:'Away 25/26', img:'/images/club/fc-barcelona-2026-27-away-kit.jpg' },
   { team:'Chelsea', kit:'Home 25/26', img:'/images/club/ChealseaHome.png' },
-  { team:'Real Madrid', kit:'Third 25/26', img:'/images/club/real-madrid-2026-27-third-kit.jpg' },
   { team:'Arsenal', kit:'Home 25/26', img:'/images/club/arsenal-fc-2026-27-home-kit.jpg' },
   { team:'Bayern Munchen', kit:'Home 25/26', img:'/images/club/bayern-munchen-2026-27-home-kit.jpg' },
-  { team:'FC Barcelona', kit:'Fourth 25/26', img:'/images/club/fc-barcelona-2026-27-fourth-kit.jpg' },
   { team:'Liverpool', kit:'Home 25/26', img:'/images/club/liverpool-fc-2026-27-home-kit.jpg' },
-  { team:'Manchester United', kit:'Away 25/26', img:'/images/club/manchester-united-2026-27-away-kit.jpg' },
   { team:'Real Madrid', kit:'Away 25/26', img:'/images/club/real-madrid-2026-27-away-kit.jpg' },
-  { team:'Arsenal', kit:'Away 25/26', img:'/images/club/arsenal-fc-2026-27-away-kit.jpg' },
   { team:'FC Barcelona', kit:'Third 25/26', img:'/images/club/fc-barcelona-2026-27-third-kit.jpg' },
   { team:'Real Madrid', kit:'Home 25/26', img:'/images/club/real-madrid-2026-27-home-kit.png' },
   { team:'Arsenal', kit:'Third 25/26', img:'/images/club/arsenal-fc-2026-27-third-kit.jpg' },
