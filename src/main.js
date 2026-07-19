@@ -1,3 +1,7 @@
+// Vercel Web Analytics
+import { inject } from '@vercel/analytics';
+inject();
+
 window.toggleNav = function(){
   const nav = document.querySelector('.nav');
   nav.classList.toggle('nav-open');
