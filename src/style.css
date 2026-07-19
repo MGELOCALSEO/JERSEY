@@ -179,8 +179,7 @@ h1,h2,h3{
   z-index: 99;
 }
 .nav-cta{ display:none; }
-.nav-cta-mobile .btn{ padding: 10px 16px; font-size: 13px; }
-.nav-cta-mobile{ order:3; }
+.nav-cta-mobile{ padding: 10px 16px; font-size: 13px; order:3; }
 @media(min-width: 860px){
   .nav-toggle{ display:none; }
   .nav-links{ display:flex; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); flex-direction:row; position:static; background:none; backdrop-filter:none; border:none; padding:0; }
@@ -716,4 +715,12 @@ footer{ padding: 50px 0 100px; border-top: 1px solid var(--line); }
 .cat-prod-body h3{ font-family: var(--font-body); text-transform:none; font-size: 14.5px; font-weight:700; margin-bottom: 8px; }
 .cat-prod-body .btn{ font-size: 12.5px; padding: 12px 14px; }
 .cat-prod-body .btn + .btn{ margin-top: 6px; }
+
+@media(max-width: 480px){
+  #category-view{ padding: 70px 0 40px; }
+  .cat-prod-price{ font-size: 13px; padding: 3px 7px; }
+  .cat-prod-addon{ font-size: 8px; padding: 2px 5px; }
+  .cv-head h2{ font-size: 22px; }
+  .cv-head p{ font-size: 13px; }
+}
 

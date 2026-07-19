@@ -71,6 +71,8 @@ const products = [
   { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/arsenal-fc-2026-27-home-kit.jpg','/images/club/arsenal-fc-2026-27-away-kit.jpg','/images/club/arsenal-fc-2026-27-third-kit.jpg'] },
   { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/club/real-madrid-2026-27-home-kit.jpg','/images/club/real-madrid-2026-27-away-kit.jpg','/images/club/real-madrid-2026-27-third-kit.jpg'] },
   { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/national/nigeria-2026-home-kit.jpg','/images/national/nigeria-2026-away-kit.jpg'] },
+  { id:'prod-5', team:'FC Barcelona', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/fc-barcelona-2026-27-home-kit.jpg','/images/club/fc-barcelona-2026-27-away-kit.jpg','/images/club/fc-barcelona-2026-27-third-kit.jpg'] },
+  { id:'prod-6', team:'Chelsea', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/chelsea-fc-2026-27-home-kit.jpg'] },
 ];
 
 (function renderProducts(){
@@ -253,6 +255,22 @@ cycleImages('national-imgs', [
   '/images/national/spain-2026-away-kit.jpg',
 ], 3500);
 
+cycleImages('customized-imgs', [
+  '/images/customized/Barcelona_customized.png',
+  '/images/customized/Liverpool Customized.png',
+], 3500);
+
+cycleImages('custom-gallery-img', [
+  '/images/customized/arsenal customized.png',
+  '/images/customized/arsenalcustomized.png',
+  '/images/customized/Corotiacustomized.png',
+  '/images/customized/CUSTOMIZED arsenal customized.png.png',
+  '/images/customized/inter customized.png',
+  '/images/customized/man u away.png',
+  '/images/customized/plain jersey.png',
+  '/images/customized/plain.png',
+], 3000);
+
 /* ============ CATEGORY PRODUCT DATA ============ */
 const clubProducts = [
   { team:'Manchester United', kit:'Home 25/26', img:'/images/club/manchester-united-2026-27-home-kit.jpg' },
@@ -329,7 +347,7 @@ function renderCategory(cat){
   return true;
 }
 
-const homeSections = () => document.querySelectorAll('#hero, #trust, #collection, #featured, .custom-section, #reviews, #how, .location-section, #faq, .final-cta, footer');
+const homeSections = () => document.querySelectorAll('#top, #trust, #collection, #featured, .custom-section, #reviews, #how, .location-section, #faq, .final-cta, footer');
 
 function showHome(){
   homeSections().forEach(el => {
