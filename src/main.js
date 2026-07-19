@@ -178,6 +178,8 @@ function openCustomModal(btn){
   document.getElementById('custom-number').value = '';
   document.getElementById('custom-size').value = '';
   document.getElementById('custom-location').value = '';
+  document.getElementById('custom-club').value = '';
+  document.getElementById('custom-season').value = '';
   delete form.dataset.team;
   delete form.dataset.kit;
   delete form.dataset.baseLabel;
@@ -187,6 +189,8 @@ function openCustomModal(btn){
     typeRow.classList.add('hidden');
     const team = card.querySelector('.team').textContent;
     const kit = card.querySelector('h3').textContent;
+    document.getElementById('custom-club').value = team;
+    document.getElementById('custom-season').value = kit;
     const priceEl = card.querySelector('.cat-prod-price');
     const priceText = priceEl ? ' \u2014 ' + priceEl.textContent : '';
     const img = document.getElementById('modal-preview-img');
@@ -268,10 +272,6 @@ window.submitCustomOrder = function(e){
   const typeEl = document.getElementById('jersey-type');
   const useType = typeRow && !typeRow.classList.contains('hidden');
   const jerseyType = useType ? typeEl.value : '';
-  const team = e.target.dataset.team;
-  const kit = e.target.dataset.kit;
-  const price = e.target.dataset.price;
-  const baseLabel = e.target.dataset.baseLabel;
   const version = document.getElementById('order-version');
   const verLabel = (version && !version.closest('.hidden')) ? (version.value === 'player' ? 'Player Version' : 'Fans Version') : '';
   const customChoice = document.getElementById('order-custom').value === 'yes';
@@ -280,14 +280,16 @@ window.submitCustomOrder = function(e){
   const size = document.getElementById('custom-size').value;
   const location = document.getElementById('custom-location').value.trim();
   const total = document.getElementById('pb-total').textContent;
+  const club = document.getElementById('custom-club').value.trim();
+  const season = document.getElementById('custom-season').value.trim();
 
   let msg = 'Hi Makelele Jerseys, I\'d like to order:\n';
   if(jerseyType){
     const typeLabels = { club:'Club Jersey', national:'National Jersey', retro:'Retro Jersey' };
     msg += '\nType: ' + (typeLabels[jerseyType] || jerseyType);
   }
-  if(team) msg += '\nTeam: ' + team;
-  if(kit) msg += '\nKit: ' + kit;
+  if(club) msg += '\nClub: ' + club;
+  if(season) msg += '\nSeason: ' + season;
   if(verLabel) msg += '\nVersion: ' + verLabel;
   if(customChoice) msg += '\nCustom Printing: Yes';
   else msg += '\nCustom Printing: No';
