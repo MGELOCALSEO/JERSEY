@@ -39,7 +39,7 @@ function cycleImages(id, list, ms){
 cycleImages('club-imgs', [
   '/images/club/manchester-united-2026-27-home-kit.jpg',
   '/images/club/fc-barcelona-2026-27-away-kit.jpg',
-  '/images/club/chelsea-fc-2026-27-home-kit.jpg',
+  '/images/club/ChealseaHome.png',
   '/images/club/real-madrid-2026-27-third-kit.jpg',
   '/images/club/arsenal-fc-2026-27-home-kit.jpg',
   '/images/club/bayern-munchen-2026-27-home-kit.jpg',
@@ -49,7 +49,7 @@ cycleImages('club-imgs', [
   '/images/club/real-madrid-2026-27-away-kit.jpg',
   '/images/club/arsenal-fc-2026-27-away-kit.jpg',
   '/images/club/fc-barcelona-2026-27-third-kit.jpg',
-  '/images/club/real-madrid-2026-27-home-kit.jpg',
+  '/images/club/real-madrid-2026-27-home-kit.png',
   '/images/club/arsenal-fc-2026-27-third-kit.jpg',
   '/images/club/fc-barcelona-2026-27-home-kit.jpg',
 ], 3500);
@@ -69,10 +69,10 @@ cycleImages('retro-imgs', [
 const products = [
   { id:'prod-1', team:'Manchester United', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/manchester-united-2026-27-home-kit.jpg','/images/club/manchester-united-2026-27-away-kit.jpg'] },
   { id:'prod-2', team:'Arsenal', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/arsenal-fc-2026-27-home-kit.jpg','/images/club/arsenal-fc-2026-27-away-kit.jpg','/images/club/arsenal-fc-2026-27-third-kit.jpg'] },
-  { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/club/real-madrid-2026-27-home-kit.jpg','/images/club/real-madrid-2026-27-away-kit.jpg','/images/club/real-madrid-2026-27-third-kit.jpg'] },
+  { id:'prod-3', team:'Madrid White', name:'Away Jersey 25/26', tag:'Away Kit', sizes:'S – XXL', images:['/images/club/real-madrid-2026-27-home-kit.png','/images/club/real-madrid-2026-27-away-kit.jpg','/images/club/real-madrid-2026-27-third-kit.jpg'] },
   { id:'prod-4', team:'Super Eagles', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/national/nigeria-2026-home-kit.jpg','/images/national/nigeria-2026-away-kit.jpg'] },
   { id:'prod-5', team:'FC Barcelona', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/fc-barcelona-2026-27-home-kit.jpg','/images/club/fc-barcelona-2026-27-away-kit.jpg','/images/club/fc-barcelona-2026-27-third-kit.jpg'] },
-  { id:'prod-6', team:'Chelsea', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/chelsea-fc-2026-27-home-kit.jpg'] },
+  { id:'prod-6', team:'Chelsea', name:'Home Jersey 25/26', tag:'Home Kit', sizes:'S – XXL', images:['/images/club/ChealseaHome.png'] },
 ];
 
 (function renderProducts(){
@@ -102,8 +102,54 @@ function openWA(url, label){
   trackWA(label);
 }
 
+function updatePriceDisplay(){
+  const form = document.getElementById('custom-form');
+  const version = document.getElementById('order-version');
+  const custom = document.getElementById('order-custom');
+  const pbLabel = document.getElementById('pb-label');
+  const pbBase = document.getElementById('pb-base');
+  const pbCustomRow = document.getElementById('pb-custom-row');
+  const pbTotal = document.getElementById('pb-total');
+
+  const hasCustom = custom.value === 'yes';
+  pbCustomRow.style.display = hasCustom ? '' : 'none';
+
+  if(version && !version.closest('.hidden')){
+    const v = version.value;
+    const baseVal = v === 'player' ? 55000 : 35000;
+    const baseLabel = v === 'player' ? 'Player Version' : 'Fans Version';
+    pbLabel.textContent = baseLabel;
+    pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
+    const total = baseVal + (hasCustom ? 5000 : 0);
+    pbTotal.textContent = '\u20A6' + total.toLocaleString();
+    form.dataset.baseLabel = baseLabel;
+  } else {
+    const baseVal = parseInt(form.dataset.baseVal) || 0;
+    pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
+    const total = baseVal + (hasCustom ? 5000 : 0);
+    pbTotal.textContent = '\u20A6' + total.toLocaleString();
+  }
+}
+
 function openCustomModal(btn){
   const card = btn.closest('.prod-card, .cat-prod-card');
+  const form = document.getElementById('custom-form');
+  const versionRow = document.getElementById('version-row');
+  const verEl = document.getElementById('order-version');
+  const customEl = document.getElementById('order-custom');
+
+  customEl.value = 'yes';
+  document.getElementById('custom-fields').classList.remove('hidden');
+  document.getElementById('custom-name').required = true;
+  document.getElementById('custom-name').value = '';
+  document.getElementById('custom-number').value = '';
+  document.getElementById('custom-size').value = '';
+  document.getElementById('custom-location').value = '';
+  delete form.dataset.team;
+  delete form.dataset.kit;
+  delete form.dataset.baseLabel;
+  delete form.dataset.baseVal;
+
   if(card){
     const team = card.querySelector('.team').textContent;
     const kit = card.querySelector('h3').textContent;
@@ -111,18 +157,28 @@ function openCustomModal(btn){
     const priceText = priceEl ? ' \u2014 ' + priceEl.textContent : '';
     const img = document.getElementById('modal-preview-img');
     if(img) img.src = card.querySelector('img').src;
+    const cat = btn.dataset.cat;
+    if(cat === 'club' && catConfig.club.versions){
+      versionRow.classList.remove('hidden');
+      verEl.value = 'fans';
+      form.dataset.baseVal = '35000';
+    } else {
+      versionRow.classList.add('hidden');
+      form.dataset.baseVal = priceEl ? priceEl.textContent.replace(/[^0-9]/g,'') : '0';
+    }
     document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit + priceText;
-    const form = document.getElementById('custom-form');
     form.dataset.team = team;
     form.dataset.kit = kit;
     if(priceEl) form.dataset.price = priceEl.textContent;
   } else {
+    versionRow.classList.add('hidden');
     document.getElementById('modal-jersey-label').textContent = 'Custom Jersey';
-    const form = document.getElementById('custom-form');
     delete form.dataset.team;
     delete form.dataset.kit;
     delete form.dataset.price;
+    form.dataset.baseVal = '5000';
   }
+  updatePriceDisplay();
   document.getElementById('custom-modal').classList.remove('hidden');
 }
 
@@ -133,6 +189,23 @@ window.closeCustomModal = function(e){
 
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape') window.closeCustomModal(e);
+});
+
+document.addEventListener('change', function(e){
+  if(e.target.id === 'order-version' || e.target.id === 'order-custom'){
+    updatePriceDisplay();
+    if(e.target.id === 'order-custom'){
+      const cf = document.getElementById('custom-fields');
+      const cn = document.getElementById('custom-name');
+      if(e.target.value === 'no'){
+        cf.classList.add('hidden');
+        cn.required = false;
+      } else {
+        cf.classList.remove('hidden');
+        cn.required = true;
+      }
+    }
+  }
 });
 
 document.addEventListener('click', function(e){
@@ -160,19 +233,27 @@ window.submitCustomOrder = function(e){
   const team = e.target.dataset.team;
   const kit = e.target.dataset.kit;
   const price = e.target.dataset.price;
+  const baseLabel = e.target.dataset.baseLabel;
+  const version = document.getElementById('order-version');
+  const verLabel = (version && !version.closest('.hidden')) ? (version.value === 'player' ? 'Player Version' : 'Fans Version') : '';
+  const customChoice = document.getElementById('order-custom').value === 'yes';
   const name = document.getElementById('custom-name').value.trim();
   const number = document.getElementById('custom-number').value.trim();
   const size = document.getElementById('custom-size').value;
   const location = document.getElementById('custom-location').value.trim();
+  const total = document.getElementById('pb-total').textContent;
 
   let msg = 'Hi Makelele Jerseys, I\'d like to order:\n';
   if(team) msg += '\nTeam: ' + team;
   if(kit) msg += '\nKit: ' + kit;
-  if(price) msg += '\nPrice: ' + price;
-  msg += '\nName: ' + (name || 'N/A')
-    + '\nNumber: ' + (number || 'N/A')
-    + '\nSize: ' + size
-    + '\nDelivery Location: ' + location;
+  if(verLabel) msg += '\nVersion: ' + verLabel;
+  if(customChoice) msg += '\nCustom Printing: Yes';
+  else msg += '\nCustom Printing: No';
+  if(name) msg += '\nName: ' + name;
+  if(number) msg += '\nNumber: ' + number;
+  msg += '\nSize: ' + size
+    + '\nDelivery Location: ' + location
+    + '\nTotal: ' + total;
 
   window.open('https://wa.me/2347030112427?text=' + encodeURIComponent(msg), '_blank');
   trackWA('custom-submit');
@@ -275,7 +356,7 @@ cycleImages('custom-gallery-img', [
 const clubProducts = [
   { team:'Manchester United', kit:'Home 25/26', img:'/images/club/manchester-united-2026-27-home-kit.jpg' },
   { team:'FC Barcelona', kit:'Away 25/26', img:'/images/club/fc-barcelona-2026-27-away-kit.jpg' },
-  { team:'Chelsea', kit:'Home 25/26', img:'/images/club/chelsea-fc-2026-27-home-kit.jpg' },
+  { team:'Chelsea', kit:'Home 25/26', img:'/images/club/ChealseaHome.png' },
   { team:'Real Madrid', kit:'Third 25/26', img:'/images/club/real-madrid-2026-27-third-kit.jpg' },
   { team:'Arsenal', kit:'Home 25/26', img:'/images/club/arsenal-fc-2026-27-home-kit.jpg' },
   { team:'Bayern Munchen', kit:'Home 25/26', img:'/images/club/bayern-munchen-2026-27-home-kit.jpg' },
@@ -285,7 +366,7 @@ const clubProducts = [
   { team:'Real Madrid', kit:'Away 25/26', img:'/images/club/real-madrid-2026-27-away-kit.jpg' },
   { team:'Arsenal', kit:'Away 25/26', img:'/images/club/arsenal-fc-2026-27-away-kit.jpg' },
   { team:'FC Barcelona', kit:'Third 25/26', img:'/images/club/fc-barcelona-2026-27-third-kit.jpg' },
-  { team:'Real Madrid', kit:'Home 25/26', img:'/images/club/real-madrid-2026-27-home-kit.jpg' },
+  { team:'Real Madrid', kit:'Home 25/26', img:'/images/club/real-madrid-2026-27-home-kit.png' },
   { team:'Arsenal', kit:'Third 25/26', img:'/images/club/arsenal-fc-2026-27-third-kit.jpg' },
   { team:'FC Barcelona', kit:'Home 25/26', img:'/images/club/fc-barcelona-2026-27-home-kit.jpg' },
 ];
@@ -316,7 +397,7 @@ const retroProducts = [
 ];
 
 const catConfig = {
-  club:  { name:'Club Jerseys', sub: 'Browse our Player Version club kits.', price:'\u20A655,000', addon:'+ \u20A65,000 Custom', label:'Player Version', list: clubProducts },
+  club:  { name:'Club Jerseys', sub: 'Browse our Fans &amp; Player Version club kits.', price:'\u20A635,000', addon:'+ \u20A65,000 Custom', label:'Fans Version', list: clubProducts, versions: { fans:'\u20A635,000', player:'\u20A655,000' } },
   national: { name:'National Teams', sub: 'National Team kits at great prices.', price:'\u20A630,000', addon:'+ \u20A65,000 Custom', label:'Official Kit', list: nationalProducts },
   retro: { name:'Retro Collection', sub: 'Classic designs from football\'s golden era.', price:'\u20A640,000', addon:'+ \u20A65,000 Custom', label:'Retro Classic', list: retroProducts },
 };
@@ -340,7 +421,7 @@ function renderCategory(cat){
       <div class="cat-prod-body">
         <div class="team">${p.team}</div>
         <h3>${p.kit}</h3>
-        <button class="btn btn-primary btn-block" data-order-cat><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
+        <button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
     </div>
   `).join('');
