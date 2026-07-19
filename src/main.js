@@ -101,19 +101,25 @@ function openWA(url, label){
 }
 
 function openCustomModal(btn){
-  const card = btn.closest('.prod-card');
+  const card = btn.closest('.prod-card, .cat-prod-card');
   if(card){
     const team = card.querySelector('.team').textContent;
     const kit = card.querySelector('h3').textContent;
+    const priceEl = card.querySelector('.cat-prod-price');
+    const priceText = priceEl ? ' \u2014 ' + priceEl.textContent : '';
     const img = document.getElementById('modal-preview-img');
     if(img) img.src = card.querySelector('img').src;
-    document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit;
-    document.getElementById('custom-form').dataset.team = team;
-    document.getElementById('custom-form').dataset.kit = kit;
+    document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit + priceText;
+    const form = document.getElementById('custom-form');
+    form.dataset.team = team;
+    form.dataset.kit = kit;
+    if(priceEl) form.dataset.price = priceEl.textContent;
   } else {
     document.getElementById('modal-jersey-label').textContent = 'Custom Jersey';
-    delete document.getElementById('custom-form').dataset.team;
-    delete document.getElementById('custom-form').dataset.kit;
+    const form = document.getElementById('custom-form');
+    delete form.dataset.team;
+    delete form.dataset.kit;
+    delete form.dataset.price;
   }
   document.getElementById('custom-modal').classList.remove('hidden');
 }
@@ -128,6 +134,8 @@ document.addEventListener('keydown', function(e){
 });
 
 document.addEventListener('click', function(e){
+  const orderCatBtn = e.target.closest('[data-order-cat]');
+  if(orderCatBtn){ openCustomModal(orderCatBtn); return; }
   const orderBtn = e.target.closest('[data-order]');
   if(orderBtn){
     const card = orderBtn.closest('.prod-card');
@@ -149,6 +157,7 @@ window.submitCustomOrder = function(e){
   e.preventDefault();
   const team = e.target.dataset.team;
   const kit = e.target.dataset.kit;
+  const price = e.target.dataset.price;
   const name = document.getElementById('custom-name').value.trim();
   const number = document.getElementById('custom-number').value.trim();
   const size = document.getElementById('custom-size').value;
@@ -157,6 +166,7 @@ window.submitCustomOrder = function(e){
   let msg = 'Hi Makelele Jerseys, I\'d like to order:\n';
   if(team) msg += '\nTeam: ' + team;
   if(kit) msg += '\nKit: ' + kit;
+  if(price) msg += '\nPrice: ' + price;
   msg += '\nName: ' + (name || 'N/A')
     + '\nNumber: ' + (number || 'N/A')
     + '\nSize: ' + size
@@ -312,26 +322,35 @@ function renderCategory(cat){
       <div class="cat-prod-body">
         <div class="team">${p.team}</div>
         <h3>${p.kit}</h3>
-        <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=${encodeURIComponent('Hi Makelele Jerseys, I\'d like to order the ' + p.team + ' ' + p.kit + ' \u2014 ' + cfg.price)}" target="_blank" rel="noopener" onclick="trackWA('cat-${cat}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order on WhatsApp</a>
+        <button class="btn btn-primary btn-block" data-order-cat><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
     </div>
   `).join('');
   return true;
 }
 
+const homeSections = () => document.querySelectorAll('#hero, #trust, #collection, #featured, .custom-section, #reviews, #how, .location-section, #faq, .final-cta, footer');
+
 function showHome(){
-  const hc = document.getElementById('home-content');
-  hc.classList.remove('home-hidden');
-  hc.style.removeProperty('display');
-  document.getElementById('category-view').classList.add('hidden');
+  homeSections().forEach(el => {
+    if(el.dataset._disp !== undefined){
+      el.style.display = el.dataset._disp;
+      delete el.dataset._disp;
+    } else {
+      el.style.removeProperty('display');
+    }
+  });
+  const cv = document.getElementById('category-view');
+  if(cv) cv.classList.add('hidden');
   document.body.style.overflow = '';
 }
 
 function showCategory(cat){
   if(!renderCategory(cat)) return;
-  const hc = document.getElementById('home-content');
-  hc.classList.add('home-hidden');
-  hc.style.setProperty('display', 'none', 'important');
+  homeSections().forEach(el => {
+    el.dataset._disp = el.style.display;
+    el.style.setProperty('display', 'none', 'important');
+  });
   document.getElementById('category-view').classList.remove('hidden');
   document.body.style.overflow = '';
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -343,8 +362,7 @@ function handleHash(){
   if(hash === 'club' || hash === 'national' || hash === 'retro'){
     showCategory(hash);
   } else {
-    const hc = document.getElementById('home-content');
-    const wasHidden = hc.classList.contains('home-hidden') || hc.style.display === 'none';
+    const wasHidden = document.getElementById('hero').style.display === 'none';
     showHome();
     if(wasHidden && hash){
       requestAnimationFrame(() => {
@@ -357,7 +375,8 @@ function handleHash(){
 
 document.getElementById('cv-back-btn').addEventListener('click', function(e){
   e.preventDefault();
-  location.hash = '';
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+  showHome();
 });
 
 window.addEventListener('hashchange', handleHash);

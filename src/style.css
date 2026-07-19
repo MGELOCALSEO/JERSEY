@@ -700,6 +700,7 @@ footer{ padding: 50px 0 100px; border-top: 1px solid var(--line); }
   background: var(--pitch); color: #0A0C0F;
   padding: 4px 10px; border-radius: 6px;
   line-height: 1.2;
+  z-index: 2;
 }
 .cat-prod-addon{
   position:absolute; bottom:10px; right:10px;
@@ -708,12 +709,11 @@ footer{ padding: 50px 0 100px; border-top: 1px solid var(--line); }
   background: rgba(10,12,15,0.7); color: var(--gold);
   padding: 3px 7px; border-radius: 5px;
   border: 1px solid rgba(231,180,73,0.3);
+  z-index: 2;
 }
 .cat-prod-body{ padding: 14px 15px 18px; }
 .cat-prod-body .team{ font-size: 11px; color: var(--muted-2); font-family: var(--font-mono); text-transform: uppercase; letter-spacing:0.05em; margin-bottom: 4px; }
 .cat-prod-body h3{ font-family: var(--font-body); text-transform:none; font-size: 14.5px; font-weight:700; margin-bottom: 8px; }
 .cat-prod-body .btn{ font-size: 12.5px; padding: 12px 14px; }
 .cat-prod-body .btn + .btn{ margin-top: 6px; }
-
-#home-content.home-hidden{ display: none !important; }
 
