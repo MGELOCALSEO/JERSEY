@@ -104,6 +104,8 @@ function openWA(url, label){
 
 function updatePriceDisplay(){
   const form = document.getElementById('custom-form');
+  const typeRow = document.getElementById('jersey-type-row');
+  const typeEl = document.getElementById('jersey-type');
   const version = document.getElementById('order-version');
   const custom = document.getElementById('order-custom');
   const pbLabel = document.getElementById('pb-label');
@@ -114,15 +116,40 @@ function updatePriceDisplay(){
   const hasCustom = custom.value === 'yes';
   pbCustomRow.style.display = hasCustom ? '' : 'none';
 
-  if(version && !version.closest('.hidden')){
+  const useType = typeRow && !typeRow.classList.contains('hidden');
+
+  if(useType){
+    const t = typeEl.value;
+    let baseVal, baseLabel;
+    if(t === 'club'){
+      const v = version.value;
+      baseVal = v === 'player' ? 55000 : 35000;
+      baseLabel = v === 'player' ? 'Player Version' : 'Fans Version';
+      version.closest('label').classList.remove('hidden');
+    } else if(t === 'national'){
+      baseVal = 30000;
+      baseLabel = 'National Jersey';
+      version.closest('label').classList.add('hidden');
+    } else {
+      baseVal = 40000;
+      baseLabel = 'Retro Jersey';
+      version.closest('label').classList.add('hidden');
+    }
+    pbLabel.textContent = baseLabel;
+    pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
+    form.dataset.baseLabel = baseLabel;
+    form.dataset.baseVal = String(baseVal);
+    const total = baseVal + (hasCustom ? 5000 : 0);
+    pbTotal.textContent = '\u20A6' + total.toLocaleString();
+  } else if(version && !version.closest('.hidden')){
     const v = version.value;
     const baseVal = v === 'player' ? 55000 : 35000;
     const baseLabel = v === 'player' ? 'Player Version' : 'Fans Version';
     pbLabel.textContent = baseLabel;
     pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
+    form.dataset.baseLabel = baseLabel;
     const total = baseVal + (hasCustom ? 5000 : 0);
     pbTotal.textContent = '\u20A6' + total.toLocaleString();
-    form.dataset.baseLabel = baseLabel;
   } else {
     const baseVal = parseInt(form.dataset.baseVal) || 0;
     pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
@@ -134,6 +161,8 @@ function updatePriceDisplay(){
 function openCustomModal(btn){
   const card = btn.closest('.prod-card, .cat-prod-card');
   const form = document.getElementById('custom-form');
+  const typeRow = document.getElementById('jersey-type-row');
+  const typeEl = document.getElementById('jersey-type');
   const versionRow = document.getElementById('version-row');
   const verEl = document.getElementById('order-version');
   const customEl = document.getElementById('order-custom');
@@ -151,6 +180,7 @@ function openCustomModal(btn){
   delete form.dataset.baseVal;
 
   if(card){
+    typeRow.classList.add('hidden');
     const team = card.querySelector('.team').textContent;
     const kit = card.querySelector('h3').textContent;
     const priceEl = card.querySelector('.cat-prod-price');
@@ -171,12 +201,12 @@ function openCustomModal(btn){
     form.dataset.kit = kit;
     if(priceEl) form.dataset.price = priceEl.textContent;
   } else {
-    versionRow.classList.add('hidden');
+    typeRow.classList.remove('hidden');
+    typeEl.value = 'club';
+    versionRow.classList.remove('hidden');
+    verEl.value = 'fans';
+    form.dataset.baseVal = '35000';
     document.getElementById('modal-jersey-label').textContent = 'Custom Jersey';
-    delete form.dataset.team;
-    delete form.dataset.kit;
-    delete form.dataset.price;
-    form.dataset.baseVal = '5000';
   }
   updatePriceDisplay();
   document.getElementById('custom-modal').classList.remove('hidden');
@@ -192,7 +222,7 @@ document.addEventListener('keydown', function(e){
 });
 
 document.addEventListener('change', function(e){
-  if(e.target.id === 'order-version' || e.target.id === 'order-custom'){
+  if(e.target.id === 'jersey-type' || e.target.id === 'order-version' || e.target.id === 'order-custom'){
     updatePriceDisplay();
     if(e.target.id === 'order-custom'){
       const cf = document.getElementById('custom-fields');
@@ -230,6 +260,10 @@ document.addEventListener('click', function(e){
 
 window.submitCustomOrder = function(e){
   e.preventDefault();
+  const typeRow = document.getElementById('jersey-type-row');
+  const typeEl = document.getElementById('jersey-type');
+  const useType = typeRow && !typeRow.classList.contains('hidden');
+  const jerseyType = useType ? typeEl.value : '';
   const team = e.target.dataset.team;
   const kit = e.target.dataset.kit;
   const price = e.target.dataset.price;
@@ -244,6 +278,10 @@ window.submitCustomOrder = function(e){
   const total = document.getElementById('pb-total').textContent;
 
   let msg = 'Hi Makelele Jerseys, I\'d like to order:\n';
+  if(jerseyType){
+    const typeLabels = { club:'Club Jersey', national:'National Jersey', retro:'Retro Jersey' };
+    msg += '\nType: ' + (typeLabels[jerseyType] || jerseyType);
+  }
   if(team) msg += '\nTeam: ' + team;
   if(kit) msg += '\nKit: ' + kit;
   if(verLabel) msg += '\nVersion: ' + verLabel;

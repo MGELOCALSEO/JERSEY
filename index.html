@@ -578,6 +578,14 @@
     <h3>Custom Printing</h3>
     <p class="modal-jersey" id="modal-jersey-label">Fill in your details and we'll get started.</p>
     <form id="custom-form" onsubmit="submitCustomOrder(event)">
+      <label id="jersey-type-row" class="hidden">
+        <span>Jersey Type</span>
+        <select id="jersey-type">
+          <option value="club">Club Jersey — ₦35,000</option>
+          <option value="national">National Jersey — ₦30,000</option>
+          <option value="retro">Retro Jersey — ₦40,000</option>
+        </select>
+      </label>
       <label id="version-row" class="hidden">
         <span>Version</span>
         <select id="order-version">
