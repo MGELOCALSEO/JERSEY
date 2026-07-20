@@ -26,7 +26,8 @@
 <meta name="twitter:image" content="https://www.makelelejersey.com/images/misc/jersey-hero.svg">
 
 <!-- Browser -->
-<meta name="theme-color" content="#0A0C0F">
+<meta name="theme-color" content="#0B0B0B">
+<base href="/">
 <link rel="canonical" href="https://www.makelelejersey.com">
 
 <!-- Favicon -->
@@ -65,8 +66,8 @@
 }
 </script>
 
-<link rel="preload" href="/images/hero/world-cup-champion.avif" as="image">
-<link rel="preload" href="/images/hero/spain-2010-shirt.avif" as="image">
+  <link rel="preload" href="/images/hero/Liverpool-Kit Jersey Banner for 2026 27.webp" as="image">
+  <link rel="preload" href="/images/hero/Moises-Caicedo-Cole-Palmer , 2026 27 Home Jersey banner.webp" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -91,12 +92,12 @@
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#top" class="logo"><img src="images/logo/mjs_logo.svg" alt="Makelele Jerseys" width="140" height="40"></a>
+    <a href="/" class="logo"><img src="images/logo/mjs_logo.svg" alt="Makelele Jerseys" width="140" height="40"></a>
     <ul class="nav-links">
-      <li><a href="#collection">Collection</a></li>
-      <li><a href="#custom">Custom Kits</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="/collection">Collection</a></li>
+      <li><a href="/custom-kits">Custom Kits</a></li>
+      <li><a href="/reviews">Reviews</a></li>
+      <li><a href="/faq">FAQ</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -116,24 +117,34 @@
 <header class="hero" id="top">
   <div class="hero-visual" id="hero-slideshow" aria-roledescription="carousel" aria-label="Featured jersey slideshow" tabindex="0">
     <div class="slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 5">
-      <img src="/images/hero/world-cup-champion.avif" alt="World Cup Champions 2026">
+      <img src="/images/hero/Liverpool-Kit Jersey Banner for 2026 27.webp" alt="Liverpool 2026-27 home kit">
       <div class="slide-shade"></div>
+      <div class="wc-label">Premier League 2026/27</div>
+      <a class="wc-cta liv-cta" href="/category/club">Shop Liverpool Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 5">
-      <img src="/images/hero/spain-2010-shirt.avif" alt="Spain national team jersey collection">
+      <img src="/images/hero/Moises-Caicedo-Cole-Palmer , 2026 27 Home Jersey banner.webp" alt="Chelsea 2026-27 home kit">
       <div class="slide-shade"></div>
+      <div class="wc-label">New Season Drops</div>
+      <a class="wc-cta che-cta" href="/category/club">Shop Chelsea Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 5">
-      <img src="/images/hero/argentina-messi-shirt.avif" alt="Argentina national team jersey collection">
+      <img src="/images/hero/Coventy-home-kit  2026 27 home jersey banner.webp" alt="Coventry 2026-27 home kit">
       <div class="slide-shade"></div>
+      <div class="wc-label">Fresh Kits Dropping</div>
+      <a class="wc-cta cov-cta" href="/category/club">Shop Coventry Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 4 of 5">
-      <img src="/images/hero/inter-miami-messi-shirt.avif" alt="Club jersey collection">
+      <img src="/images/hero/world-cup-champion.avif" alt="Spain World Cup champion jersey">
       <div class="slide-shade"></div>
+      <div class="wc-label">World Cup Champion</div>
+      <a class="wc-cta esp-cta" href="/category/national">Shop Spain Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 5 of 5">
-      <img src="/images/hero/multi-national-jerseys.avif" alt="International jersey collection">
+      <img src="/images/hero/argentina-messi-shirt.avif" alt="Argentina national team jersey">
       <div class="slide-shade"></div>
+      <div class="wc-label">World Cup runner up</div>
+      <a class="wc-cta arg-cta" href="/category/national">Shop Argentina Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <button class="slide-arrow slide-arrow-prev" aria-label="Previous">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
@@ -143,105 +154,7 @@
     </button>
   </div>
 
-  <div class="wrap hero-overlay">
-    <div class="hero-brand">
-      <img src="images/logo/mjs_logo.svg" alt="Makelele Jerseys" class="hero-brand-img" width="180" height="52">
-    </div>
-    <div class="hero-copy">
-      <div class="eyebrow">World Cup Final 2026</div>
-      <div class="hero-row">
-        <div class="hero-matchup">
-          <div class="hm-team">
-            <img src="images/logo/spain.svg" alt="Spain" class="hm-flag">
-            <span>Spain</span>
-          </div>
-          <span class="hm-vs">VS</span>
-          <div class="hm-team">
-            <img src="images/logo/Argentina.svg" alt="Argentina" class="hm-flag">
-            <span>Argentina</span>
-          </div>
-        </div>
-        <div class="hero-countdown" id="wc-countdown" aria-live="polite" aria-label="Countdown to World Cup final">
-          <div class="cd-block"><span class="cd-num" id="cd-days">0</span><span class="cd-label">Days</span></div>
-          <div class="cd-block"><span class="cd-num" id="cd-hours">0</span><span class="cd-label">Hrs</span></div>
-          <div class="cd-block"><span class="cd-num" id="cd-mins">0</span><span class="cd-label">Min</span></div>
-          <div class="cd-block"><span class="cd-num" id="cd-secs">0</span><span class="cd-label">Sec</span></div>
-        </div>
-      </div>
-      <div class="slide-text active" data-slide="0" aria-live="polite">
-        <div class="wc-overlay">
-          <span class="wc-title">WORLD CHAMPIONS</span>
-        </div>
-      </div>
-      <div class="slide-text" data-slide="1" aria-live="polite">
-        <p class="slide-tagline">Shop the Spain Collection, La Roja pre-order the latest kits with free printing.</p>
-      </div>
-      <div class="slide-text" data-slide="2" aria-live="polite">
-        <div class="wc-overlay">
-          <span class="wc-title">WORLD CUP RUNNER UP</span>
-        </div>
-      </div>
-      <div class="slide-text" data-slide="3" aria-live="polite">
-        <p class="slide-tagline">Shop Club Kits, Represent your team with authentic, high-quality jerseys.</p>
-      </div>
-      <div class="slide-text" data-slide="4" aria-live="polite">
-        <p class="slide-tagline">Shop International Kits, jerseys from around the world, delivered to your doorstep.</p>
-      </div>
-      <h1>Wear Your Club. <span class="accent">Ready To Wear.</span></h1>
-      <p class="hero-sub">Shop authentic club kits, national team jerseys, retro collections, and custom football shirts, with fast delivery across Lagos and Nigeria.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" onclick="trackWA('hero-primary')">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
-          Order On WhatsApp
-        </a>
-        <a class="btn btn-ghost" href="#collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg> View Latest Jerseys</a>
-      </div>
-      <div class="badges">
-        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Authentic Quality</div>
-        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Custom Printing Available</div>
-        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Same-Day Lagos Delivery</div>
-        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Nationwide Shipping</div>
-      </div>
-    </div>
-  </div>
-  <a class="wc-cta" href="#national">Shop Spain Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-  <a class="wc-cta arg-cta" href="#national">Shop Argentina Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
 </header>
-
-<div class="divider"></div>
-
-<!-- ============ TRUST ============ -->
-<section id="trust">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Why Fans Trust Us</div>
-      <h2>Why Football Fans Choose Makelele</h2>
-      <p>Every doubt a first-time buyer has, answered before you even ask.</p>
-    </div>
-    <div class="trust-grid">
-      <div class="trust-card">
-        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg></div>
-        <h3>Authentic Jerseys</h3>
-        <p>Verified quality jerseys with premium fabric, stitching, and finishing.</p>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4zm10-14l3 3"/></svg></div>
-        <h3>Custom Printing</h3>
-        <p>Add your name, favourite number, and team details.</p>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></div>
-        <h3>Fast Delivery</h3>
-        <p>Quick delivery across Lagos and shipping nationwide.</p>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-6a4 4 0 110 8 4 4 0 010-8zm7 2a4 4 0 100-8 4 4 0 000 8zM5 8a4 4 0 100-8 4 4 0 000 8z"/></svg></div>
-        <h3>Trusted By Fans</h3>
-        <p>312+ satisfied customers and counting across Nigeria.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ CATEGORIES ============ -->
 <section id="collection">
@@ -249,7 +162,7 @@
     <div class="section-head">
       <div class="eyebrow">The Collection</div>
       <h2>Shop By Category</h2>
-      <p>Club kits, national colours, retro classics, and custom team orders.</p>
+      <p>Club kits, national colours, retro classics, kids sizes, and custom team orders.</p>
     </div>
     <div class="cat-scroll">
       <div class="cat-card">
@@ -259,7 +172,7 @@
         <div class="cat-body">
           <h3>Club Jerseys</h3>
           <p>Manchester United, Arsenal, Chelsea, Liverpool, Real Madrid, Barcelona, PSG.</p>
-<a class="btn btn-primary" href="#club"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
+<a class="btn btn-primary" href="/category/club"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
         </div>
       </div>
       <div class="cat-card">
@@ -269,7 +182,7 @@
         <div class="cat-body">
           <h3>National Teams</h3>
           <p>Nigeria Super Eagles kits and World Cup jerseys for true patriots.</p>
-          <a class="btn btn-primary" href="#national"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
+          <a class="btn btn-primary" href="/category/national"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
         </div>
       </div>
       <div class="cat-card">
@@ -280,6 +193,16 @@
           <h3>Retro Collection</h3>
           <p>Classic football designs from the golden era of the game.</p>
           <a class="btn btn-primary" href="#retro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-visual">
+          <img id="kids-imgs" src="/images/club/manchester-united-2026-27-home-kit.jpg" alt="Kids jersey collection" loading="lazy">
+        </div>
+        <div class="cat-body">
+          <h3>Kids Jerseys</h3>
+          <p>Same authentic kits in kids sizes, perfect for your little fans.</p>
+          <a class="btn btn-primary" href="/category/kids"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
         </div>
       </div>
       <div class="cat-card">
@@ -296,6 +219,35 @@
   </div>
 </section>
 
+<!-- ============ SHOP BY LEAGUE ============ -->
+<section id="league">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Shop by Competition</div>
+      <h2>Shop by League</h2>
+      <p>Browse club jerseys by league — Premier League, La Liga, Bundesliga &amp; more.</p>
+    </div>
+    <div class="league-scroll" id="league-scroll">
+      <a class="league-card" href="/category/club?league=premier-league">
+        <img src="/images/football_logos/premier_league_logo.png" alt="Premier League">
+        <span class="league-card-name">Premier League</span>
+      </a>
+      <a class="league-card" href="/category/club?league=laliga">
+        <img src="/images/football_logos/laliga_logo.png" alt="La Liga">
+        <span class="league-card-name">La Liga</span>
+      </a>
+      <a class="league-card" href="/category/club?league=bundesliga">
+        <img src="/images/football_logos/bundesliga_logo.png" alt="Bundesliga">
+        <span class="league-card-name">Bundesliga</span>
+      </a>
+      <a class="league-card" href="/category/club?league=serie-a">
+        <img src="/images/football_logos/serie_a_logo.png" alt="Serie A">
+        <span class="league-card-name">Serie A</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FEATURED PRODUCTS ============ -->
 <section id="featured">
   <div class="wrap">
@@ -304,61 +256,7 @@
       <h2>Featured Jerseys</h2>
       <p>Our most-ordered kits right now, all customisable with name and number.</p>
     </div>
-    <div class="prod-grid" id="prod-grid">
-
-      <div class="prod-card">
-        <div class="prod-visual"><span class="prod-tag">Home Kit</span>
-          <img id="prod-1-img" src="/images/club/manchester-united-2026-27-home-kit.jpg" alt="Manchester United Home Jersey 26/27">
-        </div>
-        <div class="prod-body">
-          <div class="team">Manchester United</div>
-          <h3>Home Jersey 26/27</h3>
-          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
-          <button class="btn btn-primary btn-block" data-order>Order Now</button>
-          <button class="btn btn-ghost btn-block" data-custom>Custom</button>
-        </div>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-visual"><span class="prod-tag">Home Kit</span>
-          <img id="prod-2-img" src="/images/club/arsenal-fc-2026-27-home-kit.jpg" alt="Arsenal Home Jersey 26/27">
-        </div>
-        <div class="prod-body">
-          <div class="team">Arsenal</div>
-          <h3>Home Jersey 26/27</h3>
-          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
-          <button class="btn btn-primary btn-block" data-order>Order Now</button>
-          <button class="btn btn-ghost btn-block" data-custom>Custom</button>
-        </div>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-visual"><span class="prod-tag">Away Kit</span>
-          <img id="prod-3-img" src="/images/club/real-madrid-2026-27-home-kit.jpg" alt="Real Madrid Away Jersey 26/27">
-        </div>
-        <div class="prod-body">
-          <div class="team">Madrid White</div>
-          <h3>Away Jersey 26/27</h3>
-          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
-          <button class="btn btn-primary btn-block" data-order>Order Now</button>
-          <button class="btn btn-ghost btn-block" data-custom>Custom</button>
-        </div>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-visual"><span class="prod-tag">Home Kit</span>
-          <img id="prod-4-img" src="/images/national/nigeria-2026-home-kit.jpg" alt="Nigeria Super Eagles Home Jersey 25/26">
-        </div>
-        <div class="prod-body">
-          <div class="team">Super Eagles</div>
-          <h3>Home Jersey 25/26</h3>
-          <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
-          <button class="btn btn-primary btn-block" data-order>Order Now</button>
-          <button class="btn btn-ghost btn-block" data-custom>Custom</button>
-        </div>
-      </div>
-
-    </div>
+    <div class="prod-grid" id="prod-grid"></div>
 
   </div>
 </section>
@@ -541,28 +439,60 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <img src="images/logo/mjs_logo.svg" alt="Makelele Jerseys" class="logo" width="140" height="40">
-      <p>Original & Custom Football Jerseys, Lagos.</p>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo/mjs_logo.svg" alt="Makelele Jerseys" class="footer-logo" width="140" height="40">
+        <p>Original & Custom Football Jerseys, Lagos.</p>
+        <div class="footer-social">
+          <a href="https://x.com/MakeleleJerseys" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.9L4.4 22H1.3l8.1-9.3L1 2h7l4.9 6.3zM17.6 20h1.9L6.5 4H4.4z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/makelele.jerseys" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@makelelefootballjerseys" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.7 4.7 0 01-3.8-4.7h-3.3v14.4a2.9 2.9 0 11-2.9-2.9c.3 0 .6 0 .9.1V9.4a6.1 6.1 0 00-.9-.1A6.2 6.2 0 100.4 15.5a6.2 6.2 0 006.2 6.2 6.2 6.2 0 006.2-6.2V8.4a8 8 0 004.6 1.5V6.6a4.7 4.7 0 01-.8-.8z"/></svg>
+          </a>
+          <a href="https://wa.me/2347030112427" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="trackWA('footer')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="/category/club">Club Jerseys</a></li>
+          <li><a href="/category/national">National Teams</a></li>
+          <li><a href="/category/retro">Retro Collection</a></li>
+          <li><a href="/category/kids">Kids Jerseys</a></li>
+          <li><a href="/custom-kits">Custom Kits</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="#how">How To Order</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="https://wa.me/2347030112427?text=Hi%2C%20I%27d%20like%20to%20make%20an%20inquiry" target="_blank" rel="noopener" onclick="trackWA('footer-help')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Delivery</h4>
+        <ul>
+          <li class="footer-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Breadfruit St, Lagos Island</li>
+          <li class="footer-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> +234 703 011 2427</li>
+          <li class="footer-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Same-day Lagos delivery</li>
+          <li class="footer-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M20 6L9 17l-5-5"/></svg> Nationwide shipping available</li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-social">
-      <a href="https://x.com/MakeleleJerseys" target="_blank" rel="noopener" aria-label="X (Twitter)">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.9L4.4 22H1.3l8.1-9.3L1 2h7l4.9 6.3zM17.6 20h1.9L6.5 4H4.4z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/makelele.jerseys" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-      </a>
-      <a href="https://www.tiktok.com/@makelelefootballjerseys" target="_blank" rel="noopener" aria-label="TikTok">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.7 4.7 0 01-3.8-4.7h-3.3v14.4a2.9 2.9 0 11-2.9-2.9c.3 0 .6 0 .9.1V9.4a6.1 6.1 0 00-.9-.1A6.2 6.2 0 100.4 15.5a6.2 6.2 0 006.2 6.2 6.2 6.2 0 006.2-6.2V8.4a8 8 0 004.6 1.5V6.6a4.7 4.7 0 01-.8-.8z"/></svg>
-      </a>
-      <a href="https://wa.me/2347030112427" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="trackWA('footer')">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
-      </a>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Makelele Jerseys, Lagos.</span>
+      <span class="footer-bottom-sep">&bull;</span>
+      <span>Original football jerseys &amp; custom football jerseys, delivered across Nigeria.</span>
     </div>
-  </div>
-  <div class="wrap footer-bottom">
-    © 2026 Makelele Jerseys, Lagos. Original football jerseys, Super Eagles kits & custom football jerseys, delivered across Nigeria.
   </div>
 </footer>
 
@@ -570,95 +500,188 @@
 <section id="category-view" class="hidden">
   <div class="wrap">
     <div class="cv-head">
-      <a href="#" class="cv-back" id="cv-back-btn">&larr; Back to Home</a>
+      <div class="cv-breadcrumb"><a href="/">Home</a><span class="cv-bc-sep">/</span><span id="cv-bc-title">Collection</span></div>
       <div class="section-head">
         <div class="eyebrow">The Collection</div>
         <h2 id="cv-title">Club Jerseys</h2>
         <p id="cv-subtitle">Browse our full range of club kits.</p>
       </div>
     </div>
+    <div class="league-bar" id="cv-league-bar">
+      <span class="league-bar-label">Filter by League:</span>
+      <a class="league-logo" href="/category/club?league=premier-league" data-league="premier-league">
+        <img src="/images/football_logos/premier_league_logo.png" alt="Premier League">
+      </a>
+      <a class="league-logo" href="/category/club?league=laliga" data-league="laliga">
+        <img src="/images/football_logos/laliga_logo.png" alt="La Liga">
+      </a>
+      <a class="league-logo" href="/category/club?league=bundesliga" data-league="bundesliga">
+        <img src="/images/football_logos/bundesliga_logo.png" alt="Bundesliga">
+      </a>
+      <a class="league-logo" href="/category/club?league=serie-a" data-league="serie-a">
+        <img src="/images/football_logos/serie_a_logo.png" alt="Serie A">
+      </a>
+    </div>
     <div class="cat-prod-grid" id="cv-grid"></div>
   </div>
 </section>
+
+<!-- ============ SIZE GUIDE MODAL ============ -->
+<div class="modal-overlay sg-overlay hidden" id="size-guide-modal">
+  <div class="modal-card sg-card">
+    <button class="modal-close" id="sg-close" aria-label="Close size guide">&times;</button>
+    <div class="sg-header">
+      <h3>Size Guide</h3>
+      <p>All measurements are in centimetres (CM). Measure a jersey you already own for the best fit.</p>
+    </div>
+    <div class="sg-how">
+      <div class="sg-how-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        How to Measure
+      </div>
+      <div class="sg-how-steps">
+        <span><strong>Jersey Length</strong> &mdash; Measure from the highest point of the shoulder down to the bottom hem.</span>
+        <span><strong>Shoulder Width</strong> &mdash; Measure across the back from one shoulder seam to the other.</span>
+      </div>
+    </div>
+    <div class="sg-table-wrap">
+      <table class="sg-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Jersey Length (CM)</th>
+            <th>Shoulder Width (CM)</th>
+            <th>Weight (KG)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>S</td><td>70</td><td>50</td><td>60 – 65</td></tr>
+          <tr><td>M</td><td>73</td><td>53</td><td>65 – 70</td></tr>
+          <tr><td>L</td><td>76</td><td>56</td><td>70 – 75</td></tr>
+          <tr><td>XL</td><td>79</td><td>59</td><td>75 – 80</td></tr>
+          <tr><td>XXL</td><td>82</td><td>62</td><td>80 – 85</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sg-note">Sizes may vary slightly between brands. If you're between sizes, we recommend sizing up.</p>
+  </div>
+</div>
 
 <!-- ============ STICKY WHATSAPP ============ -->
 <a class="sticky-wa" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20jersey" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" onclick="trackWA('sticky')">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
 </a>
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
 
 <!-- ============ PRODUCT VIEW ============ -->
 <section id="product-view" class="hidden">
   <div class="wrap">
-    <div class="pv-head">
-      <a href="#" class="pv-back" id="pv-back-btn">&larr; Back to Home</a>
+    <div class="pv-breadcrumb" id="pv-breadcrumb">
+      <a href="/">Home</a>
+      <span class="pv-bc-sep">/</span>
+      <a href="/collection" id="pv-bc-cat">Collection</a>
+      <span class="pv-bc-sep">/</span>
+      <span id="pv-bc-product">Product</span>
     </div>
     <div class="pv-layout" id="pv-layout">
       <div class="pv-gallery">
+        <span class="prod-tag" id="pv-tag"></span>
         <img id="pv-main-img" src="" alt="Product Image">
       </div>
       <div class="pv-info">
-        <p class="pv-team" id="pv-team"></p>
-        <h1 class="pv-name" id="pv-name"></h1>
-        <p class="pv-price" id="pv-price-display"></p>
+        <div class="pv-header">
+          <p class="pv-team" id="pv-team"></p>
+          <h1 class="pv-name" id="pv-name"></h1>
+          <div class="pv-price-row">
+            <p class="pv-price" id="pv-price-display"></p>
+            <div class="pv-stock" id="pv-stock">
+              <span class="pv-stock-dot"></span>
+              <span class="pv-stock-text">In Stock</span>
+            </div>
+          </div>
+        </div>
 
-        <div class="pv-divider"></div>
+        <div class="pv-details-card">
+          <div class="pv-desc" id="pv-desc"></div>
+          <ul class="pv-features" id="pv-features"></ul>
+        </div>
 
         <form id="product-form" onsubmit="submitProductOrder(event)">
-          <div class="pv-field">
-            <span class="pv-label">Size</span>
-            <div class="pv-size-group" id="pv-size-group">
-              <button type="button" class="pv-opt-btn" data-value="S">S</button>
-              <button type="button" class="pv-opt-btn" data-value="M">M</button>
-              <button type="button" class="pv-opt-btn" data-value="L">L</button>
-              <button type="button" class="pv-opt-btn" data-value="XL">XL</button>
-              <button type="button" class="pv-opt-btn" data-value="XXL">XXL</button>
-              <button type="button" class="pv-opt-btn" data-value="3XL">3XL</button>
+          <div class="pv-form-card">
+            <div class="pv-form-card-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20.38 3.46L16 2 12 5.69 8 2l-4.38 1.46a2 2 0 00-1.34 1.86v14.36A2 2 0 004.62 21.54L8 20l4 3.69L16 20l4.38 1.54a2 2 0 002.34-1.86V5.32a2 2 0 00-1.34-1.86z"/></svg>
+              Select Your Options
             </div>
-            <input type="hidden" id="pv-size" required>
-          </div>
 
-          <div class="pv-field">
-            <span class="pv-label">Additional Badge</span>
-            <select id="pv-badge">
-              <option value="None">None</option>
-              <option value="EPL">EPL</option>
-              <option value="UCL">UCL</option>
-              <option value="La Liga">La Liga</option>
-            </select>
-          </div>
-
-          <div class="pv-field">
-            <span class="pv-label">Jersey Preference</span>
-            <div class="pv-pref-group">
-              <button type="button" class="pv-opt-btn active" data-value="plain">Plain</button>
-              <button type="button" class="pv-opt-btn" data-value="customized">Customized</button>
-            </div>
-            <input type="hidden" id="pv-preference" value="plain">
-          </div>
-
-          <div id="pv-custom-fields" class="hidden">
             <div class="pv-field">
-              <span class="pv-label">Your Name <small>(e.g. JOHN)</small></span>
-              <input type="text" id="pv-custom-name" placeholder="e.g. JOHN">
+              <div class="pv-label-row">
+                <span class="pv-label">Size</span>
+                <button type="button" class="sg-trigger" id="sg-open">Size Guide</button>
+              </div>
+              <div class="pv-size-group" id="pv-size-group">
+                <button type="button" class="pv-opt-btn" data-value="S">S</button>
+                <button type="button" class="pv-opt-btn" data-value="M">M</button>
+                <button type="button" class="pv-opt-btn" data-value="L">L</button>
+                <button type="button" class="pv-opt-btn" data-value="XL">XL</button>
+                <button type="button" class="pv-opt-btn" data-value="XXL">XXL</button>
+              </div>
+              <input type="hidden" id="pv-size" required>
             </div>
+
             <div class="pv-field">
-              <span class="pv-label">Jersey Number <small>(e.g. 9)</small></span>
-              <input type="text" id="pv-custom-number" placeholder="e.g. 9">
+              <span class="pv-label">Additional Badge</span>
+              <select id="pv-badge">
+                <option value="None">None</option>
+                <option value="EPL">EPL</option>
+                <option value="UCL">UCL</option>
+                <option value="La Liga">La Liga</option>
+              </select>
+            </div>
+
+            <div class="pv-field">
+              <span class="pv-label">Jersey Preference</span>
+              <div class="pv-pref-group">
+                <button type="button" class="pv-opt-btn active" data-value="plain">Plain</button>
+                <button type="button" class="pv-opt-btn" data-value="customized">Customized</button>
+              </div>
+              <input type="hidden" id="pv-preference" value="plain">
+            </div>
+
+            <div id="pv-custom-fields" class="hidden">
+              <div class="pv-field">
+                <span class="pv-label">Your Name <small>(e.g. JOHN)</small></span>
+                <input type="text" id="pv-custom-name" placeholder="e.g. JOHN">
+              </div>
+              <div class="pv-field">
+                <span class="pv-label">Jersey Number <small>(e.g. 9)</small></span>
+                <input type="text" id="pv-custom-number" placeholder="e.g. 9">
+              </div>
+            </div>
+
+            <div class="pv-field">
+              <span class="pv-label">Delivery Location</span>
+              <input type="text" id="pv-location" required placeholder="e.g. Lekki, Lagos">
             </div>
           </div>
 
-          <div class="pv-field">
-            <span class="pv-label">Delivery Location</span>
-            <input type="text" id="pv-location" required placeholder="e.g. Lekki, Lagos">
-          </div>
+          <div class="pv-price-card">
+            <div class="price-breakdown">
+              <div class="price-line"><span id="pv-label">Jersey Price</span><span id="pv-base">₦35,000</span></div>
+              <div class="price-line" id="pv-custom-row"><span>Custom Printing</span><span>+ ₦5,000</span></div>
+              <div class="price-line price-total"><span>Total</span><span id="pv-total">₦40,000</span></div>
+            </div>
 
-          <div class="price-breakdown">
-            <div class="price-line"><span id="pv-label">Jersey Price</span><span id="pv-base">₦35,000</span></div>
-            <div class="price-line" id="pv-custom-row"><span>Custom Printing</span><span>+ ₦5,000</span></div>
-            <div class="price-line price-total"><span>Total</span><span id="pv-total">₦40,000</span></div>
+            <button type="submit" class="btn btn-primary btn-block pv-submit-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
+              Send Order on WhatsApp
+            </button>
+            <p class="pv-guarantee">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Secure order via WhatsApp &bull; Same-day Lagos delivery
+            </p>
           </div>
-
-          <button type="submit" class="btn btn-primary btn-block"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg> Send Order on WhatsApp</button>
         </form>
 
       </div>
