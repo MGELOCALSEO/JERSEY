@@ -334,13 +334,23 @@ window.submitCustomOrder = function(e){
   const texts = document.querySelectorAll('.slide-text');
   let current = 0, interval;
 
+  function showChampOverlay(isChamp){
+    document.querySelector('.hero-copy h1').style.display = isChamp ? 'none' : '';
+    document.querySelector('.hero-sub').style.display = isChamp ? 'none' : '';
+    document.querySelector('.hero-ctas').style.display = isChamp ? 'none' : '';
+    document.querySelector('.badges').style.display = isChamp ? 'none' : '';
+  }
+
   function goTo(idx){
     slides[current].classList.remove('active');
     if(texts[current]) texts[current].classList.remove('active');
     current = idx;
     slides[current].classList.add('active');
     if(texts[current]) texts[current].classList.add('active');
+    showChampOverlay(current === 0);
   }
+
+  showChampOverlay(true);
 
   function prev(){ goTo((current - 1 + slides.length) % slides.length); }
   function next(){ goTo((current + 1) % slides.length); }
@@ -478,6 +488,14 @@ function showHome(){
   const cv = document.getElementById('category-view');
   if(cv) cv.classList.add('hidden');
   document.body.style.overflow = '';
+  const champSlide = document.querySelector('.hero .slide.active');
+  if(champSlide){
+    const isChamp = [...document.querySelectorAll('.hero .slide')].indexOf(champSlide) === 0;
+    document.querySelector('.hero-copy h1').style.display = isChamp ? 'none' : '';
+    document.querySelector('.hero-sub').style.display = isChamp ? 'none' : '';
+    document.querySelector('.hero-ctas').style.display = isChamp ? 'none' : '';
+    document.querySelector('.badges').style.display = isChamp ? 'none' : '';
+  }
 }
 
 function showCategory(cat){

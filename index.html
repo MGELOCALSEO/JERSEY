@@ -65,6 +65,7 @@
 }
 </script>
 
+<link rel="preload" href="/images/hero/world-cup-champion.avif" as="image">
 <link rel="preload" href="/images/hero/spain-2010-shirt.avif" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,19 +115,23 @@
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="hero-visual" id="hero-slideshow" aria-roledescription="carousel" aria-label="Featured jersey slideshow" tabindex="0">
-    <div class="slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 4">
+    <div class="slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 5">
+      <img src="/images/hero/world-cup-champion.avif" alt="World Cup Champions 2026">
+      <div class="slide-shade"></div>
+    </div>
+    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 5">
       <img src="/images/hero/spain-2010-shirt.avif" alt="Spain national team jersey collection">
       <div class="slide-shade"></div>
     </div>
-    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 4">
+    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 5">
       <img src="/images/hero/argentina-messi-shirt.avif" alt="Argentina national team jersey collection">
       <div class="slide-shade"></div>
     </div>
-    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 4">
+    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 4 of 5">
       <img src="/images/hero/inter-miami-messi-shirt.avif" alt="Club jersey collection">
       <div class="slide-shade"></div>
     </div>
-    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 4 of 4">
+    <div class="slide" role="group" aria-roledescription="slide" aria-label="Slide 5 of 5">
       <img src="/images/hero/multi-national-jerseys.avif" alt="International jersey collection">
       <div class="slide-shade"></div>
     </div>
@@ -164,15 +169,21 @@
         </div>
       </div>
       <div class="slide-text active" data-slide="0" aria-live="polite">
-        <p class="slide-tagline">Shop the Spain Collection — La Roja, pre-order the latest kits with free printing.</p>
+        <div class="wc-overlay">
+          <span class="wc-title">WORLD CHAMPIONS</span>
+          <a class="wc-cta" href="#national">Shop Spain Jersey <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
       </div>
       <div class="slide-text" data-slide="1" aria-live="polite">
-        <p class="slide-tagline">Shop the Argentina Collection — Home, away & training kits crafted for champions.</p>
+        <p class="slide-tagline">Shop the Spain Collection — La Roja, pre-order the latest kits with free printing.</p>
       </div>
       <div class="slide-text" data-slide="2" aria-live="polite">
-        <p class="slide-tagline">Shop Club Kits — Represent your team with authentic, high-quality jerseys.</p>
+        <p class="slide-tagline">Shop the Argentina Collection — Home, away & training kits crafted for champions.</p>
       </div>
       <div class="slide-text" data-slide="3" aria-live="polite">
+        <p class="slide-tagline">Shop Club Kits — Represent your team with authentic, high-quality jerseys.</p>
+      </div>
+      <div class="slide-text" data-slide="4" aria-live="polite">
         <p class="slide-tagline">Shop International Kits — Jerseys from around the world, delivered to your doorstep.</p>
       </div>
       <h1>Wear Your Club. <span class="accent">Ready To Wear.</span></h1>
