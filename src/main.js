@@ -339,6 +339,7 @@ window.submitCustomOrder = function(e){
     document.querySelector('.hero-sub').style.display = isChamp ? 'none' : '';
     document.querySelector('.hero-ctas').style.display = isChamp ? 'none' : '';
     document.querySelector('.badges').style.display = isChamp ? 'none' : '';
+    document.querySelector('.wc-cta').style.display = isChamp ? '' : 'none';
   }
 
   function goTo(idx){
@@ -495,6 +496,8 @@ function showHome(){
     document.querySelector('.hero-sub').style.display = isChamp ? 'none' : '';
     document.querySelector('.hero-ctas').style.display = isChamp ? 'none' : '';
     document.querySelector('.badges').style.display = isChamp ? 'none' : '';
+    const wcCTA = document.querySelector('.wc-cta');
+    if(wcCTA) wcCTA.style.display = isChamp ? '' : 'none';
   }
 }
 
