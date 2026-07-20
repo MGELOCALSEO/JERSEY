@@ -103,201 +103,139 @@ function openWA(url, label){
 }
 
 function updatePriceDisplay(){
-  const form = document.getElementById('custom-form');
-  const typeRow = document.getElementById('jersey-type-row');
-  const typeEl = document.getElementById('jersey-type');
-  const version = document.getElementById('order-version');
-  const custom = document.getElementById('order-custom');
-  const pbLabel = document.getElementById('pb-label');
-  const pbBase = document.getElementById('pb-base');
-  const pbCustomRow = document.getElementById('pb-custom-row');
-  const pbTotal = document.getElementById('pb-total');
-
-  const hasCustom = custom.value === 'yes';
-  pbCustomRow.style.display = hasCustom ? '' : 'none';
-
-  const useType = typeRow && !typeRow.classList.contains('hidden');
-
-  if(useType){
-    const t = typeEl.value;
-    let baseVal, baseLabel;
-    if(t === 'club'){
-      const v = version.value;
-      baseVal = v === 'player' ? 55000 : 35000;
-      baseLabel = v === 'player' ? 'Player Version' : 'Fans Version';
-      version.closest('label').classList.remove('hidden');
-    } else if(t === 'national'){
-      baseVal = 30000;
-      baseLabel = 'National Jersey';
-      version.closest('label').classList.add('hidden');
-    } else {
-      baseVal = 40000;
-      baseLabel = 'Retro Jersey';
-      version.closest('label').classList.add('hidden');
-    }
-    pbLabel.textContent = baseLabel;
-    pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
-    form.dataset.baseLabel = baseLabel;
-    form.dataset.baseVal = String(baseVal);
-    const total = baseVal + (hasCustom ? 5000 : 0);
-    pbTotal.textContent = '\u20A6' + total.toLocaleString();
-  } else if(version && !version.closest('.hidden')){
-    const v = version.value;
-    const baseVal = v === 'player' ? 55000 : 35000;
-    const baseLabel = v === 'player' ? 'Player Version' : 'Fans Version';
-    pbLabel.textContent = baseLabel;
-    pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
-    form.dataset.baseLabel = baseLabel;
-    const total = baseVal + (hasCustom ? 5000 : 0);
-    pbTotal.textContent = '\u20A6' + total.toLocaleString();
-  } else {
-    const baseVal = parseInt(form.dataset.baseVal) || 0;
-    pbBase.textContent = '\u20A6' + baseVal.toLocaleString();
-    const total = baseVal + (hasCustom ? 5000 : 0);
-    pbTotal.textContent = '\u20A6' + total.toLocaleString();
-  }
+  const form = document.getElementById('product-form');
+  const pref = document.getElementById('pv-preference').value;
+  const baseVal = parseInt(form.dataset.baseVal) || 35000;
+  const hasCustom = pref === 'customized';
+  document.getElementById('pv-custom-row').style.display = hasCustom ? '' : 'none';
+  const total = baseVal + (hasCustom ? 5000 : 0);
+  document.getElementById('pv-total').textContent = '\u20A6' + total.toLocaleString();
 }
 
-function openCustomModal(btn){
+function showProductView(btn){
   const card = btn.closest('.prod-card, .cat-prod-card');
-  const form = document.getElementById('custom-form');
-  const typeRow = document.getElementById('jersey-type-row');
-  const typeEl = document.getElementById('jersey-type');
-  const versionRow = document.getElementById('version-row');
-  const verEl = document.getElementById('order-version');
-  const customEl = document.getElementById('order-custom');
+  const form = document.getElementById('product-form');
+  const isCustom = !card;
 
-  customEl.value = 'yes';
-  document.getElementById('custom-fields').classList.remove('hidden');
-  document.getElementById('custom-name').required = true;
-  document.getElementById('custom-name').value = '';
-  document.getElementById('custom-number').value = '';
-  document.getElementById('custom-size').value = '';
-  document.getElementById('custom-location').value = '';
-  document.getElementById('custom-club').value = '';
-  document.getElementById('custom-season').value = '';
-  delete form.dataset.team;
-  delete form.dataset.kit;
-  delete form.dataset.baseLabel;
-  delete form.dataset.baseVal;
+  document.querySelectorAll('.pv-opt-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.pv-opt-btn[data-value="M"]')?.classList.add('active');
+  document.getElementById('pv-size').value = 'M';
+  document.getElementById('pv-preference').value = 'plain';
+  document.getElementById('pv-custom-fields').classList.add('hidden');
+  document.getElementById('pv-custom-name').value = '';
+  document.getElementById('pv-custom-number').value = '';
+  document.getElementById('pv-location').value = '';
+  document.getElementById('pv-badge').value = 'None';
 
   if(card){
-    typeRow.classList.add('hidden');
     const team = card.querySelector('.team').textContent;
     const kit = card.querySelector('h3').textContent;
-    document.getElementById('custom-club').value = team;
-    document.getElementById('custom-season').value = kit;
+    document.getElementById('pv-team').textContent = team;
+    document.getElementById('pv-name').textContent = kit;
     const priceEl = card.querySelector('.cat-prod-price');
-    const priceText = priceEl ? ' \u2014 ' + priceEl.textContent : '';
-    const img = document.getElementById('modal-preview-img');
-    if(img) img.src = card.querySelector('img').src;
-    const cat = btn.dataset.cat;
-    if(cat === 'club' && catConfig.club.versions){
-      versionRow.classList.remove('hidden');
-      verEl.value = 'fans';
-      form.dataset.baseVal = '35000';
-    } else {
-      versionRow.classList.add('hidden');
-      form.dataset.baseVal = priceEl ? priceEl.textContent.replace(/[^0-9]/g,'') : '0';
-    }
-    document.getElementById('modal-jersey-label').textContent = team + ', ' + kit + priceText;
+    const priceText = priceEl ? priceEl.textContent : '';
+    document.getElementById('pv-price-display').textContent = priceText;
+    document.getElementById('pv-main-img').src = card.querySelector('img').src;
+    const baseVal = priceEl ? parseInt(priceEl.textContent.replace(/[^0-9]/g,'')) : 35000;
+    form.dataset.baseVal = String(baseVal);
     form.dataset.team = team;
     form.dataset.kit = kit;
-    if(priceEl) form.dataset.price = priceEl.textContent;
+    form.dataset.cat = btn.dataset.cat || '';
   } else {
-    typeRow.classList.remove('hidden');
-    typeEl.value = 'club';
-    versionRow.classList.remove('hidden');
-    verEl.value = 'fans';
+    document.getElementById('pv-team').textContent = 'Custom Order';
+    document.getElementById('pv-name').textContent = 'Custom Jersey';
+    document.getElementById('pv-price-display').textContent = '\u20A635,000';
+    document.getElementById('pv-main-img').src = '/images/customized/arsenal%20customized.png';
     form.dataset.baseVal = '35000';
-    document.getElementById('modal-jersey-label').textContent = 'Custom Jersey';
+    form.dataset.team = 'Custom';
+    form.dataset.kit = 'Custom Order';
+    form.dataset.cat = '';
   }
+
+  document.getElementById('pv-label').textContent = 'Jersey Price';
+  document.getElementById('pv-base').textContent = '\u20A6' + parseInt(form.dataset.baseVal).toLocaleString();
   updatePriceDisplay();
-  document.getElementById('custom-modal').classList.remove('hidden');
+
+  document.getElementById('category-view')?.classList.add('hidden');
+  homeSections().forEach(el => {
+    el.dataset._disp = el.style.display;
+    el.style.setProperty('display', 'none', 'important');
+  });
+  document.getElementById('product-view').classList.remove('hidden');
+  document.body.style.overflow = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-window.closeCustomModal = function(e){
-  if(e && e.target !== e.currentTarget && !e.key) return;
-  document.getElementById('custom-modal').classList.add('hidden');
-};
-
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') window.closeCustomModal(e);
-});
-
-document.addEventListener('change', function(e){
-  if(e.target.id === 'jersey-type' || e.target.id === 'order-version' || e.target.id === 'order-custom'){
-    updatePriceDisplay();
-    if(e.target.id === 'order-custom'){
-      const cf = document.getElementById('custom-fields');
-      const cn = document.getElementById('custom-name');
-      if(e.target.value === 'no'){
-        cf.classList.add('hidden');
-        cn.required = false;
-      } else {
-        cf.classList.remove('hidden');
-        cn.required = true;
-      }
+document.addEventListener('click', function(e){
+  const optBtn = e.target.closest('.pv-opt-btn');
+  if(optBtn && optBtn.closest('.pv-size-group')){
+    optBtn.closest('.pv-size-group').querySelectorAll('.pv-opt-btn').forEach(b => b.classList.remove('active'));
+    optBtn.classList.add('active');
+    document.getElementById('pv-size').value = optBtn.dataset.value;
+    return;
+  }
+  if(optBtn && optBtn.closest('.pv-pref-group')){
+    optBtn.closest('.pv-pref-group').querySelectorAll('.pv-opt-btn').forEach(b => b.classList.remove('active'));
+    optBtn.classList.add('active');
+    const val = optBtn.dataset.value;
+    document.getElementById('pv-preference').value = val;
+    const cf = document.getElementById('pv-custom-fields');
+    if(val === 'customized'){
+      cf.classList.remove('hidden');
+    } else {
+      cf.classList.add('hidden');
     }
+    updatePriceDisplay();
+    return;
   }
 });
 
 document.addEventListener('click', function(e){
-  const orderCatBtn = e.target.closest('[data-order-cat]');
-  if(orderCatBtn){ openCustomModal(orderCatBtn); return; }
   const orderBtn = e.target.closest('[data-order]');
-  if(orderBtn){
+  if(orderBtn && !e.target.closest('[data-custom]')){
     const card = orderBtn.closest('.prod-card');
-    const team = card.querySelector('.team').textContent;
-    const kit = card.querySelector('h3').textContent;
-    const msg = 'Hi Makelele Jerseys, I\'d like to order the ' + team + ' ' + kit;
-    window.open('https://wa.me/2347030112427?text=' + encodeURIComponent(msg), '_blank');
-    trackWA('order-now');
+    const fakeBtn = { closest: (s) => card ? card.closest(s) : null, dataset: {} };
+    showProductView(fakeBtn);
     return;
   }
-  const customBtn = e.target.closest('[data-custom]');
-  if(customBtn){ openCustomModal(customBtn); return; }
-  if(e.target.id === 'start-custom-btn' || e.target.closest('#start-custom-btn')){ openCustomModal(e.target); return; }
+  const customBtn = e.target.closest('[data-custom], [data-order-cat]');
+  if(customBtn){ showProductView(customBtn); return; }
+  if(e.target.id === 'start-custom-btn' || e.target.closest('#start-custom-btn')){
+    const fakeBtn = { closest: () => null, dataset: {} };
+    showProductView(fakeBtn);
+    return;
+  }
   const waBtn = e.target.closest('[data-wa]');
   if(waBtn){ openWA(waBtn.href, waBtn.dataset.wa); return; }
 });
 
-window.submitCustomOrder = function(e){
+window.submitProductOrder = function(e){
   e.preventDefault();
-  const typeRow = document.getElementById('jersey-type-row');
-  const typeEl = document.getElementById('jersey-type');
-  const useType = typeRow && !typeRow.classList.contains('hidden');
-  const jerseyType = useType ? typeEl.value : '';
-  const version = document.getElementById('order-version');
-  const verLabel = (version && !version.closest('.hidden')) ? (version.value === 'player' ? 'Player Version' : 'Fans Version') : '';
-  const customChoice = document.getElementById('order-custom').value === 'yes';
-  const name = document.getElementById('custom-name').value.trim();
-  const number = document.getElementById('custom-number').value.trim();
-  const size = document.getElementById('custom-size').value;
-  const location = document.getElementById('custom-location').value.trim();
-  const total = document.getElementById('pb-total').textContent;
-  const club = document.getElementById('custom-club').value.trim();
-  const season = document.getElementById('custom-season').value.trim();
+  const form = document.getElementById('product-form');
+  const team = form.dataset.team || '';
+  const kit = form.dataset.kit || '';
+  const size = document.getElementById('pv-size').value;
+  const badge = document.getElementById('pv-badge').value;
+  const pref = document.getElementById('pv-preference').value;
+  const name = document.getElementById('pv-custom-name').value.trim();
+  const number = document.getElementById('pv-custom-number').value.trim();
+  const location = document.getElementById('pv-location').value.trim();
+  const total = document.getElementById('pv-total').textContent;
 
   let msg = 'Hi Makelele Jerseys, I\'d like to order:\n';
-  if(jerseyType){
-    const typeLabels = { club:'Club Jersey', national:'National Jersey', retro:'Retro Jersey' };
-    msg += '\nType: ' + (typeLabels[jerseyType] || jerseyType);
+  msg += '\nProduct: ' + team + ' ' + kit;
+  msg += '\nSize: ' + size;
+  if(badge && badge !== 'None') msg += '\nBadge: ' + badge;
+  msg += '\nPreference: ' + (pref === 'customized' ? 'Customized' : 'Plain');
+  if(pref === 'customized'){
+    if(name) msg += '\nName: ' + name;
+    if(number) msg += '\nNumber: ' + number;
   }
-  if(club) msg += '\nClub: ' + club;
-  if(season) msg += '\nSeason: ' + season;
-  if(verLabel) msg += '\nVersion: ' + verLabel;
-  if(customChoice) msg += '\nCustom Printing: Yes';
-  else msg += '\nCustom Printing: No';
-  if(name) msg += '\nName: ' + name;
-  if(number) msg += '\nNumber: ' + number;
-  msg += '\nSize: ' + size
-    + '\nDelivery Location: ' + location
-    + '\nTotal: ' + total;
+  msg += '\nDelivery Location: ' + location;
+  msg += '\nTotal: ' + total;
 
   window.open('https://wa.me/2347030112427?text=' + encodeURIComponent(msg), '_blank');
   trackWA('custom-submit');
-  window.closeCustomModal();
 };
 
 (function countdown(){
@@ -361,7 +299,7 @@ window.submitCustomOrder = function(e){
   prevBtn.addEventListener('click', function(){ prev(); reset(); });
   nextBtn.addEventListener('click', function(){ next(); reset(); });
 
-  function start(){ interval = setInterval(next, 3000); }
+  function start(){ interval = setInterval(next, 7000); }
   function stop(){ clearInterval(interval); }
   function reset(){ stop(); start(); }
 
@@ -490,6 +428,8 @@ function showHome(){
   });
   const cv = document.getElementById('category-view');
   if(cv) cv.classList.add('hidden');
+  const pv = document.getElementById('product-view');
+  if(pv) pv.classList.add('hidden');
   document.body.style.overflow = '';
   const champSlide = document.querySelector('.hero .slide.active');
   if(champSlide){
@@ -535,6 +475,12 @@ function handleHash(){
 }
 
 document.getElementById('cv-back-btn').addEventListener('click', function(e){
+  e.preventDefault();
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+  showHome();
+});
+
+document.getElementById('pv-back-btn').addEventListener('click', function(e){
   e.preventDefault();
   history.replaceState(null, '', window.location.pathname + window.location.search);
   showHome();
