@@ -195,6 +195,7 @@ h1,h2,h3{
   padding: 0;
   overflow: hidden;
   min-height: 100vh;
+  min-height: 100dvh;
   display:flex; align-items:center;
 }
 .hero-visual{
@@ -244,10 +245,9 @@ h1,h2,h3{
   border-radius:8px;
   border:1px solid rgba(231,180,73,0.25);
   transition: background .2s, border-color .2s;
-  position:absolute; right:20px; bottom:40px; z-index:15;
+  position:absolute; right:20px; bottom:80px; z-index:15;
 }
 .wc-cta:hover{ background: rgba(10,12,15,0.85); border-color: var(--gold); }
-.arg-cta{ display:none; }
 .slide-text[data-slide="0"] ~ .slide-tagline{ display:none; }
 .slide-tagline{
   font-size: clamp(16px, 2.8vw, 24px);
@@ -276,7 +276,7 @@ h1,h2,h3{
 .hero-overlay{
   position:relative; z-index:5;
   width:100%;
-  padding: 56px 20px 64px;
+  padding: 56px 20px 120px;
   pointer-events:none;
 }
 .hero-overlay *{ pointer-events:auto; }
