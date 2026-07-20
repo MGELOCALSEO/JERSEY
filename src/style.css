@@ -477,10 +477,10 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
 .league-card-name{ font-size:14px; font-weight:700; text-align:center; }
 /* League badge on product cards */
 .league-badge{
-  position:absolute; top:8px; left:8px; z-index:2;
-  width:36px; height:36px; object-fit:contain;
-  background:rgba(255,255,255,0.9); border-radius:6px; padding:4px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  position:absolute; top:6px; right:6px; z-index:2;
+  width:28px; height:28px; object-fit:contain;
+  background:rgba(255,255,255,0.85); border-radius:4px; padding:3px;
+  box-shadow:0 1px 4px rgba(0,0,0,0.12);
 }
 /* League filter bar inside category view */
 .league-bar{
