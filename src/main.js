@@ -385,7 +385,6 @@ cycleImages('national-imgs', [
   '/images/national/france-2026-away-kit.jpg',
   '/images/national/spain-2026-home-front.webp',
   '/images/national/spain-2026-away-kit.jpg',
-  '/images/national/spain-2026-anthem-jacket.webp',
 ], 3500);
 
 cycleImages('customized-imgs', [
@@ -430,7 +429,6 @@ const nationalProducts = [
   { team:'France', kit:'Away 25/26', img:'/images/national/france-2026-away-kit.jpg' },
   { team:'Spain', kit:'Home 25/26', img:'/images/national/spain-2026-home-front.webp' },
   { team:'Spain', kit:'Away 25/26', img:'/images/national/spain-2026-away-kit.jpg' },
-  { team:'Spain', kit:'Anthem Jacket 25/26', img:'/images/national/spain-2026-anthem-jacket.webp' },
 ];
 
 const retroProducts = [
