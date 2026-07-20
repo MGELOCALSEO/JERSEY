@@ -334,12 +334,14 @@ window.submitCustomOrder = function(e){
   const texts = document.querySelectorAll('.slide-text');
   let current = 0, interval;
 
-  function showChampOverlay(isChamp){
-    document.querySelector('.hero-copy h1').style.display = isChamp ? 'none' : '';
-    document.querySelector('.hero-sub').style.display = isChamp ? 'none' : '';
-    document.querySelector('.hero-ctas').style.display = isChamp ? 'none' : '';
-    document.querySelector('.badges').style.display = isChamp ? 'none' : '';
-    document.querySelector('.wc-cta').style.display = isChamp ? '' : 'none';
+  function showOverlay(slideIdx){
+    const isSpecial = slideIdx === 0 || slideIdx === 2;
+    document.querySelector('.hero-copy h1').style.display = isSpecial ? 'none' : '';
+    document.querySelector('.hero-sub').style.display = isSpecial ? 'none' : '';
+    document.querySelector('.hero-ctas').style.display = isSpecial ? 'none' : '';
+    document.querySelector('.badges').style.display = isSpecial ? 'none' : '';
+    document.querySelector('.wc-cta').style.display = slideIdx === 0 ? '' : 'none';
+    document.querySelector('.arg-cta').style.display = slideIdx === 2 ? '' : 'none';
   }
 
   function goTo(idx){
@@ -348,10 +350,10 @@ window.submitCustomOrder = function(e){
     current = idx;
     slides[current].classList.add('active');
     if(texts[current]) texts[current].classList.add('active');
-    showChampOverlay(current === 0);
+    showOverlay(current);
   }
 
-  showChampOverlay(true);
+  showOverlay(0);
 
   function prev(){ goTo((current - 1 + slides.length) % slides.length); }
   function next(){ goTo((current + 1) % slides.length); }
@@ -491,13 +493,16 @@ function showHome(){
   document.body.style.overflow = '';
   const champSlide = document.querySelector('.hero .slide.active');
   if(champSlide){
-    const isChamp = [...document.querySelectorAll('.hero .slide')].indexOf(champSlide) === 0;
-    document.querySelector('.hero-copy h1').style.display = isChamp ? 'none' : '';
-    document.querySelector('.hero-sub').style.display = isChamp ? 'none' : '';
-    document.querySelector('.hero-ctas').style.display = isChamp ? 'none' : '';
-    document.querySelector('.badges').style.display = isChamp ? 'none' : '';
+    const idx = [...document.querySelectorAll('.hero .slide')].indexOf(champSlide);
+    const isSpecial = idx === 0 || idx === 2;
+    document.querySelector('.hero-copy h1').style.display = isSpecial ? 'none' : '';
+    document.querySelector('.hero-sub').style.display = isSpecial ? 'none' : '';
+    document.querySelector('.hero-ctas').style.display = isSpecial ? 'none' : '';
+    document.querySelector('.badges').style.display = isSpecial ? 'none' : '';
     const wcCTA = document.querySelector('.wc-cta');
-    if(wcCTA) wcCTA.style.display = isChamp ? '' : 'none';
+    if(wcCTA) wcCTA.style.display = idx === 0 ? '' : 'none';
+    const argCTA = document.querySelector('.arg-cta');
+    if(argCTA) argCTA.style.display = idx === 2 ? '' : 'none';
   }
 }
 
