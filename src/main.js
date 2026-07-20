@@ -376,15 +376,16 @@ window.submitCustomOrder = function(e){
 
 cycleImages('national-imgs', [
   '/images/national/nigeria-2026-home-kit.jpg',
-  '/images/national/nigeria-2026-away-kit.jpg',
-  '/images/national/argentina-2026-home-kit.jpg',
-  '/images/national/argentina-2026-away-kit.jpg',
+  '/images/national/nigeria-2026-away.png',
+  '/images/national/argentina-2026-home-back.webp',
+  '/images/national/argentina-2026-away-messi-front.webp',
   '/images/national/england-2026-home-kit.jpg',
   '/images/national/england-2026-away-kit.jpg',
   '/images/national/france-2026-home-kit.jpg',
   '/images/national/france-2026-away-kit.jpg',
-  '/images/national/spain-2026-home-kit.jpg',
+  '/images/national/spain-2026-home-front.webp',
   '/images/national/spain-2026-away-kit.jpg',
+  '/images/national/spain-2026-anthem-jacket.webp',
 ], 3500);
 
 cycleImages('customized-imgs', [
@@ -420,15 +421,16 @@ const clubProducts = [
 
 const nationalProducts = [
   { team:'Nigeria', kit:'Home 25/26', img:'/images/national/nigeria-2026-home-kit.jpg' },
-  { team:'Nigeria', kit:'Away 25/26', img:'/images/national/nigeria-2026-away-kit.jpg' },
-  { team:'Argentina', kit:'Home 25/26', img:'/images/national/argentina-2026-home-kit.jpg' },
-  { team:'Argentina', kit:'Away 25/26', img:'/images/national/argentina-2026-away-kit.jpg' },
+  { team:'Nigeria', kit:'Away 25/26', img:'/images/national/nigeria-2026-away.png' },
+  { team:'Argentina', kit:'Home 25/26', img:'/images/national/argentina-2026-home-back.webp' },
+  { team:'Argentina', kit:'Away 25/26 (Messi)', img:'/images/national/argentina-2026-away-messi-front.webp' },
   { team:'England', kit:'Home 25/26', img:'/images/national/england-2026-home-kit.jpg' },
   { team:'England', kit:'Away 25/26', img:'/images/national/england-2026-away-kit.jpg' },
   { team:'France', kit:'Home 25/26', img:'/images/national/france-2026-home-kit.jpg' },
   { team:'France', kit:'Away 25/26', img:'/images/national/france-2026-away-kit.jpg' },
-  { team:'Spain', kit:'Home 25/26', img:'/images/national/spain-2026-home-kit.jpg' },
+  { team:'Spain', kit:'Home 25/26', img:'/images/national/spain-2026-home-front.webp' },
   { team:'Spain', kit:'Away 25/26', img:'/images/national/spain-2026-away-kit.jpg' },
+  { team:'Spain', kit:'Anthem Jacket 25/26', img:'/images/national/spain-2026-anthem-jacket.webp' },
 ];
 
 const retroProducts = [
