@@ -200,7 +200,7 @@ function openCustomModal(btn){
       versionRow.classList.add('hidden');
       form.dataset.baseVal = priceEl ? priceEl.textContent.replace(/[^0-9]/g,'') : '0';
     }
-    document.getElementById('modal-jersey-label').textContent = team + ' \u2014 ' + kit + priceText;
+    document.getElementById('modal-jersey-label').textContent = team + ', ' + kit + priceText;
     form.dataset.team = team;
     form.dataset.kit = kit;
     if(priceEl) form.dataset.price = priceEl.textContent;
