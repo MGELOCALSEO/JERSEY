@@ -481,6 +481,21 @@ const clubProducts = [
   { team:'Real Madrid', kit:'Home 25/26', img:'/images/club/real-madrid-2026-27-home-kit.png', slug:'real-madrid-home-25-26', cat:'club', price:'₦35,000', description:'The king of European football returns with a clean white home kit for 2025/26.', material:'100% Recycled Polyester', features:['Dri-FIT ADV technology','Gold crest detailing','UV protection'], inStock:true },
   { team:'Arsenal', kit:'Third 25/26', img:'/images/club/arsenal-fc-2026-27-third-kit.jpg', slug:'arsenal-third-25-26', cat:'club', price:'₦35,000', description:'Arsenal\'s third kit for 2025/26 with a distinctive design for cup competitions.', material:'100% Recycled Polyester', features:['Aeroready technology','Lightweight build','Arsenal badge'], inStock:true },
   { team:'FC Barcelona', kit:'Home 25/26', img:'/images/club/fc-barcelona-2026-27-home-kit.jpg', slug:'fc-barcelona-home-25-26', cat:'club', price:'₦35,000', description:'Barcelona\'s 2025/26 home kit blends traditional blaugrana stripes with a fresh twist.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Moisture-wicking','Athletic fit'], inStock:true },
+  { team:'Manchester United', kit:'Away 25/26', img:'/images/club/manchester-united-2026-27-away-kit.jpg', slug:'manchester-united-away-25-26', cat:'club', price:'₦35,000', description:'Manchester United\'s 2025/26 away kit — a sharp new look for the Red Devils on the road.', material:'100% Recycled Polyester', features:['Dri-FIT technology','Distinctive away design','United crest'], inStock:true },
+  { team:'Arsenal', kit:'Away 25/26', img:'/images/club/arsenal-fc-2026-27-away-kit.jpg', slug:'arsenal-away-25-26', cat:'club', price:'₦35,000', description:'Arsenal\'s 2025/26 away kit delivers a sleek alternative for the Gunners.', material:'100% Recycled Polyester', features:['Aeroready technology','Striking away colours','Arsenal badge'], inStock:true },
+  { team:'Real Madrid', kit:'Third 25/26', img:'/images/club/real-madrid-2026-27-third-kit.jpg', slug:'real-madrid-third-25-26', cat:'club', price:'₦35,000', description:'Real Madrid\'s 2025/26 third kit — a bold design for European nights.', material:'100% Recycled Polyester', features:['Dri-FIT ADV','Unique design','Club badge'], inStock:true },
+  { team:'FC Barcelona', kit:'Fourth 25/26', img:'/images/club/fc-barcelona-2026-27-fourth-kit.jpg', slug:'fc-barcelona-fourth-25-26', cat:'club', price:'₦35,000', description:'Barcelona\'s 2025/26 fourth kit — a fresh, limited-edition look for the Blaugrana.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Limited edition','Barca crest'], inStock:true },
+  { team:'PSG', kit:'Home 25/26', img:'/images/club/PSG_ HOME.png', slug:'psg-home-25-26', cat:'club', price:'₦35,000', description:'Paris Saint-Germain\'s 2025/26 home kit in iconic Parisian style.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Parisian design','PSG crest'], inStock:true },
+  { team:'West Ham', kit:'Home 25/26', img:'/images/club/west harm.png', slug:'west-ham-home-25-26', cat:'club', price:'₦35,000', description:'West Ham United\'s 2025/26 home kit — the Hammers in classic claret & blue.', material:'100% Recycled Polyester', features:['Lightweight fabric','Club crest','Athletic fit'], inStock:true },
+  { team:'Al Nassr', kit:'Home 25/26', img:'/images/club/al-naseer.png', slug:'al-nassr-home-25-26', cat:'club', price:'₦35,000', description:'Al Nassr\'s 2025/26 home kit — Ronaldo\'s team in striking yellow & blue.', material:'100% Recycled Polyester', features:['Dri-FIT technology','Bold design','Club crest'], inStock:true },
+  { team:'Porto', kit:'Retro', img:'/images/club/Porto retro.png', slug:'porto-retro', cat:'club', price:'₦35,000', description:'FC Porto retro kit — a classic design from the Portuguese giants.', material:'100% Polyester', features:['Classic design','Porto crest','Retro style'], inStock:true },
+  { team:'Arsenal', kit:'Home 24/25', img:'/images/club/2025-26-shirts/arsenal-2024-25-home-kit.jpeg', slug:'arsenal-home-24-25', cat:'club', price:'₦30,000', description:'Arsenal\'s 2024/25 home kit — the final season in this iconic design.', material:'100% Recycled Polyester', features:['Aeroready technology','Emirates sponsor','Arsenal badge'], inStock:true },
+  { team:'Aston Villa', kit:'Home 24/25', img:'/images/club/2025-26-shirts/aston-villa-2024-25-home-kit.jpg', slug:'aston-villa-home-24-25', cat:'club', price:'₦30,000', description:'Aston Villa\'s 2024/25 home kit — claret & blue for the Villans.', material:'100% Recycled Polyester', features:['Castore design','Club crest','Athletic fit'], inStock:true },
+  { team:'Chelsea', kit:'Home 24/25', img:'/images/club/2025-26-shirts/chelsea-2024-25-home-kit.jpeg', slug:'chelsea-home-24-25', cat:'club', price:'₦30,000', description:'Chelsea\'s 2024/25 home kit — the Blues in classic blue.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Blue design','Chelsea crest'], inStock:true },
+  { team:'Liverpool', kit:'Home 24/25', img:'/images/club/2025-26-shirts/liverpool-2024-25-home-kit.jpeg', slug:'liverpool-home-24-25', cat:'club', price:'₦30,000', description:'Liverpool\'s 2024/25 home kit — the Reds in iconic red.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Standard Chartered','LFC crest'], inStock:true },
+  { team:'Manchester City', kit:'Home 24/25', img:'/images/club/2025-26-shirts/man-city-2024-25-home-kit.jpeg', slug:'man-city-home-24-25', cat:'club', price:'₦30,000', description:'Manchester City\'s 2024/25 home kit — sky blue for the reigning champions.', material:'100% Recycled Polyester', features:['Puma design','Sky blue','City crest'], inStock:true },
+  { team:'Newcastle', kit:'Home 24/25', img:'/images/club/2025-26-shirts/newcastle-2024-25-home-kit.jpg', slug:'newcastle-home-24-25', cat:'club', price:'₦30,000', description:'Newcastle United\'s 2024/25 home kit — the Magpies in black & white.', material:'100% Recycled Polyester', features:['Castore design','Classic stripes','NUFC crest'], inStock:true },
+  { team:'Nottingham Forest', kit:'Home 24/25', img:'/images/club/2025-26-shirts/nottingham-forest-2024-25-home-kit.jpg', slug:'nottingham-forest-home-24-25', cat:'club', price:'₦30,000', description:'Nottingham Forest\'s 2024/25 home kit — classic red & white for the Tricky Trees.', material:'100% Recycled Polyester', features:['Adidas design','Forest crest','Traditional look'], inStock:true },
 ];
 
 const nationalProducts = [
@@ -506,12 +521,12 @@ const retroProducts = [
   { team:'Real Madrid', kit:'Home 98/99', img:'/images/retro/real-madrid-1998-99-home-kit.jpg', slug:'real-madrid-home-98-99', cat:'retro', price:'₦40,000', description:'The original Galacticos era begins. Classic white.', material:'100% Polyester', features:['Puma design','Classic construction','Embroidered crest'], inStock:true },
   { team:'AC Milan', kit:'Home 06/07', img:'/images/retro/ac-milan-2006-07-home-kit.jpg', slug:'ac-milan-home-06-07', cat:'retro', price:'₦40,000', description:'Champions League winners 2007. Kaka\'s Milan.', material:'100% Polyester', features:['UCL winning kit','Adidas design','Classic stripes'], inStock:true },
   { team:'Nigeria', kit:'Home 94/95', img:'/images/retro/nigeria-1994-95-home-kit.jpg', slug:'nigeria-home-94-95', cat:'retro', price:'₦45,000', description:'The legendary Super Eagles \'94 World Cup kit. Nigerian football heritage.', material:'100% Polyester', features:['World Cup classic','Iconic green design','NFF badge'], inStock:true },
-  { team:'Brazil', kit:'World Cup 1970', img:'/images/retro/brazil_1970_world_cup_home.png', slug:'brazil-world-cup-1970', cat:'retro', price:'₦45,000', description:'Pelé\'s legendary canary yellow. Brazil\'s third World Cup triumph — the greatest team ever.', material:'100% Polyester', features:['Classic canary yellow','Iconic Brazil crest','Pelé era design'], inStock:true },
-  { team:'Argentina', kit:'World Cup 1986', img:'/images/retro/argentina_1986_maradona_world_cup.png', slug:'argentina-world-cup-1986', cat:'retro', price:'₦45,000', description:'Maradona\'s "Hand of God" & "Goal of the Century". Argentina\'s second World Cup glory.', material:'100% Polyester', features:['Maradona 10 printing','Argentina crest','Historic albiceleste design'], inStock:true },
-  { team:'Netherlands', kit:'Euro 1988', img:'/images/retro/netherlands_1988_euro_van_basten.png', slug:'netherlands-euro-1988', cat:'retro', price:'₦45,000', description:'Van Basten\'s iconic volley. The Oranje\'s first and only major trophy — Euro 88 champions.', material:'100% Polyester', features:['Oranje classic design','Van Basten era','KNVB crest'], inStock:true },
-  { team:'Germany', kit:'World Cup 1990', img:'/images/retro/germany_1990_world_cup_home.png', slug:'germany-world-cup-1990', cat:'retro', price:'₦45,000', description:'Matthäus lifting the trophy. The tricolor chevron design — a footballing icon.', material:'100% Polyester', features:['Tricolor chevron design','DFB crest','World Cup champion kit'], inStock:true },
-  { team:'France', kit:'World Cup 1998', img:'/images/retro/france_1998_zidane_world_cup.png', slug:'france-world-cup-1998', cat:'retro', price:'₦45,000', description:'Zidane\'s two headers in the final. France\'s first World Cup title on home soil.', material:'100% Polyester', features:['Classic French blue','Zidane era design','World Cup 98 champion'], inStock:true },
-  { team:'Italy', kit:'World Cup 1990', img:'/images/retro/italy_1990_world_cup_bagio.png', slug:'italy-world-cup-1990', cat:'retro', price:'₦40,000', description:'Baggio\'s tragic missed penalty. Italy\'s iconic Azzurri kit from their home World Cup.', material:'100% Polyester', features:['Azzurri blue classic','FIGC crest','Baggio era design'], inStock:true },
+  { team:'Argentina', kit:'World Cup 1986', img:'/images/retro/argentina-1986-maradona-home.jpg', slug:'argentina-world-cup-1986', cat:'retro', price:'₦45,000', description:'Maradona\'s "Hand of God" & "Goal of the Century". Argentina\'s second World Cup glory.', material:'100% Polyester', features:['Maradona 10 printing','Argentina crest','Historic albiceleste design'], inStock:true },
+  { team:'Netherlands', kit:'Euro 1988', img:'/images/retro/netherlands-1988-euro-home.jpg', slug:'netherlands-euro-1988', cat:'retro', price:'₦45,000', description:'Van Basten\'s iconic volley. The Oranje\'s first and only major trophy — Euro 88 champions.', material:'100% Polyester', features:['Oranje classic design','Van Basten era','KNVB crest'], inStock:true },
+  { team:'Germany', kit:'World Cup 1990', img:'/images/retro/germany-1990-world-cup-home.jpg', slug:'germany-world-cup-1990', cat:'retro', price:'₦45,000', description:'Matthäus lifting the trophy. The tricolor chevron design — a footballing icon.', material:'100% Polyester', features:['Tricolor chevron design','DFB crest','World Cup champion kit'], inStock:true },
+  { team:'France', kit:'World Cup 1998', img:'/images/retro/france-1998-world-cup-home.jpg', slug:'france-world-cup-1998', cat:'retro', price:'₦45,000', description:'Zidane\'s two headers in the final. France\'s first World Cup title on home soil.', material:'100% Polyester', features:['Classic French blue','Zidane era design','World Cup 98 champion'], inStock:true },
+  { team:'Italy', kit:'World Cup 1990', img:'/images/retro/italy-1990-world-cup-home.jpg', slug:'italy-world-cup-1990', cat:'retro', price:'₦40,000', description:'Baggio\'s tragic missed penalty. Italy\'s iconic Azzurri kit from their home World Cup.', material:'100% Polyester', features:['Azzurri blue classic','FIGC crest','Baggio era design'], inStock:true },
+  { team:'Italy', kit:'World Cup 2006', img:'/images/retro/italy-2006-world-cup-home.jpg', slug:'italy-world-cup-2006', cat:'retro', price:'₦40,000', description:'Italy\'s triumph in Germany. Cannavaro lifts the trophy — the Azzurri\'s fourth World Cup.', material:'100% Polyester', features:['World Cup champion kit','Adidas design','Classic Azzurri blue'], inStock:true },
   { team:'Ajax', kit:'European Cup 1973', img:'/images/retro/ajax_1973_cruyff_european_cup.png', slug:'ajax-european-cup-1973', cat:'retro', price:'₦40,000', description:'Cruyff\'s Total Football. Ajax\'s third consecutive European Cup triumph.', material:'100% Polyester', features:['Classic Ajax design','Total Football era','European Cup champion'], inStock:true },
   { team:'Real Madrid', kit:'European Cup 60s', img:'/images/retro/real_madrid_1960s_distefano.png', slug:'real-madrid-european-cup-60s', cat:'retro', price:'₦40,000', description:'Di Stéfano\'s era of European dominance. The original white shirt of football royalty.', material:'100% Polyester', features:['Classic all-white design','Di Stéfano era','Real Madrid crest'], inStock:true },
   { team:'Liverpool', kit:'European Cup 1977', img:'/images/retro/liverpool_1977_shankly_european_cup.png', slug:'liverpool-european-cup-1977', cat:'retro', price:'₦40,000', description:'First European Cup. The beginning of Liverpool\'s dynasty under Shankly.', material:'100% Polyester', features:['Classic Liverpool red','Shankly era','European Cup champion'], inStock:true },
@@ -535,6 +550,7 @@ const leagueConfig = {
   'bundesliga':     { name:'Bundesliga',      logo:'/images/football_logos/bundesliga_logo.png',    flag:'/images/football_logos/germany_flag.svg' },
   'serie-a':        { name:'Serie A',         logo:'/images/football_logos/serie_a_logo.png',       flag:'/images/football_logos/italy_flag.svg' },
   'ligue1':         { name:'Ligue 1',         logo:'/images/football_logos/ligue1_logo.png',        flag:'/images/football_logos/france_flag.svg' },
+  'world-cup':      { name:'World Cup',       logo:'/images/football_logos/england_flag.svg',      flag:'/images/football_logos/england_flag.svg' },
 };
 
 const clubLeague = {
@@ -547,6 +563,41 @@ const clubLeague = {
   'Bayern Munchen':    'bundesliga',
   'AC Milan':          'serie-a',
   'Juventus':          'serie-a',
+  'PSG':               'ligue1',
+  'West Ham':          'premier-league',
+  'Aston Villa':       'premier-league',
+  'Manchester City':   'premier-league',
+  'Newcastle':         'premier-league',
+  'Nottingham Forest': 'premier-league',
+};
+
+const retroLeague = {
+  'Manchester United': 'premier-league',
+  'Arsenal':           'premier-league',
+  'Chelsea':           'premier-league',
+  'Liverpool':         'premier-league',
+  'Real Madrid':       'laliga',
+  'FC Barcelona':      'laliga',
+  'AC Milan':          'serie-a',
+  'Juventus':          'serie-a',
+  'Ajax':              'eredivisie',
+  'Nigeria':           'world-cup',
+  'Brazil':            'world-cup',
+  'Argentina':         'world-cup',
+  'Netherlands':       'world-cup',
+  'Germany':           'world-cup',
+  'France':            'world-cup',
+  'Italy':             'world-cup',
+};
+
+const retroTeamFlag = {
+  'Nigeria':     '/images/football_logos/england_flag.svg',
+  'Brazil':      '/images/football_logos/england_flag.svg',
+  'Argentina':   '/images/football_logos/england_flag.svg',
+  'Netherlands': '/images/football_logos/england_flag.svg',
+  'Germany':     '/images/football_logos/germany_flag.svg',
+  'France':      '/images/football_logos/france_flag.svg',
+  'Italy':       '/images/football_logos/italy_flag.svg',
 };
 
 const catConfig = {
@@ -581,19 +632,31 @@ function renderCategory(cat, league){
     ? leagueConfig[league].name + ' Jerseys <a href="/category/' + cat + '" class="league-clear">Show All</a>'
     : cfg.sub;
   let list = cfg.list;
-  if(league && cat === 'club'){
-    list = list.filter(p => clubLeague[p.team] === league);
+  const teamLeague = cat === 'retro' ? retroLeague : clubLeague;
+  if(league && (cat === 'club' || cat === 'retro')){
+    list = list.filter(p => teamLeague[p.team] === league);
   }
   if(leagueBar){
-    leagueBar.style.display = cat === 'club' ? '' : 'none';
-    leagueBar.querySelectorAll('.league-logo').forEach(el => {
-      const l = el.dataset.league;
-      el.classList.toggle('active', l === league);
-    });
+    const showBar = cat === 'club' || cat === 'retro';
+    leagueBar.style.display = showBar ? '' : 'none';
+    if(showBar){
+      const presentLeagues = [...new Set(cfg.list.map(p => teamLeague[p.team]).filter(Boolean))];
+      leagueBar.innerHTML = '<span class="league-bar-label">Filter by League:</span>' +
+        presentLeagues.map(l => {
+          const lc = leagueConfig[l];
+          if(!lc) return '';
+          return '<a class="league-logo' + (l === league ? ' active' : '') + '" href="/category/' + cat + '?league=' + l + '" data-league="' + l + '">' +
+            '<img src="' + lc.logo + '" alt="' + lc.name + '">' +
+          '</a>';
+        }).join('');
+    }
   }
   grid.innerHTML = list.map(p => {
-    const lKey = cat === 'club' ? clubLeague[p.team] : null;
+    const lKey = (cat === 'club' || cat === 'retro') ? teamLeague[p.team] : null;
     const lCfg = lKey ? leagueConfig[lKey] : null;
+    const badgeSrc = cat === 'retro' && retroTeamFlag[p.team]
+      ? retroTeamFlag[p.team]
+      : (lCfg ? (cat === 'retro' ? lCfg.flag : lCfg.logo) : null);
     return `
     <div class="cat-prod-card" data-slug="${p.slug || ''}">
       <div class="cat-prod-visual">
@@ -602,7 +665,7 @@ function renderCategory(cat, league){
         <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
       </div>
       <div class="cat-prod-body">
-        <div class="team">${lCfg ? '<img class="league-badge" src="' + lCfg.logo + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
+        <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
         <h3>${p.kit}</h3>
         <button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
