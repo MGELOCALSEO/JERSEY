@@ -327,6 +327,12 @@ h1,h2,h3{
   display:flex; align-items:center; flex-wrap:wrap; gap:20px;
   margin-bottom: 20px;
 }
+@media(max-width: 640px){
+  .hero{ min-height:auto; display:block; }
+  .hero-visual{ position:relative; height:55vw; min-height:280px; max-height:420px; }
+  .slide{ position:absolute; inset:0; }
+  .slide img{ object-position: center center; }
+}
 @media(max-width: 400px){
   .hero-row{ gap:12px; }
   .hm-team{ font-size:13px; }
