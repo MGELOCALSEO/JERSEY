@@ -368,10 +368,13 @@ document.addEventListener('click', function(e){
     const path = window.location.pathname.replace(/\/+$/, '');
     const cat = path.split('/').pop();
     const league = new URLSearchParams(window.location.search).get('league') || undefined;
-    const pageKey = cat + (league ? ':' + league : '');
+    const team = new URLSearchParams(window.location.search).get('team') || undefined;
+    const seasonVal = document.getElementById('cv-season')?.value || '';
+    const searchVal = (document.getElementById('cv-search')?.value || '').trim().toLowerCase();
+    const pageKey = cat + (league ? ':' + league : '') + (team ? ':' + team : '') + (seasonVal ? ':s' + seasonVal : '') + (searchVal ? ':q' + searchVal : '');
     if(dir === 'prev' && catPage[pageKey] > 1) catPage[pageKey]--;
     if(dir === 'next') catPage[pageKey]++;
-    renderCategory(cat, league);
+    renderCategory(cat, league, team);
     document.getElementById('cv-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
     return;
   }
@@ -382,9 +385,12 @@ document.addEventListener('click', function(e){
     const path = window.location.pathname.replace(/\/+$/, '');
     const cat = path.split('/').pop();
     const league = new URLSearchParams(window.location.search).get('league') || undefined;
-    const pageKey = cat + (league ? ':' + league : '');
+    const team = new URLSearchParams(window.location.search).get('team') || undefined;
+    const seasonVal = document.getElementById('cv-season')?.value || '';
+    const searchVal = (document.getElementById('cv-search')?.value || '').trim().toLowerCase();
+    const pageKey = cat + (league ? ':' + league : '') + (team ? ':' + team : '') + (seasonVal ? ':s' + seasonVal : '') + (searchVal ? ':q' + searchVal : '');
     catPage[pageKey] = parseInt(pageNum.dataset.page);
-    renderCategory(cat, league);
+    renderCategory(cat, league, team);
     document.getElementById('cv-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
     return;
   }
@@ -540,8 +546,8 @@ const clubProducts = [
 const nationalProducts = [
   { team:'Nigeria', kit:'Home 26/27', img:'/images/Country/Nigeria Home Jersey 26_27.png', images:['/images/Country/Nigeria Home Jersey 26_27.png','/images/national/nigeria-2026-away.png'], slug:'nigeria-home-26-27', cat:'national', price:'₦30,000', description:'Rep the Naija spirit with the Super Eagles 2026/27 home kit. Bold green with cultural patterns.', material:'100% Polyester', features:['Lightweight breathable fabric','NFF official design','Bold cultural pattern'], inStock:true },
   { team:'Nigeria', kit:'Away 26/27', img:'/images/Country/Nigeria Away Jersey 26_27.png', images:['/images/Country/Nigeria Away Jersey 26_27.png','/images/national/nigeria-2026-away.png'], slug:'nigeria-away-26-27', cat:'national', price:'₦30,000', description:'The Super Eagles away kit for 2026/27 in a clean, sharp design.', material:'100% Polyester', features:['Lightweight fabric','NFF badge','Regular fit'], inStock:true },
-  { team:'Argentina', kit:'Home 26/27', img:'/images/Country/2026-27 Argentina Home Shirt back.webp', images:['/images/Country/2026-27 Argentina Home Shirt back.webp','/images/Country/Argentina Home Jersey 26_27.jpg'], slug:'argentina-home-26-27', cat:'national', price:'₦35,000', description:'Argentina\'s 2026/27 home kit in the legendary albiceleste stripes. World Cup champions vibes.', material:'100% Recycled Polyester', features:['AFA badge','Dri-FIT technology','Classic design'], inStock:true },
-  { team:'Argentina', kit:'Away 26/27 (Messi)', img:'/images/Country/2026-27 Argentina Away Shirt Messi front.webp', images:['/images/Country/2026-27 Argentina Away Shirt Messi front.webp','/images/Country/2026-27 Argentina Away Shirt Messi back.webp'], slug:'argentina-away-messi-26-27', cat:'national', price:'₦40,000', description:'Argentina\'s 2026/27 away kit featuring Messi\'s name and number front and back. A must-have for fans.', material:'100% Recycled Polyester', features:['Messi 10 printing','AFA badge','Premium fabric'], inStock:true },
+  { team:'Argentina', kit:'Home 26/27', img:'/images/Country/2026-27 Argentina Home Shirt  back.webp', images:['/images/Country/2026-27 Argentina Home Shirt  back.webp','/images/Country/Argentina Home Jersey 26_27.jpg'], slug:'argentina-home-26-27', cat:'national', price:'₦35,000', description:'Argentina\'s 2026/27 home kit in the legendary albiceleste stripes. World Cup champions vibes.', material:'100% Recycled Polyester', features:['AFA badge','Dri-FIT technology','Classic design'], inStock:true },
+  { team:'Argentina', kit:'Away 26/27 (Messi)', img:'/images/Country/2026-27 Argentina Away Shirt Messi  front.webp', images:['/images/Country/2026-27 Argentina Away Shirt Messi  front.webp','/images/Country/2026-27 Argentina Away Shirt Messi  back.webp'], slug:'argentina-away-messi-26-27', cat:'national', price:'₦40,000', description:'Argentina\'s 2026/27 away kit featuring Messi\'s name and number front and back. A must-have for fans.', material:'100% Recycled Polyester', features:['Messi 10 printing','AFA badge','Premium fabric'], inStock:true },
   { team:'Argentina', kit:'Polo Jersey 26/27', img:'/images/Country/Argentina Polo Jersey 26_27.jpg', images:['/images/Country/Argentina Polo Jersey 26_27.jpg'], slug:'argentina-polo-26-27', cat:'national', price:'₦35,000', description:'Argentina\'s 2026/27 polo-style jersey. Smart casual for matchday and beyond.', material:'100% Polyester', features:['Polo collar design','AFA crest','Premium cotton blend'], inStock:true },
   { team:'England', kit:'Home 26/27', img:'/images/Country/England Home Jersey 26_27.jpg', images:['/images/Country/England Home Jersey 26_27.jpg','/images/national/england-2026-home-kit.jpg'], slug:'england-home-26-27', cat:'national', price:'₦35,000', description:'England\'s 2026/27 home kit in classic white with the Three Lions crest.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','FA crest','Clean white design'], inStock:true },
   { team:'England', kit:'Away 26/27', img:'/images/Country/England Away Jersey 26_27.jpg', images:['/images/Country/England Away Jersey 26_27.jpg','/images/national/england-2026-away-kit.jpg'], slug:'england-away-26-27', cat:'national', price:'₦35,000', description:'England\'s 2026/27 away kit with a bold new look for the Three Lions.', material:'100% Recycled Polyester', features:['Dri-FIT technology','FA crest','Athletic fit'], inStock:true },
@@ -618,7 +624,7 @@ const leagueConfig = {
   'bundesliga':     { name:'Bundesliga',      logo:'/images/football_logos/bundesliga_logo.png',    flag:'/images/football_logos/germany_flag.svg' },
   'serie-a':        { name:'Serie A',         logo:'/images/football_logos/serie_a_logo.png',       flag:'/images/football_logos/italy_flag.svg' },
   'ligue1':         { name:'Ligue 1',         logo:'/images/football_logos/ligue1_logo.png',        flag:'/images/football_logos/france_flag.svg' },
-  'saudi-pro-league': { name:'Saudi Pro League', logo:'/images/football_logos/saudi_pro_league_logo.png', flag:'/images/football_logos/saudi_flag.svg' },
+  'saudi-pro-league': { name:'Saudi Pro League', logo:'/images/football_logos/Roshn_Saudi_League_Logo.svg', flag:'/images/football_logos/saudi_flag.svg' },
   'world-cup':      { name:'World Cup',       logo:'/images/football_logos/england_flag.svg',      flag:'/images/football_logos/england_flag.svg' },
 };
 
@@ -694,7 +700,39 @@ function findProductBySlug(slug){ return allProducts.find(p => p.slug === slug);
 const PER_PAGE = 12;
 let catPage = {};
 
-function renderCategory(cat, league){
+function getSeason(p){
+  const m = p.kit.match(/(\d{2})\/(\d{2})/);
+  if(m) return m[0];
+  const y = p.kit.match(/\b(\d{4})\b/);
+  if(y) return y[1];
+  const d = p.kit.match(/(\d{2})s\b/);
+  if(d) return d[1] + '0s';
+  return '';
+}
+
+function seasonSortKey(s){
+  if(!s) return 0;
+  const m = s.match(/(\d{2})\/(\d{2})/);
+  if(m) return parseInt('20' + m[2]);
+  const y = s.match(/\b(\d{4})\b/);
+  if(y) return parseInt(y[1]);
+  const d = s.match(/^(\d{2})0s/);
+  if(d) return parseInt(d[1] + '0');
+  return 0;
+}
+
+function populateSeasonSelect(cat){
+  const sel = document.getElementById('cv-season');
+  if(!sel) return;
+  const cfg = catConfig[cat];
+  if(!cfg) return;
+  const seasons = [...new Set(cfg.list.map(getSeason).filter(Boolean))];
+  seasons.sort((a,b) => seasonSortKey(b) - seasonSortKey(a));
+  sel.innerHTML = '<option value="">All Seasons</option>' +
+    seasons.map(s => '<option value="' + s + '">' + s + '</option>').join('');
+}
+
+function renderCategory(cat, league, team){
   const view = document.getElementById('category-view');
   const grid = document.getElementById('cv-grid');
   const pagination = document.getElementById('cv-pagination');
@@ -706,13 +744,35 @@ function renderCategory(cat, league){
   const cfg = catConfig[cat];
   title.textContent = cfg.name;
   if(bcTitle) bcTitle.textContent = cfg.name;
-  sub.innerHTML = league && leagueConfig[league]
-    ? leagueConfig[league].name + ' Jerseys <a href="/category/' + cat + '" class="league-clear">Show All</a>'
-    : cfg.sub;
+  if(team){
+    sub.innerHTML = team + ' Jerseys <a href="/category/' + cat + '" class="league-clear">Show All</a>';
+  } else if(league && leagueConfig[league]){
+    sub.innerHTML = leagueConfig[league].name + ' Jerseys <a href="/category/' + cat + '" class="league-clear">Show All</a>';
+  } else {
+    sub.innerHTML = cfg.sub;
+  }
   let list = cfg.list;
   const teamLeague = cat === 'retro' ? retroLeague : clubLeague;
-  if(league && (cat === 'club' || cat === 'retro')){
+  if(team){
+    const validTeams = new Set(cfg.list.map(p => p.team.toLowerCase()));
+    if(!validTeams.has(team.toLowerCase())) team = undefined;
+  }
+  if(team){
+    list = list.filter(p => p.team.toLowerCase() === team.toLowerCase());
+  }
+  if(league && !team && (cat === 'club' || cat === 'retro')){
     list = list.filter(p => teamLeague[p.team] === league);
+  }
+  const seasonVal = document.getElementById('cv-season')?.value || '';
+  if(seasonVal){
+    list = list.filter(p => getSeason(p) === seasonVal);
+  }
+  const searchVal = (document.getElementById('cv-search')?.value || '').trim().toLowerCase();
+  if(searchVal){
+    list = list.filter(p =>
+      p.team.toLowerCase().includes(searchVal) ||
+      p.kit.toLowerCase().includes(searchVal)
+    );
   }
   if(leagueBar){
     const showBar = cat === 'club' || cat === 'retro';
@@ -730,7 +790,7 @@ function renderCategory(cat, league){
     }
   }
 
-  const pageKey = cat + (league ? ':' + league : '');
+  const pageKey = cat + (league ? ':' + league : '') + (team ? ':' + team : '') + (seasonVal ? ':s' + seasonVal : '') + (searchVal ? ':q' + searchVal : '');
   const totalPages = Math.ceil(list.length / PER_PAGE);
   if(!catPage[pageKey]) catPage[pageKey] = 1;
   if(catPage[pageKey] > totalPages) catPage[pageKey] = totalPages;
@@ -794,12 +854,18 @@ function showHome(){
   document.body.style.overflow = '';
 }
 
-function showCategory(cat, league){
+function showCategory(cat, league, team){
   resetSEO();
-  document.title = catConfig[cat].name + ' | ' + SITE_NAME;
-  const pageKey = cat + (league ? ':' + league : '');
+  const sub = team ? team + ' Jerseys' : catConfig[cat].name;
+  document.title = sub + ' | ' + SITE_NAME;
+  const pageKey = cat + (league ? ':' + league : '') + (team ? ':' + team : '');
   catPage[pageKey] = 1;
-  if(!renderCategory(cat, league)) return;
+  const searchEl = document.getElementById('cv-search');
+  if(searchEl) searchEl.value = '';
+  const seasonEl = document.getElementById('cv-season');
+  if(seasonEl) seasonEl.value = '';
+  populateSeasonSelect(cat);
+  if(!renderCategory(cat, league, team)) return;
   homeSections().forEach(el => {
     if(el.tagName === 'FOOTER') return;
     el.dataset._disp = el.style.display;
@@ -831,7 +897,8 @@ function handlePath(){
   const pageCat = getCurrentCategory();
   if(pageCat){
     const league = new URLSearchParams(window.location.search).get('league') || undefined;
-    showCategory(pageCat, league);
+    const team = new URLSearchParams(window.location.search).get('team') || undefined;
+    showCategory(pageCat, league, team);
     return;
   }
   if(path === '/'){
@@ -853,8 +920,9 @@ function handlePath(){
     const parts = path.split('/');
     const cat = parts[2];
     const league = new URLSearchParams(window.location.search).get('league') || undefined;
+    const team = new URLSearchParams(window.location.search).get('team') || undefined;
     if(cat === 'club' || cat === 'national' || cat === 'retro' || cat === 'kids'){
-      showCategory(cat, league);
+      showCategory(cat, league, team);
       return;
     }
   }
@@ -892,6 +960,34 @@ document.getElementById('cv-back-btn')?.addEventListener('click', function(e){
 
 window.addEventListener('popstate', handlePath);
 handlePath();
+
+function applyCategoryFilters(){
+  const view = document.getElementById('category-view');
+  if(!view || view.classList.contains('hidden')) return;
+  let cat = getCurrentCategory();
+  if(!cat){
+    const p = window.location.pathname.replace(/\/+$/, '') || '/';
+    if(p.startsWith('/category/')){
+      const parts = p.split('/');
+      const c = parts[2];
+      if(c === 'club' || c === 'national' || c === 'retro' || c === 'kids') cat = c;
+    }
+  }
+  if(!cat) return;
+  const league = new URLSearchParams(window.location.search).get('league') || undefined;
+  const team = new URLSearchParams(window.location.search).get('team') || undefined;
+  renderCategory(cat, league, team);
+}
+
+let _searchTimer;
+document.getElementById('cv-search')?.addEventListener('input', function(){
+  clearTimeout(_searchTimer);
+  _searchTimer = setTimeout(applyCategoryFilters, 300);
+});
+
+document.getElementById('cv-season')?.addEventListener('change', function(){
+  applyCategoryFilters();
+});
 
 (function initBackToTop(){
   const btn = document.getElementById('back-to-top');

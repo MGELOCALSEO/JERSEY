@@ -491,7 +491,7 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
   transition:border-color .2s, transform .2s;
 }
 .league-card:hover{ border-color:var(--gold); transform:translateY(-3px); }
-.league-card img{ width:80px; height:80px; object-fit:contain; }
+.league-card img{ width:80px; height:80px; object-fit:contain; background:#fff; padding:8px; border-radius:8px; }
 .league-card-name{ font-size:14px; font-weight:700; text-align:center; }
 /* League badge on product cards */
 .league-badge{
@@ -512,10 +512,49 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
   width:40px; height:40px; object-fit:contain;
   opacity:0.5; transition:opacity .2s;
   border-radius:6px; padding:4px;
-  background:var(--bg-card); border:1px solid var(--line);
+  background:#fff; border:1px solid var(--line);
 }
 .league-logo:hover img,
 .league-logo.active img{ opacity:1; border-color:var(--gold); }
+
+.filter-bar{
+  display:flex; align-items:center; gap:10px;
+  padding:6px 0 16px; flex-wrap:wrap;
+}
+.filter-search{ flex:1; min-width:180px; }
+.filter-search input{
+  width:100%; padding:10px 14px;
+  border:1px solid var(--line); border-radius:8px;
+  background:var(--bg-card); color:var(--white);
+  font-size:14px; outline:none; transition:border-color .2s, box-shadow .2s;
+}
+.filter-search input:focus{ border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-dim); }
+.filter-search input::placeholder{ color:var(--muted-2); }
+.filter-season{
+  position:relative; min-width:160px;
+}
+.filter-season select{
+  width:100%; padding:10px 36px 10px 14px;
+  border:1px solid var(--line); border-radius:8px;
+  background:var(--bg-card); color:var(--white);
+  font-size:14px; font-weight:500; outline:none; cursor:pointer;
+  appearance:none;
+  transition:border-color .2s, box-shadow .2s;
+}
+.filter-season select:hover{ border-color:var(--muted-2); }
+.filter-season select:focus{ border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-dim); }
+.filter-season::after{
+  content:''; position:absolute; top:50%; right:12px;
+  width:10px; height:10px;
+  border:2px solid var(--muted-2); border-top:none; border-left:none;
+  transform:translateY(-70%) rotate(45deg);
+  pointer-events:none; transition:border-color .2s;
+}
+.filter-season:hover::after{ border-color:var(--muted); }
+.filter-season:focus-within::after{ border-color:var(--gold); }
+.filter-season select option{
+  background:var(--bg-elevated); color:var(--white); padding:8px;
+}
 .league-clear{ font-size:13px; font-weight:600; color:var(--gold); text-decoration:none; margin-left:8px; }
 .league-clear:hover{ text-decoration:underline; }
 
