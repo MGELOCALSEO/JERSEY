@@ -597,13 +597,12 @@ function renderCategory(cat, league){
     return `
     <div class="cat-prod-card" data-slug="${p.slug || ''}">
       <div class="cat-prod-visual">
-        ${lCfg ? '<img class="league-badge" src="' + lCfg.logo + '" alt="' + lCfg.name + '" title="' + lCfg.name + '">' : ''}
         <span class="cat-prod-price">${cfg.price}</span>
         <span class="cat-prod-addon">${cfg.addon}</span>
         <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
       </div>
       <div class="cat-prod-body">
-        <div class="team">${p.team}</div>
+        <div class="team">${lCfg ? '<img class="league-badge" src="' + lCfg.logo + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
         <h3>${p.kit}</h3>
         <button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
