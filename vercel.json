@@ -4,6 +4,10 @@
   "outputDirectory": "dist",
   "installCommand": "npm ci",
   "rewrites": [
+    { "source": "/club", "destination": "/club.html" },
+    { "source": "/national", "destination": "/national.html" },
+    { "source": "/retro", "destination": "/retro.html" },
+    { "source": "/kids", "destination": "/kids.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
