@@ -591,10 +591,10 @@ const retroLeague = {
 };
 
 const retroTeamFlag = {
-  'Nigeria':     '/images/football_logos/england_flag.svg',
-  'Brazil':      '/images/football_logos/england_flag.svg',
-  'Argentina':   '/images/football_logos/england_flag.svg',
-  'Netherlands': '/images/football_logos/england_flag.svg',
+  'Nigeria':     '/images/football_logos/nigeria_flag.svg',
+  'Brazil':      '/images/football_logos/brazil_flag.svg',
+  'Argentina':   '/images/football_logos/argentina_flag.svg',
+  'Netherlands': '/images/football_logos/netherlands_flag.svg',
   'Germany':     '/images/football_logos/germany_flag.svg',
   'France':      '/images/football_logos/france_flag.svg',
   'Italy':       '/images/football_logos/italy_flag.svg',

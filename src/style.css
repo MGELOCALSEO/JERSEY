@@ -398,12 +398,19 @@ h1,h2,h3{
 .badge svg{ width:15px; height:15px; color: var(--pitch); flex-shrink:0; }
 
 @media(max-width: 480px){
-  .hero{ min-height: 92dvh; }
+  .hero{ min-height: 80dvh; }
   .slide img{ object-position: center 25%; }
   .hero-overlay{ padding: 40px 16px 100px; }
-  .wc-cta{ right:16px; bottom:60px; padding:12px 18px; font-size:13px; }
+  .wc-label{ bottom:20px; left:16px; max-width:55%; font-size:clamp(14px,3.5vw,18px); }
+  .wc-cta{ right:16px; bottom:20px; padding:10px 14px; font-size:11px; gap:6px; border-radius:8px; white-space:nowrap; }
+  .wc-cta svg{ width:12px; height:12px; }
+  .slide-arrow{ width:32px; height:32px; }
+  .slide-arrow svg{ width:14px; height:14px; }
+  .slide-arrow-prev{ left:8px; }
+  .slide-arrow-next{ right:8px; }
   .hero-sub{ font-size: 15px; }
   .badges{ grid-template-columns: 1fr; }
+  .slide-shade{ background: linear-gradient(90deg, rgba(11,11,11,0.85) 0%, rgba(11,11,11,0.5) 60%, rgba(11,11,11,0.25) 100%); }
 }
 @media(min-width: 768px){
   .hero{ min-height: 580px; max-height: 800px; }
