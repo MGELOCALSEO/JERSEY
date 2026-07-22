@@ -243,11 +243,11 @@ function showProductView(btn, productData, fromRouter){
   }
   document.getElementById('pv-tag').textContent = tag;
 
-  const catNames = { club:'Club Jerseys', national:'National Teams', retro:'Retro Collection', kids:'Kids Jerseys' };
+  const catNames = { club:'Club Jerseys', national:'National Teams', retro:'Retro Collection', kids:'Kids Jerseys', 'long-sleeve':'Long Sleeve Jerseys' };
   const bcCat = document.getElementById('pv-bc-cat');
   if(cat && catNames[cat]){
     bcCat.textContent = catNames[cat];
-    bcCat.href = '/category/' + cat;
+    bcCat.href = cat === 'long-sleeve' ? '/category/long-sleeve' : '/category/' + cat;
     bcCat.style.display = '';
   } else if(isCustom || !card){
     bcCat.style.display = 'none';
@@ -261,12 +261,9 @@ function showProductView(btn, productData, fromRouter){
   if(inStock){
     stockEl.classList.add('in-stock');
     stockText.textContent = 'In Stock';
-    form.style.display = '';
-    form.querySelector('.pv-submit-btn')?.removeAttribute('disabled');
   } else {
     stockEl.classList.add('out-of-stock');
-    stockText.textContent = 'Coming Soon — Not Yet Available';
-    form.style.display = 'none';
+    stockText.textContent = 'Out of Stock';
   }
 
   const descEl = document.getElementById('pv-desc');
@@ -301,7 +298,7 @@ function showProductView(btn, productData, fromRouter){
   }
 
   const initVer = (cat === 'club' && catConfig.club?.versions) ? 'fans' : '';
-  document.getElementById('pv-label').textContent = initVer === 'player' ? 'Player Version Price' : 'Fans Version Price';
+  document.getElementById('pv-label').textContent = initVer === 'player' ? 'Player Version Price' : 'Jersey Price';
   document.getElementById('pv-base').textContent = '\u20A6' + baseVal.toLocaleString();
   updatePriceDisplay();
 
@@ -739,6 +736,27 @@ const catConfig = {
   kids: { name:'Kids Jerseys', sub: 'Affordable kids sizes for your little fans.', price:'\u20A630,000', addon:'+ \u20A65,000 Custom', label:'Kids Version', list: kidsProducts },
 };
 
+const longSleeveProducts = [
+  { team:'Arsenal', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Arsenal Home Long Sleeve Jersey 26_27.jpg', slug:'arsenal-home-long-sleeve-26-27', cat:'long-sleeve', description:'Arsenal 2026/27 Home long sleeve jersey in classic red and white. Full-length sleeves with a modern slim fit.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Arsenal', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Arsenal Away Long Sleeve Jersey 26_27.jpg', slug:'arsenal-away-long-sleeve-26-27', cat:'long-sleeve', description:'Arsenal 2026/27 Away long sleeve jersey. Stand out with the away colours in a full-length sleeve design.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Arsenal', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Arsenal Away Long Sleeve Jersey 25_26.jpg', slug:'arsenal-away-long-sleeve-25-26', cat:'long-sleeve', description:'Arsenal 2025/26 Away long sleeve jersey. Previous season away kit with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Arsenal', kit:'3rd Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Arsenal 3rd Long Sleeve Jersey 25_26.jpg', slug:'arsenal-3rd-long-sleeve-25-26', cat:'long-sleeve', description:'Arsenal 2025/26 Third kit long sleeve jersey. A bold third choice with full-length sleeve styling.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Liverpool', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Liverpool Home Long Sleeve Jersey 26_27.jpg', slug:'liverpool-home-long-sleeve-26-27', cat:'long-sleeve', description:'Liverpool 2026/27 Home long sleeve jersey in the iconic red. Full-length sleeves for the die-hard fan.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Barcelona', kit:'Home Jersey 25/26', img:'/images/LONG SLEEVES/Barcelona Home Jersey 25_26.jpg', slug:'barcelona-home-long-sleeve-25-26', cat:'long-sleeve', description:'Barcelona 2025/26 Home long sleeve jersey. Classic Blaugrana stripes with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Real Madrid', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Real Madrid  Away Long Sleeve Jersey 25_26.jpg', slug:'real-madrid-away-long-sleeve-25-26', cat:'long-sleeve', description:'Real Madrid 2025/26 Away long sleeve jersey. Los Blancos away colours in a sleek full-sleeve design.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Manchester City', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Manchester City Home Long Sleeve Jersey 26_27.jpg', slug:'man-city-home-long-sleeve-26-27', cat:'long-sleeve', description:'Manchester City 2026/27 Home long sleeve jersey. Sky blue with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Manchester United', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Manchester United Home Long Sleeve Jersey 26_27.jpg', slug:'man-united-home-long-sleeve-26-27', cat:'long-sleeve', description:'Manchester United 2026/27 Home long sleeve jersey. The Red Devils in full-length sleeve glory.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Juventus', kit:'Special Kit 26/27', img:'/images/LONG SLEEVES/Juventus Special KIT 26_27.jpg', slug:'juventus-special-long-sleeve-26-27', cat:'long-sleeve', description:'Juventus 2026/27 Special long sleeve kit. A unique design for the Old Lady of Italian football.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'PSG', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/PSG  Away Long Sleeve Jersey 25_26.jpg', slug:'psg-away-long-sleeve-25-26', cat:'long-sleeve', description:'PSG 2025/26 Away long sleeve jersey. Parisian style with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Portugal', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Portugal Home Long Sleeve Jersey 26_27.jpg', slug:'portugal-home-long-sleeve-26-27', cat:'long-sleeve', description:'Portugal 2026/27 Home long sleeve jersey. Represent the Selecao with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Portugal', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Portugal Away Long Sleeve Jersey 26_27.jpg', slug:'portugal-away-long-sleeve-26-27', cat:'long-sleeve', description:'Portugal 2026/27 Away long sleeve jersey. Away colours for the Selecao in full sleeve design.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Brazil', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Brazil Home Long Sleeve Jersey 26_27.jpg', slug:'brazil-home-long-sleeve-26-27', cat:'long-sleeve', description:'Brazil 2026/27 Home long sleeve jersey. The iconic yellow and green with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Brazil', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Brazil Away Long Sleeve Jersey 26_27.jpg', slug:'brazil-away-long-sleeve-26-27', cat:'long-sleeve', description:'Brazil 2026/27 Away long sleeve jersey. Selecao away kit with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'England', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/England Home Long Sleeve Jersey 26_27.jpg', slug:'england-home-long-sleeve-26-27', cat:'long-sleeve', description:'England 2026/27 Home long sleeve jersey. Three Lions pride in a full-length sleeve design.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Japan', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Japan Away Long Sleeve Jersey 26_27.jpg', slug:'japan-away-long-sleeve-26-27', cat:'long-sleeve', description:'Japan 2026/27 Away long sleeve jersey. Samurai Blue away colours with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+  { team:'Spain', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Spain Away Long Sleeve Jersey 26_27.jpg', slug:'spain-away-long-sleeve-26-27', cat:'long-sleeve', description:'Spain 2026/27 Away long sleeve jersey. La Roja away kit with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
+];
+
 /* Unified product lookup by slug */
 const allProducts = [
   ...products,
@@ -746,6 +764,7 @@ const allProducts = [
   ...nationalProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...retroProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...kidsProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
+  ...longSleeveProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: 'Long Sleeve' })),
 ];
 function findProductBySlug(slug){ return allProducts.find(p => p.slug === slug); }
 
@@ -871,7 +890,7 @@ function renderCategory(cat, league, team){
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
         <h3>${p.kit}</h3>
-        ${p.inStock !== false ? `<button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>` : `<button class="btn btn-block" disabled style="opacity:0.6;cursor:not-allowed;background:#555;color:#ccc;">Coming Soon</button>`}
+        <button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
     </div>`;
   }).join('');
@@ -956,43 +975,28 @@ function hideAllViews(){
   ids.forEach(id => { const el = document.getElementById(id); if(el) el.classList.add('hidden'); });
 }
 
-const longSleeveProducts = [
-  { team:'Arsenal', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Arsenal Home Long Sleeve Jersey 26_27.jpg' },
-  { team:'Arsenal', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Arsenal Away Long Sleeve Jersey 26_27.jpg' },
-  { team:'Arsenal', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Arsenal Away Long Sleeve Jersey 25_26.jpg' },
-  { team:'Arsenal', kit:'3rd Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Arsenal 3rd Long Sleeve Jersey 25_26.jpg' },
-  { team:'Liverpool', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Liverpool Home Long Sleeve Jersey 26_27.jpg' },
-  { team:'Barcelona', kit:'Home Jersey 25/26', img:'/images/LONG SLEEVES/Barcelona Home Jersey 25_26.jpg' },
-  { team:'Real Madrid', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Real Madrid  Away Long Sleeve Jersey 25_26.jpg' },
-  { team:'Manchester City', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Manchester City Home Long Sleeve Jersey 26_27.jpg' },
-  { team:'Manchester United', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Manchester United Home Long Sleeve Jersey 26_27.jpg' },
-  { team:'Juventus', kit:'Special Kit 26/27', img:'/images/LONG SLEEVES/Juventus Special KIT 26_27.jpg' },
-  { team:'PSG', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/PSG  Away Long Sleeve Jersey 25_26.jpg' },
-  { team:'Portugal', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Portugal Home Long Sleeve Jersey 26_27.jpg' },
-  { team:'Portugal', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Portugal Away Long Sleeve Jersey 26_27.jpg' },
-  { team:'Brazil', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Brazil Home Long Sleeve Jersey 26_27.jpg' },
-  { team:'Brazil', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Brazil Away Long Sleeve Jersey 26_27.jpg' },
-  { team:'England', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/England Home Long Sleeve Jersey 26_27.jpg' },
-  { team:'Japan', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Japan Away Long Sleeve Jersey 26_27.jpg' },
-  { team:'Spain', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Spain Away Long Sleeve Jersey 26_27.jpg' },
-];
-
 function renderLongSleeve(){
   const grid = document.getElementById('ls-grid');
   if(!grid) return;
   grid.innerHTML = longSleeveProducts.map(p => `
-    <div class="ls-card">
+    <div class="ls-card" data-slug="${p.slug}">
       <div class="ls-visual">
-        <span class="ls-price">&#8358;15,000</span>
+        <span class="ls-price">&#8358;45,000</span>
         <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
       </div>
       <div class="ls-body">
         <div class="team">${p.team}</div>
         <h3>${p.kit}</h3>
-        <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20${encodeURIComponent(p.team + ' ' + p.kit)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
+        <button class="btn btn-primary btn-block ls-view-btn" data-slug="${p.slug}">View Details</button>
       </div>
     </div>
   `).join('');
+  grid.querySelectorAll('.ls-view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const prod = longSleeveProducts.find(p => p.slug === btn.dataset.slug);
+      if(prod) showProductView(null, { ...prod, images: [prod.img], tag: 'Long Sleeve' }, false);
+    });
+  });
 }
 
 function showLongSleeve(){

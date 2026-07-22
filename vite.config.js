@@ -47,6 +47,15 @@ const productSlugs = [
   'manchester-united-home-25-26-kids', 'arsenal-home-25-26-kids',
   'fc-barcelona-home-25-26-kids', 'real-madrid-home-25-26-kids',
   'chelsea-home-25-26-kids', 'liverpool-home-25-26-kids',
+  'arsenal-home-long-sleeve-26-27', 'arsenal-away-long-sleeve-26-27',
+  'arsenal-away-long-sleeve-25-26', 'arsenal-3rd-long-sleeve-25-26',
+  'liverpool-home-long-sleeve-26-27', 'barcelona-home-long-sleeve-25-26',
+  'real-madrid-away-long-sleeve-25-26', 'man-city-home-long-sleeve-26-27',
+  'man-united-home-long-sleeve-26-27', 'juventus-special-long-sleeve-26-27',
+  'psg-away-long-sleeve-25-26', 'portugal-home-long-sleeve-26-27',
+  'portugal-away-long-sleeve-26-27', 'brazil-home-long-sleeve-26-27',
+  'brazil-away-long-sleeve-26-27', 'england-home-long-sleeve-26-27',
+  'japan-away-long-sleeve-26-27', 'spain-away-long-sleeve-26-27',
 ];
 
 export default defineConfig({
