@@ -840,12 +840,8 @@ const homeSections = () => document.querySelectorAll('#top, #collection, #league
 function showHome(){
   resetSEO();
   homeSections().forEach(el => {
-    if(el.dataset._disp !== undefined){
-      el.style.display = el.dataset._disp;
-      delete el.dataset._disp;
-    } else {
-      el.style.removeProperty('display');
-    }
+    el.style.removeProperty('display');
+    delete el.dataset._disp;
   });
   const cv = document.getElementById('category-view');
   if(cv) cv.classList.add('hidden');
@@ -873,12 +869,8 @@ function showCategory(cat, league, team){
   });
   const ft = document.querySelector('footer');
   if(ft){
-    if(ft.dataset._disp !== undefined){
-      ft.style.display = ft.dataset._disp;
-      delete ft.dataset._disp;
-    } else {
-      ft.style.removeProperty('display');
-    }
+    ft.style.removeProperty('display');
+    delete ft.dataset._disp;
   }
   document.getElementById('category-view').classList.remove('hidden');
   document.getElementById('product-view')?.classList.add('hidden');
