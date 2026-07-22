@@ -67,6 +67,7 @@ export default defineConfig({
       hostname: 'https://www.makelelejersey.com',
       dynamicRoutes: [
         '/category/club', '/category/national', '/category/retro', '/category/kids',
+        '/category/others', '/category/long-sleeve', '/category/common',
         '/collection', '/custom-kits', '/reviews', '/faq',
         ...productSlugs.map(s => '/product/' + s),
       ]

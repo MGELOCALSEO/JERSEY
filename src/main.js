@@ -129,6 +129,7 @@ const products = [
   { id:'prod-4', team:'Super Eagles', name:'Home Jersey 26/27', tag:'Home Kit', cat:'national', price:'₦30,000', slug:'super-eagles-home-26-27', description:'Rep the Naija spirit with the Super Eagles 2026/27 home kit. Bold green design with intricate pattern details inspired by Nigerian culture.', material:'100% Polyester', features:['Lightweight breathable fabric','NFF official design','Bold cultural pattern','Comfortable regular fit'], inStock:true, images:['/images/national/nigeria-2026-home-kit.jpg'] },
   { id:'prod-5', team:'FC Barcelona', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'fc-barcelona-home-26-27', description:'Barcelona\'s 2026/27 home kit blends the traditional blaugrana stripes with a fresh modern twist. Premium quality you can feel.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Moisture-wicking fabric','Barca crest','Athletic fit'], inStock:true, images:['/images/club/2026-27%20shirts/Barcelona%20Home%20Jersey%2026_27.png'] },
   { id:'prod-6', team:'Chelsea', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'chelsea-home-26-27', description:'Chelsea\'s 2026/27 home jersey brings the blues with a sharp, clean design. Built for comfort on and off the pitch.', material:'100% Recycled Polyester', features:['Dri-FIT technology','Breathable construction','Crest heat-transfer','Regular fit'], inStock:true, images:['/images/club/2026-27%20shirts/Chelsea%20Home%20Jersey%2026_27.png'] },
+  { id:'prod-7', team:'Coventry', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'coventry-home-26-27', description:'Coventry City\'s 2026/27 home kit — the Sky Blues in classic blue.', material:'100% Recycled Polyester', features:['Hummel design','Sky Blue','Coventry crest'], inStock:false, images:['/images/club/2026-27%20shirts/Coventry%20City%20Adult%2026_27%20Home%20Pro%20Shirt__.jpg','/images/club/2026-27%20shirts/Coventry%20City%20Adult%2026_27%20Home%20Pro%20Shirt__%20(1).jpg','/images/club/2026-27%20shirts/Coventry%20City%20Adult%2026_27%20Home%20.jpg'] },
 ];
 
 (function renderProducts(){
@@ -145,7 +146,7 @@ const products = [
         <div class="team">${p.team}</div>
         <h3>${p.name}</h3>
         <div class="prod-meta"><span>S – XXL</span><span>Custom ✓</span></div>
-        <button class="btn btn-primary btn-block" data-custom="${p.id}" data-cat="${p.cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
+        ${p.inStock !== false ? `<button class="btn btn-primary btn-block" data-custom="${p.id}" data-cat="${p.cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>` : `<button class="btn btn-block" disabled style="opacity:0.6;cursor:not-allowed;background:#555;color:#ccc;">Coming Soon — Not Yet Available</button>`}
       </div>
     </div>
   `).join('');
@@ -182,6 +183,9 @@ function showProductView(btn, productData, fromRouter){
   document.getElementById('pv-custom-number').value = '';
   document.getElementById('pv-location').value = '';
   document.getElementById('pv-badge').value = 'None';
+  document.getElementById('pv-version').value = 'fans';
+  document.querySelector('.pv-version-group .pv-opt-btn[data-version="fans"]')?.classList.add('active');
+  document.querySelector('.pv-version-group .pv-opt-btn[data-version="player"]')?.classList.remove('active');
 
   let team, kit, priceText, baseVal, images, cat, description, material, features, inStock, tag, slug;
 
@@ -196,7 +200,7 @@ function showProductView(btn, productData, fromRouter){
     material = productData.material || '';
     features = productData.features || [];
     inStock = productData.inStock !== false;
-    tag = productData.tag || catConfig[cat]?.label || '';
+    tag = getKitType(productData.name || productData.kit) || productData.tag || catConfig[cat]?.label || '';
     slug = productData.slug || '';
   } else if(card){
     team = card.querySelector('.team').textContent;
@@ -212,7 +216,7 @@ function showProductView(btn, productData, fromRouter){
     material = lookup?.material || '';
     features = lookup?.features || [];
     inStock = lookup?.inStock !== false;
-    tag = lookup?.tag || catConfig[cat]?.label || '';
+    tag = getKitType(lookup?.kit || kit) || lookup?.tag || catConfig[cat]?.label || '';
   } else {
     team = 'Custom Order';
     kit = 'Custom Jersey';
@@ -257,9 +261,12 @@ function showProductView(btn, productData, fromRouter){
   if(inStock){
     stockEl.classList.add('in-stock');
     stockText.textContent = 'In Stock';
+    form.style.display = '';
+    form.querySelector('.pv-submit-btn')?.removeAttribute('disabled');
   } else {
     stockEl.classList.add('out-of-stock');
-    stockText.textContent = 'Out of Stock';
+    stockText.textContent = 'Coming Soon — Not Yet Available';
+    form.style.display = 'none';
   }
 
   const descEl = document.getElementById('pv-desc');
@@ -282,12 +289,26 @@ function showProductView(btn, productData, fromRouter){
   form.dataset.kit = kit;
   form.dataset.cat = cat;
   form.dataset.slug = slug;
+  form.dataset.version = 'fans';
 
-  document.getElementById('pv-label').textContent = 'Jersey Price';
+  const verField = document.getElementById('pv-version-field');
+  if(verField){
+    if(cat === 'club' && catConfig.club?.versions){
+      verField.style.display = '';
+    } else {
+      verField.style.display = 'none';
+    }
+  }
+
+  const initVer = (cat === 'club' && catConfig.club?.versions) ? 'fans' : '';
+  document.getElementById('pv-label').textContent = initVer === 'player' ? 'Player Version Price' : 'Fans Version Price';
   document.getElementById('pv-base').textContent = '\u20A6' + baseVal.toLocaleString();
   updatePriceDisplay();
 
   document.getElementById('category-view')?.classList.add('hidden');
+  document.getElementById('others-view')?.classList.add('hidden');
+  document.getElementById('long-sleeve-view')?.classList.add('hidden');
+  document.getElementById('common-view')?.classList.add('hidden');
   homeSections().forEach(el => {
     el.dataset._disp = el.style.display;
     el.style.setProperty('display', 'none', 'important');
@@ -326,6 +347,32 @@ document.addEventListener('click', function(e){
       cf.classList.add('hidden');
     }
     updatePriceDisplay();
+    return;
+  }
+  if(optBtn && optBtn.closest('.pv-version-group')){
+    optBtn.closest('.pv-version-group').querySelectorAll('.pv-opt-btn').forEach(b => b.classList.remove('active'));
+    optBtn.classList.add('active');
+    const ver = optBtn.dataset.version;
+    document.getElementById('pv-version').value = ver;
+    const form = document.getElementById('product-form');
+    form.dataset.version = ver;
+    const prices = { fans: 35000, player: 55000 };
+    const cat = form.dataset.cat;
+    if(cat === 'club' && catConfig.club?.versions){
+      const cfg = catConfig.club.versions;
+      if(ver === 'player') form.dataset.baseVal = String(parseInt(cfg.player.replace(/[^0-9]/g,'')));
+      else form.dataset.baseVal = String(parseInt(cfg.fans.replace(/[^0-9]/g,'')));
+    }
+    document.getElementById('pv-label').textContent = ver === 'player' ? 'Player Version Price' : 'Fans Version Price';
+    document.getElementById('pv-base').textContent = '\u20A6' + parseInt(form.dataset.baseVal).toLocaleString();
+    updatePriceDisplay();
+    const lookup = form.dataset.slug ? findProductBySlug(form.dataset.slug) : null;
+    if(lookup){
+      const descEl = document.getElementById('pv-desc');
+      const verDesc = ver === 'player' ? (lookup.playerDesc || lookup.description) : (lookup.fansDesc || lookup.description);
+      descEl.innerHTML = verDesc ? '<p>' + verDesc + '</p>' : '';
+      if(lookup.material) descEl.innerHTML += '<p><strong>Material:</strong> ' + lookup.material + '</p>';
+    }
     return;
   }
 });
@@ -408,9 +455,11 @@ window.submitProductOrder = function(e){
   const number = document.getElementById('pv-custom-number').value.trim();
   const location = document.getElementById('pv-location').value.trim();
   const total = document.getElementById('pv-total').textContent;
+  const version = document.getElementById('pv-version')?.value || '';
 
   let msg = 'Hi Makelele Jerseys, I\'d like to order:\n';
   msg += '\nProduct: ' + team + ' ' + kit;
+  if(version) msg += '\nVersion: ' + (version === 'player' ? 'Player Version' : 'Fans Version');
   msg += '\nSize: ' + size;
   if(badge && badge !== 'None') msg += '\nBadge: ' + badge;
   msg += '\nPreference: ' + (pref === 'customized' ? 'Customized' : 'Plain');
@@ -487,9 +536,10 @@ cycleImages('national-imgs', [
   '/images/national/spain-2026-away-kit.jpg',
 ], 3500);
 
-cycleImages('customized-imgs', [
-  '/images/customized/Barcelona_customized.png',
-  '/images/customized/Liverpool Customized.png',
+cycleImages('others-imgs', [
+  '/images/LONG%20SLEEVES/Liverpool%20Home%20Long%20Sleeve%20Jersey%2026_27.jpg',
+  '/images/LONG%20SLEEVES/Arsenal%20Home%20Long%20Sleeve%20Jersey%2026_27.jpg',
+  '/images/LONG%20SLEEVES/Real%20Madrid%20%20Away%20Long%20Sleeve%20Jersey%2025_26.jpg',
 ], 3500);
 
 cycleImages('custom-gallery-img', [
@@ -505,10 +555,10 @@ cycleImages('custom-gallery-img', [
 
 /* ============ CATEGORY PRODUCT DATA ============ */
 const clubProducts = [
-  { team:'Manchester United', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Manchester United Home Jersey 26_27.png', slug:'man-united-home-26-27', cat:'club', price:'₦35,000', description:'Manchester United\'s 2026/27 home kit — the iconic red devil look for the new season.', material:'100% Recycled Polyester', features:['Dri-FIT moisture management','Breathable mesh panels','Authentic club crest'], inStock:true },
+  { team:'Manchester United', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Manchester United Home Jersey 26_27.png', slug:'man-united-home-26-27', cat:'club', price:'₦35,000', description:'Manchester United\'s 2026/27 home kit — the iconic red devil look for the new season.', fansDesc:'High-quality replica of the Manchester United 2026/27 home shirt. Comfortable fit for everyday wear with printed crest.', playerDesc:'Authentic match-day jersey worn by the players. Lightweight performance fabric with stitched crest and Dri-FIT ADV technology.', material:'100% Recycled Polyester', features:['Dri-FIT moisture management','Breathable mesh panels','Authentic club crest'], inStock:true },
   { team:'Manchester United', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Manchester United Away Jersey 26_27.png', slug:'man-united-away-26-27', cat:'club', price:'₦35,000', description:'Manchester United\'s 2026/27 away kit — a sharp new look on the road.', material:'100% Recycled Polyester', features:['Dri-FIT technology','Distinctive away design','United crest'], inStock:true },
   { team:'Manchester United', kit:'Third 26/27', img:'/images/club/2026-27 shirts/Manchester United 3rd Jersey 26_27.png', slug:'man-united-third-26-27', cat:'club', price:'₦35,000', description:'Manchester United\'s 2026/27 third kit — a bold alternative for cup nights.', material:'100% Recycled Polyester', features:['Dri-FIT ADV','Unique design','Club crest'], inStock:true },
-  { team:'Arsenal', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Arsenal Home Jersey 26_27.png', slug:'arsenal-home-26-27', cat:'club', price:'₦35,000', description:'Arsenal\'s 2026/27 home shirt — the iconic red & white for the new campaign.', material:'100% Recycled Polyester', features:['Aeroready technology','Lightweight woven fabric','Authentic Arsenal badge'], inStock:true },
+  { team:'Arsenal', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Arsenal Home Jersey 26_27.png', slug:'arsenal-home-26-27', cat:'club', price:'₦35,000', description:'Arsenal\'s 2026/27 home shirt — the iconic red & white for the new campaign.', fansDesc:'Fans version of Arsenal\'s 2026/27 home shirt. Comfortable replica fit with heat-pressed crest.', playerDesc:'Pro-level Arsenal home shirt with Aeroready technology, stitched badge, and authentic match fit.', material:'100% Recycled Polyester', features:['Aeroready technology','Lightweight woven fabric','Authentic Arsenal badge'], inStock:true },
   { team:'Arsenal', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Arsenal Away Jersey 26_27.png', slug:'arsenal-away-26-27', cat:'club', price:'₦35,000', description:'Arsenal\'s 2026/27 away kit — a sleek alternative for the Gunners.', material:'100% Recycled Polyester', features:['Aeroready technology','Striking away colours','Arsenal badge'], inStock:true },
   { team:'Arsenal', kit:'Third 26/27', img:'/images/club/2026-27 shirts/Arsenal 3rd Jersey 26_27.png', slug:'arsenal-third-26-27', cat:'club', price:'₦35,000', description:'Arsenal\'s 2026/27 third kit — a distinctive design for cup competitions.', material:'100% Recycled Polyester', features:['Aeroready technology','Lightweight build','Arsenal badge'], inStock:true },
   { team:'Chelsea', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Chelsea Home Jersey 26_27.png', slug:'chelsea-home-26-27', cat:'club', price:'₦35,000', description:'Chelsea\'s 2026/27 home jersey — the Blues in classic blue for the new season.', material:'100% Recycled Polyester', features:['Dri-FIT technology','Breathable construction','Crest heat-transfer'], inStock:true },
@@ -541,6 +591,7 @@ const clubProducts = [
   { team:'Bournemouth', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Bournemouth Home Jersey 26_27.png', slug:'bournemouth-home-26-27', cat:'club', price:'₦35,000', description:'Bournemouth\'s 2026/27 home kit — the Cherries in classic red & black.', material:'100% Recycled Polyester', features:['Umbro design','Club crest','Athletic fit'], inStock:true },
   { team:'Brighton', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Brighton Home Jersey 26_27.png', slug:'brighton-home-26-27', cat:'club', price:'₦35,000', description:'Brighton\'s 2026/27 home kit — the Seagulls in blue & white stripes.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Stripe design','Brighton crest'], inStock:true },
   { team:'Everton', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Everton Home Jersey 26_27.png', slug:'everton-home-26-27', cat:'club', price:'₦35,000', description:'Everton\'s 2026/27 home kit — the Toffees in classic royal blue.', material:'100% Recycled Polyester', features:['Hummel design','Royal blue','Everton crest'], inStock:true },
+  { team:'Coventry', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Coventry City Adult 26_27 Home Pro Shirt__.jpg', images:['/images/club/2026-27 shirts/Coventry City Adult 26_27 Home Pro Shirt__.jpg','/images/club/2026-27 shirts/Coventry City Adult 26_27 Home Pro Shirt__ (1).jpg','/images/club/2026-27 shirts/Coventry City Adult 26_27 Home .jpg'], slug:'coventry-home-26-27', cat:'club', price:'₦35,000', description:'Coventry City\'s 2026/27 home kit — the Sky Blues in classic blue.', material:'100% Recycled Polyester', features:['Hummel design','Sky Blue','Coventry crest'], inStock:false },
 ];
 
 const nationalProducts = [
@@ -649,6 +700,7 @@ const clubLeague = {
   'Juventus':          'serie-a',
   'PSG':               'ligue1',
   'Al Nassr':          'saudi-pro-league',
+  'Coventry':          'premier-league',
 };
 
 const retroLeague = {
@@ -681,7 +733,7 @@ const retroTeamFlag = {
 };
 
 const catConfig = {
-  club:  { name:'Club Jerseys', sub: 'Browse our Fans &amp; Player Version club kits.', price:'\u20A635,000', addon:'+ \u20A65,000 Custom', label:'Fans Version', list: clubProducts, versions: { fans:'\u20A635,000', player:'\u20A655,000' } },
+  club:  { name:'Club Jerseys', sub: 'Browse our Fans &amp; Player Version club kits.', price:'\u20A635,000 / \u20A655,000', addon:'+ \u20A65,000 Custom', label:'Fans Version', list: clubProducts, versions: { fans:'\u20A635,000', player:'\u20A655,000' } },
   national: { name:'National Teams', sub: 'National Team kits at great prices.', price:'\u20A630,000', addon:'+ \u20A65,000 Custom', label:'Official Kit', list: nationalProducts },
   retro: { name:'Retro Collection', sub: 'Classic designs from football\'s golden era.', price:'\u20A640,000', addon:'+ \u20A65,000 Custom', label:'Retro Classic', list: retroProducts },
   kids: { name:'Kids Jerseys', sub: 'Affordable kids sizes for your little fans.', price:'\u20A630,000', addon:'+ \u20A65,000 Custom', label:'Kids Version', list: kidsProducts },
@@ -690,12 +742,17 @@ const catConfig = {
 /* Unified product lookup by slug */
 const allProducts = [
   ...products,
-  ...clubProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
+  ...clubProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: getKitType(p.kit) || catConfig[p.cat]?.label || 'Kit' })),
   ...nationalProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...retroProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...kidsProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
 ];
 function findProductBySlug(slug){ return allProducts.find(p => p.slug === slug); }
+
+function getKitType(kit){
+  const t = (kit || '').split(' ')[0];
+  return t ? t + ' Jersey' : '';
+}
 
 const PER_PAGE = 12;
 let catPage = {};
@@ -814,7 +871,7 @@ function renderCategory(cat, league, team){
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
         <h3>${p.kit}</h3>
-        <button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
+        ${p.inStock !== false ? `<button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>` : `<button class="btn btn-block" disabled style="opacity:0.6;cursor:not-allowed;background:#555;color:#ccc;">Coming Soon</button>`}
       </div>
     </div>`;
   }).join('');
@@ -843,10 +900,7 @@ function showHome(){
     el.style.removeProperty('display');
     delete el.dataset._disp;
   });
-  const cv = document.getElementById('category-view');
-  if(cv) cv.classList.add('hidden');
-  const pv = document.getElementById('product-view');
-  if(pv) pv.classList.add('hidden');
+  hideAllViews();
   document.body.style.overflow = '';
 }
 
@@ -873,7 +927,97 @@ function showCategory(cat, league, team){
     delete ft.dataset._disp;
   }
   document.getElementById('category-view').classList.remove('hidden');
+  document.getElementById('others-view')?.classList.add('hidden');
+  document.getElementById('long-sleeve-view')?.classList.add('hidden');
+  document.getElementById('common-view')?.classList.add('hidden');
   document.getElementById('product-view')?.classList.add('hidden');
+  document.body.style.overflow = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showOthers(){
+  resetSEO();
+  document.title = 'Others | ' + SITE_NAME;
+  homeSections().forEach(el => {
+    el.dataset._disp = el.style.display;
+    el.style.setProperty('display', 'none', 'important');
+  });
+  const cv = document.getElementById('category-view');
+  if(cv) cv.classList.add('hidden');
+  const pv = document.getElementById('product-view');
+  if(pv) pv.classList.add('hidden');
+  document.getElementById('others-view').classList.remove('hidden');
+  document.body.style.overflow = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function hideAllViews(){
+  const ids = ['category-view','others-view','long-sleeve-view','common-view','product-view'];
+  ids.forEach(id => { const el = document.getElementById(id); if(el) el.classList.add('hidden'); });
+}
+
+const longSleeveProducts = [
+  { team:'Arsenal', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Arsenal Home Long Sleeve Jersey 26_27.jpg' },
+  { team:'Arsenal', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Arsenal Away Long Sleeve Jersey 26_27.jpg' },
+  { team:'Arsenal', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Arsenal Away Long Sleeve Jersey 25_26.jpg' },
+  { team:'Arsenal', kit:'3rd Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Arsenal 3rd Long Sleeve Jersey 25_26.jpg' },
+  { team:'Liverpool', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Liverpool Home Long Sleeve Jersey 26_27.jpg' },
+  { team:'Barcelona', kit:'Home Jersey 25/26', img:'/images/LONG SLEEVES/Barcelona Home Jersey 25_26.jpg' },
+  { team:'Real Madrid', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/Real Madrid  Away Long Sleeve Jersey 25_26.jpg' },
+  { team:'Manchester City', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Manchester City Home Long Sleeve Jersey 26_27.jpg' },
+  { team:'Manchester United', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Manchester United Home Long Sleeve Jersey 26_27.jpg' },
+  { team:'Juventus', kit:'Special Kit 26/27', img:'/images/LONG SLEEVES/Juventus Special KIT 26_27.jpg' },
+  { team:'PSG', kit:'Away Long Sleeve Jersey 25/26', img:'/images/LONG SLEEVES/PSG  Away Long Sleeve Jersey 25_26.jpg' },
+  { team:'Portugal', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Portugal Home Long Sleeve Jersey 26_27.jpg' },
+  { team:'Portugal', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Portugal Away Long Sleeve Jersey 26_27.jpg' },
+  { team:'Brazil', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Brazil Home Long Sleeve Jersey 26_27.jpg' },
+  { team:'Brazil', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Brazil Away Long Sleeve Jersey 26_27.jpg' },
+  { team:'England', kit:'Home Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/England Home Long Sleeve Jersey 26_27.jpg' },
+  { team:'Japan', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Japan Away Long Sleeve Jersey 26_27.jpg' },
+  { team:'Spain', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Spain Away Long Sleeve Jersey 26_27.jpg' },
+];
+
+function renderLongSleeve(){
+  const grid = document.getElementById('ls-grid');
+  if(!grid) return;
+  grid.innerHTML = longSleeveProducts.map(p => `
+    <div class="ls-card">
+      <div class="ls-visual">
+        <span class="ls-price">&#8358;15,000</span>
+        <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
+      </div>
+      <div class="ls-body">
+        <div class="team">${p.team}</div>
+        <h3>${p.kit}</h3>
+        <a class="btn btn-primary btn-block" href="https://wa.me/2347030112427?text=Hi%20Makelele%20Jerseys%2C%20I%27d%20like%20to%20order%20a%20${encodeURIComponent(p.team + ' ' + p.kit)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function showLongSleeve(){
+  resetSEO();
+  document.title = 'Long Sleeve Jerseys | ' + SITE_NAME;
+  homeSections().forEach(el => {
+    el.dataset._disp = el.style.display;
+    el.style.setProperty('display', 'none', 'important');
+  });
+  hideAllViews();
+  renderLongSleeve();
+  document.getElementById('long-sleeve-view').classList.remove('hidden');
+  document.body.style.overflow = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showCommon(){
+  resetSEO();
+  document.title = 'Common Jersey | ' + SITE_NAME;
+  homeSections().forEach(el => {
+    el.dataset._disp = el.style.display;
+    el.style.setProperty('display', 'none', 'important');
+  });
+  hideAllViews();
+  document.getElementById('common-view').classList.remove('hidden');
   document.body.style.overflow = '';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -915,6 +1059,18 @@ function handlePath(){
     const team = new URLSearchParams(window.location.search).get('team') || undefined;
     if(cat === 'club' || cat === 'national' || cat === 'retro' || cat === 'kids'){
       showCategory(cat, league, team);
+      return;
+    }
+    if(cat === 'others'){
+      showOthers();
+      return;
+    }
+    if(cat === 'long-sleeve'){
+      showLongSleeve();
+      return;
+    }
+    if(cat === 'common'){
+      showCommon();
       return;
     }
   }
