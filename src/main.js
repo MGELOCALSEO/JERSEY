@@ -175,8 +175,6 @@ function showProductView(btn, productData, fromRouter){
   const isCustom = !card && !productData;
 
   document.querySelectorAll('.pv-opt-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector('.pv-opt-btn[data-value="M"]')?.classList.add('active');
-  document.getElementById('pv-size').value = 'M';
   document.getElementById('pv-preference').value = 'plain';
   document.getElementById('pv-custom-fields').classList.add('hidden');
   document.getElementById('pv-custom-name').value = '';
@@ -241,6 +239,10 @@ function showProductView(btn, productData, fromRouter){
       '<img src="' + src + '" alt="' + team + ' ' + kit + '" loading="lazy">'
     ).join('');
   }
+  const galleryWrap = document.getElementById('pv-gallery');
+  if(galleryWrap){
+    galleryWrap.classList.toggle('single', images.length < 2);
+  }
   document.getElementById('pv-tag').textContent = tag;
 
   const catNames = { club:'Club Jerseys', national:'National Teams', retro:'Retro Collection', kids:'Kids Jerseys', 'long-sleeve':'Long Sleeve Jerseys' };
@@ -264,6 +266,16 @@ function showProductView(btn, productData, fromRouter){
   } else {
     stockEl.classList.add('out-of-stock');
     stockText.textContent = 'Out of Stock';
+  }
+  const submitBtn = document.querySelector('.pv-submit-btn');
+  if(submitBtn){
+    if(inStock){
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg> Send Order on WhatsApp';
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Coming Soon — Not Yet Available';
+    }
   }
 
   const descEl = document.getElementById('pv-desc');
@@ -297,8 +309,29 @@ function showProductView(btn, productData, fromRouter){
     }
   }
 
-  const initVer = (cat === 'club' && catConfig.club?.versions) ? 'fans' : '';
-  document.getElementById('pv-label').textContent = initVer === 'player' ? 'Player Version Price' : 'Jersey Price';
+  const sizeGroup = document.getElementById('pv-size-group');
+  const sizeLabel = sizeGroup?.closest('.pv-field')?.querySelector('.pv-label');
+  const sgBtn = document.getElementById('sg-open');
+  if(sizeGroup){
+    if(cat === 'kids'){
+      sizeGroup.innerHTML = [0,1,2,3,4,5,6,7,8,9,10,11,12].map(a =>
+        '<button type="button" class="pv-opt-btn" data-value="Age ' + a + '">' + a + '</button>'
+      ).join('');
+      if(sizeLabel) sizeLabel.textContent = 'Age';
+      if(sgBtn) sgBtn.style.display = 'none';
+    } else {
+      sizeGroup.innerHTML = ['S','M','L','XL','XXL'].map(s =>
+        '<button type="button" class="pv-opt-btn" data-value="' + s + '">' + s + '</button>'
+      ).join('');
+      if(sizeLabel) sizeLabel.textContent = 'Size';
+      if(sgBtn) sgBtn.style.display = '';
+    }
+    const defaultBtn = sizeGroup.querySelector('.pv-opt-btn');
+    if(defaultBtn){ defaultBtn.classList.add('active'); document.getElementById('pv-size').value = defaultBtn.dataset.value; }
+  }
+
+  const initVer = ((cat === 'club' || cat === 'common') && catConfig.club?.versions) ? 'fans' : '';
+  document.getElementById('pv-label').textContent = initVer ? 'Fans Version Price' : 'Jersey Price';
   document.getElementById('pv-base').textContent = '\u20A6' + baseVal.toLocaleString();
   updatePriceDisplay();
 
@@ -355,8 +388,7 @@ document.addEventListener('click', function(e){
     form.dataset.version = ver;
     const prices = { fans: 35000, player: 55000 };
     const cat = form.dataset.cat;
-    if(cat === 'club' && catConfig.club?.versions){
-      const cfg = catConfig.club.versions;
+    if((cat === 'club' || cat === 'common') && catConfig.club?.versions){
       if(ver === 'player') form.dataset.baseVal = String(parseInt(cfg.player.replace(/[^0-9]/g,'')));
       else form.dataset.baseVal = String(parseInt(cfg.fans.replace(/[^0-9]/g,'')));
     }
@@ -537,6 +569,9 @@ cycleImages('others-imgs', [
   '/images/LONG%20SLEEVES/Liverpool%20Home%20Long%20Sleeve%20Jersey%2026_27.jpg',
   '/images/LONG%20SLEEVES/Arsenal%20Home%20Long%20Sleeve%20Jersey%2026_27.jpg',
   '/images/LONG%20SLEEVES/Real%20Madrid%20%20Away%20Long%20Sleeve%20Jersey%2025_26.jpg',
+  '/images/customized/plain%20jersey.png',
+  '/images/customized/Liverpool%20Customized.png',
+  '/images/customized/Barcelona_customized.png',
 ], 3500);
 
 cycleImages('custom-gallery-img', [
@@ -589,6 +624,41 @@ const clubProducts = [
   { team:'Brighton', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Brighton Home Jersey 26_27.png', slug:'brighton-home-26-27', cat:'club', price:'₦35,000', description:'Brighton\'s 2026/27 home kit — the Seagulls in blue & white stripes.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Stripe design','Brighton crest'], inStock:true },
   { team:'Everton', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Everton Home Jersey 26_27.png', slug:'everton-home-26-27', cat:'club', price:'₦35,000', description:'Everton\'s 2026/27 home kit — the Toffees in classic royal blue.', material:'100% Recycled Polyester', features:['Hummel design','Royal blue','Everton crest'], inStock:true },
   { team:'Coventry', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Coventry City Adult 26_27 Home Pro Shirt__.jpg', images:['/images/club/2026-27 shirts/Coventry City Adult 26_27 Home Pro Shirt__.jpg','/images/club/2026-27 shirts/Coventry City Adult 26_27 Home Pro Shirt__ (1).jpg','/images/club/2026-27 shirts/Coventry City Adult 26_27 Home .jpg'], slug:'coventry-home-26-27', cat:'club', price:'₦35,000', description:'Coventry City\'s 2026/27 home kit — the Sky Blues in classic blue.', material:'100% Recycled Polyester', features:['Hummel design','Sky Blue','Coventry crest'], inStock:false },
+  { team:'AC Milan', kit:'Away 26/27', img:'/images/club/2026-27 shirts/AC MILAN Away Jersey 26_27.png', slug:'ac-milan-away-26-27', cat:'club', price:'₦35,000', description:'AC Milan\'s 2026/27 away kit — a sleek alternative for the Rossoneri.', material:'100% Recycled Polyester', features:['Puma design','Away colours','AC Milan crest'], inStock:true },
+  { team:'Ajax', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Ajax Home Jersey 26_27.png', slug:'ajax-home-26-27', cat:'club', price:'₦35,000', description:'Ajax\'s 2026/27 home kit — the iconic Amsterdam red & white.', material:'100% Recycled Polyester', features:['Adidas design','Classic stripes','Ajax crest'], inStock:true },
+  { team:'Al-Hilal', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Al-Hilal Home Jersey 26_27.png', slug:'al-hilal-home-26-27', cat:'club', price:'₦35,000', description:'Al-Hilal\'s 2026/27 home kit — the Saudi giants in blue.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Blue design','Club crest'], inStock:true },
+  { team:'Al-Ittihad', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Al-Ittihad 26-27 Home_Jersey_.png', slug:'al-ittihad-home-26-27', cat:'club', price:'₦35,000', description:'Al-Ittihad\'s 2026/27 home kit — the Tigers in yellow & black.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Bold design','Club crest'], inStock:true },
+  { team:'AS Roma', kit:'Home 26/27', img:'/images/club/2026-27 shirts/AS Roma  Home Jersey 26_27.png', slug:'as-roma-home-26-27', cat:'club', price:'₦35,000', description:'AS Roma\'s 2026/27 home kit — the Giallorossi in classic maroon.', material:'100% Recycled Polyester', features:['Adidas design','Classic colours','Roma crest'], inStock:true },
+  { team:'AS Roma', kit:'Away 26/27', img:'/images/club/2026-27 shirts/AS Roma Away Jersey 26_27.png', slug:'as-roma-away-26-27', cat:'club', price:'₦35,000', description:'AS Roma\'s 2026/27 away kit — a fresh look for the Giallorossi.', material:'100% Recycled Polyester', features:['Adidas design','Away colours','Roma crest'], inStock:true },
+  { team:'Atletico Madrid', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Atlético Madrid Home Jersey 26_27.png', slug:'atletico-madrid-home-26-27', cat:'club', price:'₦35,000', description:'Atletico Madrid\'s 2026/27 home kit — the Colchoneros in red & white stripes.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Red & white stripes','Club crest'], inStock:true },
+  { team:'Brentford', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Brentford Home Jersey 26_27.png', slug:'brentford-home-26-27', cat:'club', price:'₦35,000', description:'Brentford\'s 2026/27 home kit — the Bees in classic red & white.', material:'100% Recycled Polyester', features:['Umbro design','Red & white','Brentford crest'], inStock:true },
+  { team:'Dortmund', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Dortmund Away Jersey 26_27.png', slug:'dortmund-away-26-27', cat:'club', price:'₦35,000', description:'Borussia Dortmund\'s 2026/27 away kit — a bold alternative to the yellow wall.', material:'100% Recycled Polyester', features:['Puma design','Away colours','BVB crest'], inStock:true },
+  { team:'Everton', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Everton Away Jersey 26_27.png', slug:'everton-away-26-27', cat:'club', price:'₦35,000', description:'Everton\'s 2026/27 away kit — a sharp alternative for the Toffees.', material:'100% Recycled Polyester', features:['Hummel design','Away colours','Everton crest'], inStock:true },
+  { team:'Fiorentina', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Fiorentina Home Jersey 26_27.png', slug:'fiorentina-home-26-27', cat:'club', price:'₦35,000', description:'Fiorentina\'s 2026/27 home kit — the Viola in iconic purple.', material:'100% Recycled Polyester', features:['Kappa design','Purple colours','Fiorentina crest'], inStock:true },
+  { team:'Galatasaray', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Galatasary Home Jersey 26_27.png', slug:'galatasaray-home-26-27', cat:'club', price:'₦35,000', description:'Galatasaray\'s 2026/27 home kit — the Lions in red & yellow.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Red & yellow','Galatasaray crest'], inStock:true },
+  { team:'Galatasaray', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Galatasary Away Jersey 26_27.png', slug:'galatasaray-away-26-27', cat:'club', price:'₦35,000', description:'Galatasaray\'s 2026/27 away kit — a fresh alternative for the Turkish giants.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Away colours','Galatasaray crest'], inStock:true },
+  { team:'Galatasaray', kit:'Third 26/27', img:'/images/club/2026-27 shirts/Galatasary 3rd Jersey 26_27.png', slug:'galatasaray-third-26-27', cat:'club', price:'₦35,000', description:'Galatasaray\'s 2026/27 third kit — a bold design for European nights.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Unique design','Galatasaray crest'], inStock:true },
+  { team:'Inter Milan', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Inter Milan Away Jersey 26_27.png', slug:'inter-milan-away-26-27', cat:'club', price:'₦35,000', description:'Inter Milan\'s 2026/27 away kit — a sleek look for the Nerazzurri.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Away colours','Inter crest'], inStock:true },
+  { team:'Juventus', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Juventus Away Jersey 26_27.png', slug:'juventus-away-26-27', cat:'club', price:'₦35,000', description:'Juventus\' 2026/27 away kit — a fresh look for the Bianconeri.', material:'100% Recycled Polyester', features:['Adidas design','Away colours','Juventus crest'], inStock:true },
+  { team:'Lazio', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Lazio Home Jersey 26_27.png', slug:'lazio-home-26-27', cat:'club', price:'₦35,000', description:'Lazio\'s 2026/27 home kit — the Aquile in sky blue.', material:'100% Recycled Polyester', features:['Mizuno design','Sky blue','Lazio crest'], inStock:true },
+  { team:'Lazio', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Lazio Away Jersey 26_27.png', slug:'lazio-away-26-27', cat:'club', price:'₦35,000', description:'Lazio\'s 2026/27 away kit — a classic alternative for the Aquile.', material:'100% Recycled Polyester', features:['Mizuno design','Away colours','Lazio crest'], inStock:true },
+  { team:'Lens', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Lens Home Jersey 26_27.png', slug:'lens-home-26-27', cat:'club', price:'₦35,000', description:'RC Lens\' 2026/27 home kit — Sang et Or in red & gold.', material:'100% Recycled Polyester', features:['Adidas design','Red & gold','Lens crest'], inStock:true },
+  { team:'Lens', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Lens Away Jersey 26_27.png', slug:'lens-away-26-27', cat:'club', price:'₦35,000', description:'RC Lens\' 2026/27 away kit — a fresh look for the Blood & Gold.', material:'100% Recycled Polyester', features:['Adidas design','Away colours','Lens crest'], inStock:true },
+  { team:'Lyon', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Lyon Home Jersey 26_27.png', slug:'lyon-home-26-27', cat:'club', price:'₦35,000', description:'Olympique Lyonnais\' 2026/27 home kit — Les Gones in classic white.', material:'100% Recycled Polyester', features:['Adidas design','Classic white','Lyon crest'], inStock:true },
+  { team:'Lyon', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Lyon Away Jersey 26_27.png', slug:'lyon-away-26-27', cat:'club', price:'₦35,000', description:'Olympique Lyonnais\' 2026/27 away kit — a bold alternative for the French giants.', material:'100% Recycled Polyester', features:['Adidas design','Away colours','Lyon crest'], inStock:true },
+  { team:'Manchester City', kit:'Third 26/27', img:'/images/club/2026-27 shirts/Manchester City 3rd Jersey 26_27.png', slug:'man-city-third-26-27', cat:'club', price:'₦35,000', description:'Manchester City\'s 2026/27 third kit — a bold alternative for the Citizens.', material:'100% Recycled Polyester', features:['Puma design','Unique design','City crest'], inStock:true },
+  { team:'Marseille', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Marseille Home Jersey 26_27.png', slug:'marseille-home-26-27', cat:'club', price:'₦35,000', description:'Olympique de Marseille\'s 2026/27 home kit — the Phocaeans in white & sky blue.', material:'100% Recycled Polyester', features:['Puma design','White & sky blue','Marseille crest'], inStock:true },
+  { team:'Marseille', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Marseille Away Jersey 26_27.png', slug:'marseille-away-26-27', cat:'club', price:'₦35,000', description:'Olympique de Marseille\'s 2026/27 away kit — a sleek alternative for the Phocaeans.', material:'100% Recycled Polyester', features:['Puma design','Away colours','Marseille crest'], inStock:true },
+  { team:'Monaco', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Monaco Home Jersey 26_27.png', slug:'monaco-home-26-27', cat:'club', price:'₦35,000', description:'AS Monaco\'s 2026/27 home kit — the Red & Whites in classic diagonal.', material:'100% Recycled Polyester', features:['Kappa design','Red & white diagonal','Monaco crest'], inStock:true },
+  { team:'Napoli', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Napoli Home Jersey 26_27.png', slug:'napoli-home-26-27', cat:'club', price:'₦35,000', description:'Napoli\'s 2026/27 home kit — the Partenopei in iconic sky blue.', material:'100% Recycled Polyester', features:['EA7 design','Sky blue','Napoli crest'], inStock:true },
+  { team:'Napoli', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Napoli Away Jersey 26_27.png', slug:'napoli-away-26-27', cat:'club', price:'₦35,000', description:'Napoli\'s 2026/27 away kit — a fresh look for the Partenopei.', material:'100% Recycled Polyester', features:['EA7 design','Away colours','Napoli crest'], inStock:true },
+  { team:'Napoli', kit:'Extra 26/27', img:'/images/club/2026-27 shirts/Napoli Extra 26_27.jpg', images:['/images/club/2026-27 shirts/Napoli Extra 26_27.jpg','/images/club/2026-27 shirts/Napoli Extra 26_27_.jpg'], slug:'napoli-extra-26-27', cat:'club', price:'₦35,000', description:'Napoli\'s 2026/27 extra edition — a special design for the die-hard Partenopei.', material:'100% Recycled Polyester', features:['EA7 design','Limited edition','Napoli crest'], inStock:true },
+  { team:'Newcastle', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Newcastle Away Jersey 26_27.png', slug:'newcastle-away-26-27', cat:'club', price:'₦35,000', description:'Newcastle United\'s 2026/27 away kit — a bold look for the Magpies.', material:'100% Recycled Polyester', features:['Castore design','Away colours','NUFC crest'], inStock:true },
+  { team:'Sunderland', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Sunderland Home Jersey 26_27.png', slug:'sunderland-home-26-27', cat:'club', price:'₦35,000', description:'Sunderland\'s 2026/27 home kit — the Black Cats in red & white stripes.', material:'100% Recycled Polyester', features:['Adidas design','Red & white stripes','Sunderland crest'], inStock:true },
+  { team:'Sunderland', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Sunderland Away Jersey 26_27.png', slug:'sunderland-away-26-27', cat:'club', price:'₦35,000', description:'Sunderland\'s 2026/27 away kit — a fresh alternative for the Black Cats.', material:'100% Recycled Polyester', features:['Adidas design','Away colours','Sunderland crest'], inStock:true },
+  { team:'Venezia', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Venezia Home Jersey 26_27.png', slug:'venezia-home-26-27', cat:'club', price:'₦35,000', description:'Venezia FC\'s 2026/27 home kit — the Arancioneroverdi in iconic orange, black & green.', material:'100% Recycled Polyester', features:['Kappa design','Tricolour design','Venezia crest'], inStock:true },
+  { team:'Villarreal', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Villarreal Home Jersey 26_27.png', slug:'villarreal-home-26-27', cat:'club', price:'₦35,000', description:'Villarreal CF\'s 2026/27 home kit — the Yellow Submarine in iconic yellow.', material:'100% Recycled Polyester', features:['Joma design','Yellow colours','Villarreal crest'], inStock:true },
+  { team:'Villarreal', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Villarreal Home Away 26_27.png', slug:'villarreal-away-26-27', cat:'club', price:'₦35,000', description:'Villarreal CF\'s 2026/27 away kit — a sleek alternative for the Yellow Submarine.', material:'100% Recycled Polyester', features:['Joma design','Away colours','Villarreal crest'], inStock:true },
 ];
 
 const nationalProducts = [
@@ -674,6 +744,10 @@ const leagueConfig = {
   'ligue1':         { name:'Ligue 1',         logo:'/images/football_logos/ligue1_logo.png',        flag:'/images/football_logos/france_flag.svg' },
   'saudi-pro-league': { name:'Saudi Pro League', logo:'/images/football_logos/Roshn_Saudi_League_Logo.svg', flag:'/images/football_logos/saudi_flag.svg' },
   'world-cup':      { name:'World Cup',       logo:'/images/football_logos/england_flag.svg',      flag:'/images/football_logos/england_flag.svg' },
+  'eredivisie':     { name:'Eredivisie',       logo:'/images/football_logos/eredivisie_logo.svg',   flag:'/images/football_logos/netherlands_flag.svg' },
+  'primeira-liga':  { name:'Primeira Liga',     logo:'/images/football_logos/primeira_liga_logo.svg', flag:'/images/football_logos/england_flag.svg' },
+  'super-lig':      { name:'Süper Lig',        logo:'/images/football_logos/super_lig_logo.svg',    flag:'/images/football_logos/germany_flag.svg' },
+  'argentine-primera': { name:'Argentine Primera', logo:'/images/football_logos/argentina_primera_logo.svg', flag:'/images/football_logos/argentina_flag.svg' },
 };
 
 const clubLeague = {
@@ -697,7 +771,30 @@ const clubLeague = {
   'Juventus':          'serie-a',
   'PSG':               'ligue1',
   'Al Nassr':          'saudi-pro-league',
+  'Al-Hilal':          'saudi-pro-league',
+  'Al-Ittihad':        'saudi-pro-league',
   'Coventry':          'premier-league',
+  'Brentford':         'premier-league',
+  'Sunderland':        'premier-league',
+  'Atletico Madrid':   'laliga',
+  'Villarreal':        'laliga',
+  'AS Roma':           'serie-a',
+  'Fiorentina':        'serie-a',
+  'Lazio':             'serie-a',
+  'Napoli':            'serie-a',
+  'Venezia':           'serie-a',
+  'Lens':              'ligue1',
+  'Lyon':              'ligue1',
+  'Marseille':         'ligue1',
+  'Monaco':            'ligue1',
+  'Ajax':              'eredivisie',
+  'Galatasaray':       'super-lig',
+  'Besiktas':          'super-lig',
+  'Benfica':           'primeira-liga',
+  'FC Porto':          'primeira-liga',
+  'Sporting CP':       'primeira-liga',
+  'Braga':             'primeira-liga',
+  'Boca Juniors':      'argentine-primera',
 };
 
 const retroLeague = {
@@ -729,6 +826,17 @@ const retroTeamFlag = {
   'Italy':       '/images/football_logos/italy_flag.svg',
 };
 
+const commonLeague = {
+  'Ajax':         'eredivisie',
+  'Benfica':      'primeira-liga',
+  'Braga':        'primeira-liga',
+  'FC Porto':     'primeira-liga',
+  'Sporting CP':  'primeira-liga',
+  'Besiktas':     'super-lig',
+  'Boca Juniors': 'argentine-primera',
+  'Strasbourg':   'ligue1',
+};
+
 const catConfig = {
   club:  { name:'Club Jerseys', sub: 'Browse our Fans &amp; Player Version club kits.', price:'\u20A635,000 / \u20A655,000', addon:'+ \u20A65,000 Custom', label:'Fans Version', list: clubProducts, versions: { fans:'\u20A635,000', player:'\u20A655,000' } },
   national: { name:'National Teams', sub: 'National Team kits at great prices.', price:'\u20A630,000', addon:'+ \u20A65,000 Custom', label:'Official Kit', list: nationalProducts },
@@ -757,6 +865,23 @@ const longSleeveProducts = [
   { team:'Spain', kit:'Away Long Sleeve Jersey 26/27', img:'/images/LONG SLEEVES/Spain Away Long Sleeve Jersey 26_27.jpg', slug:'spain-away-long-sleeve-26-27', cat:'long-sleeve', description:'Spain 2026/27 Away long sleeve jersey. La Roja away kit with full-length sleeves.', material:'Premium Polyester', features:['Full-length sleeves','Breathable fabric','S – XXL available'], price:'₦45,000', inStock:true },
 ];
 
+const commonProducts = [
+  { team:'Ajax', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Ajax Home Jersey 26_27.png', slug:'ajax-home-26-27', cat:'common', price:'₦35,000', fansDesc:'High-quality replica of Ajax\'s 2026/27 home shirt. Comfortable fit with printed crest.', playerDesc:'Authentic Ajax match jersey with stitched crest and performance fabric.', description:'Ajax 2026/27 home jersey — classic red & white for the Amsterdam giants.', material:'Premium Polyester', features:['Breathable fabric','Classic design','S – XXL available'], inStock:true },
+  { team:'Ajax', kit:'Away 26/27', img:'/images/COMMON JERSEYS/Ajax Away Jersey 26_27.png', slug:'ajax-away-26-27', cat:'common', price:'₦35,000', fansDesc:'Replica Ajax away shirt in comfortable fit with printed details.', playerDesc:'Pro-level Ajax away shirt with premium build and authentic crest.', description:'Ajax 2026/27 away jersey — a sharp alternative for the Sons of the Gods.', material:'Premium Polyester', features:['Breathable fabric','Distinctive design','S – XXL available'], inStock:true },
+  { team:'Ajax', kit:'Third 26/27', img:'/images/COMMON JERSEYS/Ajax 3rd Jersey 26_27.png', slug:'ajax-third-26-27', cat:'common', price:'₦35,000', fansDesc:'Replica Ajax third kit for everyday wear with printed badge.', playerDesc:'Authentic Ajax third shirt with stitched crest and match-day fabric.', description:'Ajax 2026/27 third kit — a fresh look for European nights.', material:'Premium Polyester', features:['Breathable fabric','Unique design','S – XXL available'], inStock:true },
+  { team:'Benfica', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Benfica  Home Jersey 26_27.png', slug:'benfica-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Benfica replica home shirt with heat-pressed crest and comfortable fit.', playerDesc:'Authentic Benfica match shirt with stitched badge and Aeroready fabric.', description:'Benfica 2026/27 home kit — the Eagles in iconic red & white.', material:'Premium Polyester', features:['Breathable fabric','Classic stripes','S – XXL available'], inStock:true },
+  { team:'Benfica', kit:'Away 26/27', img:'/images/COMMON JERSEYS/Benfica Away Jersey 26_27.png', slug:'benfica-away-26-27', cat:'common', price:'₦35,000', fansDesc:'Benfica replica away shirt — great quality at an affordable price.', playerDesc:'Pro-level Benfica away kit with stitched crest and lightweight fabric.', description:'Benfica 2026/27 away kit — a sleek look for the Portuguese giants.', material:'Premium Polyester', features:['Breathable fabric','Striking design','S – XXL available'], inStock:true },
+  { team:'Besiktas', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Besiktas Home Jersey 26_27.png', slug:'besiktas-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Replica Besiktas home jersey with comfortable fit and printed crest.', playerDesc:'Authentic Besiktas match shirt with stitched badge and performance fabric.', description:'Besiktas 2026/27 home kit — the Black Eagles in classic black & white.', material:'Premium Polyester', features:['Breathable fabric','Bold design','S – XXL available'], inStock:true },
+  { team:'Besiktas', kit:'Away 26/27', img:'/images/COMMON JERSEYS/Besiktas Away Jersey 26_27.png', slug:'besiktas-away-26-27', cat:'common', price:'₦35,000', fansDesc:'Besiktas replica away shirt in a stylish design.', playerDesc:'Pro-level Besiktas away jersey with premium details and authentic fit.', description:'Besiktas 2026/27 away kit — a fresh alternative for the Turkish giants.', material:'Premium Polyester', features:['Breathable fabric','Distinctive look','S – XXL available'], inStock:true },
+  { team:'Besiktas', kit:'Third 26/27', img:'/images/COMMON JERSEYS/Besiktas 3rd Jersey 26_27.png', slug:'besiktas-third-26-27', cat:'common', price:'₦35,000', fansDesc:'Replica Besiktas third shirt for cup nights and casual wear.', playerDesc:'Authentic Besiktas third kit with stitched crest and match-ready build.', description:'Besiktas 2026/27 third kit — a bold design for cup competitions.', material:'Premium Polyester', features:['Breathable fabric','Unique style','S – XXL available'], inStock:true },
+  { team:'Boca Juniors', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Boca Junior Home Jersey 26_27.png', slug:'boca-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Boca Juniors replica home shirt with the iconic blue & gold.', playerDesc:'Authentic Boca match jersey with stitched crest and premium finish.', description:'Boca Juniors 2026/27 home kit — the iconic blue & gold of La Bombonera.', material:'Premium Polyester', features:['Breathable fabric','Classic design','S – XXL available'], inStock:true },
+  { team:'Braga', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Braga Home Jersey 26_27.png', slug:'braga-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Braga replica home shirt with printed crest and everyday comfort.', playerDesc:'Pro-level Braga home jersey with authentic badge and performance fabric.', description:'Braga 2026/27 home kit — the Arsenalistas in red & white.', material:'Premium Polyester', features:['Breathable fabric','Club crest','S – XXL available'], inStock:true },
+  { team:'FC Porto', kit:'Home 26/27', img:'/images/COMMON JERSEYS/FC Porto Home Jersey 26_27.png', slug:'porto-home-26-27', cat:'common', price:'₦35,000', fansDesc:'FC Porto replica home shirt with classic blue & white stripes.', playerDesc:'Authentic FC Porto match jersey with stitched crest and Dri-FIT fabric.', description:'FC Porto 2026/27 home kit — the Dragons in classic blue & white stripes.', material:'Premium Polyester', features:['Breathable fabric','Classic stripes','S – XXL available'], inStock:true },
+  { team:'FC Porto', kit:'Away 26/27', img:'/images/COMMON JERSEYS/FC Porto Away Jersey 26_27.png', slug:'porto-away-26-27', cat:'common', price:'₦35,000', fansDesc:'FC Porto replica away shirt in a striking design.', playerDesc:'Pro-level Porto away kit with stitched badge and lightweight build.', description:'FC Porto 2026/27 away kit — a sharp look for the Portuguese champions.', material:'Premium Polyester', features:['Breathable fabric','Bold design','S – XXL available'], inStock:true },
+  { team:'Sporting CP', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Sporting Lisbon 26-27 Home_Jersey_.png', slug:'sporting-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Sporting CP replica home shirt with heat-pressed crest and comfortable fit.', playerDesc:'Authentic Sporting match jersey with stitched badge and premium fabric.', description:'Sporting CP 2026/27 home kit — the Lions in green & white stripes.', material:'Premium Polyester', features:['Breathable fabric','Classic stripes','S – XXL available'], inStock:true },
+  { team:'Strasbourg', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Strasbourg Home Jersey 26_27.png', slug:'strasbourg-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Strasbourg replica home shirt — great quality at a great price.', playerDesc:'Pro-level Strasbourg home jersey with authentic crest and performance fabric.', description:'Strasbourg 2026/27 home kit — the Racing in classic blue.', material:'Premium Polyester', features:['Breathable fabric','Club crest','S – XXL available'], inStock:true },
+];
+
 /* Unified product lookup by slug */
 const allProducts = [
   ...products,
@@ -764,7 +889,8 @@ const allProducts = [
   ...nationalProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...retroProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...kidsProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
-  ...longSleeveProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: 'Long Sleeve' })),
+  ...longSleeveProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: 'Long Sleeve Jersey' })),
+  ...commonProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: 'Common Jersey' })),
 ];
 function findProductBySlug(slug){ return allProducts.find(p => p.slug === slug); }
 
@@ -849,6 +975,13 @@ function renderCategory(cat, league, team){
       p.team.toLowerCase().includes(searchVal) ||
       p.kit.toLowerCase().includes(searchVal)
     );
+    const commonMatches = commonProducts.filter(p =>
+      p.team.toLowerCase().includes(searchVal) ||
+      p.kit.toLowerCase().includes(searchVal)
+    );
+    if(commonMatches.length > 0){
+      list = [...list, ...commonMatches.map(p => ({ ...p, _fromCommon: true }))];
+    }
   }
   if(leagueBar){
     const showBar = cat === 'club' || cat === 'retro';
@@ -875,22 +1008,24 @@ function renderCategory(cat, league, team){
   const pageList = list.slice(start, start + PER_PAGE);
 
   grid.innerHTML = pageList.map(p => {
-    const lKey = (cat === 'club' || cat === 'retro') ? teamLeague[p.team] : null;
+    const isCommon = p._fromCommon;
+    const lKey = isCommon ? commonLeague[p.team] : ((cat === 'club' || cat === 'retro') ? teamLeague[p.team] : null);
     const lCfg = lKey ? leagueConfig[lKey] : null;
     const badgeSrc = cat === 'retro' && retroTeamFlag[p.team]
       ? retroTeamFlag[p.team]
       : (lCfg ? (cat === 'retro' ? lCfg.flag : lCfg.logo) : null);
+    const prodPrice = p.price || cfg.price;
     return `
     <div class="cat-prod-card" data-slug="${p.slug || ''}">
       <div class="cat-prod-visual">
-        <span class="cat-prod-price">${cfg.price}</span>
+        <span class="cat-prod-price">${prodPrice}</span>
         ${(p.images && p.images.length > 1) ? '<span class="cat-prod-views">2 Views</span>' : ''}
         <img src="${p.images?.[0] || p.img}" alt="${p.team} ${p.kit}" loading="lazy">
       </div>
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
         <h3>${p.kit}</h3>
-        <button class="btn btn-primary btn-block" data-order-cat data-cat="${cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
+        <button class="btn btn-primary btn-block" data-order-cat data-cat="${isCommon ? 'common' : cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
     </div>`;
   }).join('');
@@ -994,7 +1129,7 @@ function renderLongSleeve(){
   grid.querySelectorAll('.ls-view-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const prod = longSleeveProducts.find(p => p.slug === btn.dataset.slug);
-      if(prod) showProductView(null, { ...prod, images: [prod.img], tag: 'Long Sleeve' }, false);
+      if(prod) showProductView(null, { ...prod, images: [prod.img], tag: 'Long Sleeve Jersey' }, false);
     });
   });
 }
@@ -1021,9 +1156,46 @@ function showCommon(){
     el.style.setProperty('display', 'none', 'important');
   });
   hideAllViews();
+  renderCommon();
   document.getElementById('common-view').classList.remove('hidden');
   document.body.style.overflow = '';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderCommon(){
+  const grid = document.getElementById('common-grid');
+  if(!grid) return;
+  const searchVal = (document.getElementById('common-search')?.value || '').trim().toLowerCase();
+  let list = commonProducts;
+  if(searchVal){
+    list = list.filter(p =>
+      p.team.toLowerCase().includes(searchVal) ||
+      p.kit.toLowerCase().includes(searchVal)
+    );
+  }
+  grid.innerHTML = list.map(p => {
+    const lKey = commonLeague[p.team];
+    const lCfg = lKey ? leagueConfig[lKey] : null;
+    const badgeSrc = lCfg ? lCfg.logo : null;
+    return `
+    <div class="ls-card" data-slug="${p.slug}">
+      <div class="ls-visual">
+        <span class="ls-price">&#8358;35,000 / &#8358;55,000</span>
+        <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
+      </div>
+      <div class="ls-body">
+        <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
+        <h3>${p.kit}</h3>
+        <button class="btn btn-primary btn-block ls-view-btn" data-slug="${p.slug}">View Details</button>
+      </div>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.ls-view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const prod = commonProducts.find(p => p.slug === btn.dataset.slug);
+      if(prod) showProductView(null, { ...prod, images: [prod.img], tag: 'Common Jersey' }, false);
+    });
+  });
 }
 
 function getCurrentCategory(){
@@ -1141,6 +1313,12 @@ document.getElementById('cv-season')?.addEventListener('change', function(){
   applyCategoryFilters();
 });
 
+let _commonSearchTimer;
+document.getElementById('common-search')?.addEventListener('input', function(){
+  clearTimeout(_commonSearchTimer);
+  _commonSearchTimer = setTimeout(renderCommon, 300);
+});
+
 (function initBackToTop(){
   const btn = document.getElementById('back-to-top');
   if(!btn) return;
@@ -1154,6 +1332,69 @@ document.getElementById('cv-season')?.addEventListener('change', function(){
 })();
 
 /* ============ SIZE GUIDE ============ */
+(function(){
+  const scroll = document.getElementById('league-scroll');
+  const prevBtn = document.getElementById('league-prev');
+  const nextBtn = document.getElementById('league-next');
+  const dotsWrap = document.getElementById('league-dots');
+  if(!scroll || !prevBtn || !nextBtn || !dotsWrap) return;
+
+  const cards = scroll.querySelectorAll('.league-card');
+  let autoTimer = null;
+  let paused = false;
+
+  function getCardWidth(){
+    if(!cards.length) return 160;
+    return cards[0].offsetWidth + 16;
+  }
+
+  function updateDots(){
+    const scrollLeft = scroll.scrollLeft;
+    const cardW = getCardWidth();
+    const idx = Math.round(scrollLeft / cardW);
+    dotsWrap.querySelectorAll('.league-dot').forEach((d,i) => {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'league-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    dot.addEventListener('click', () => {
+      scroll.scrollTo({ left: i * getCardWidth(), behavior:'smooth' });
+    });
+    dotsWrap.appendChild(dot);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    scroll.scrollBy({ left: -getCardWidth(), behavior:'smooth' });
+  });
+  nextBtn.addEventListener('click', () => {
+    scroll.scrollBy({ left: getCardWidth(), behavior:'smooth' });
+  });
+
+  scroll.addEventListener('scroll', updateDots, { passive:true });
+  scroll.addEventListener('mouseenter', () => { paused = true; });
+  scroll.addEventListener('mouseleave', () => { paused = false; });
+
+  function autoScroll(){
+    if(!paused){
+      const maxScroll = scroll.scrollWidth - scroll.clientWidth;
+      if(scroll.scrollLeft >= maxScroll - 5){
+        scroll.scrollTo({ left:0, behavior:'smooth' });
+      } else {
+        scroll.scrollBy({ left: getCardWidth(), behavior:'smooth' });
+      }
+    }
+    autoTimer = setTimeout(autoScroll, 3500);
+  }
+  autoTimer = setTimeout(autoScroll, 3500);
+
+  scroll.addEventListener('touchstart', () => { paused = true; }, { passive:true });
+  scroll.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 2000); }, { passive:true });
+})();
+
 (function(){
   const overlay = document.getElementById('size-guide-modal');
   const openBtn = document.getElementById('sg-open');

@@ -595,6 +595,50 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
 .cat-body p{ font-size: 13px; color: var(--muted); margin-bottom: 18px; flex:1; }
 .cat-body .btn{ padding: 11px 18px; font-size: 13px; }
 
+/* League Carousel */
+.league-carousel{
+  position:relative; display:flex; align-items:center; gap:12px;
+}
+.league-scroll{
+  display:flex; gap:16px;
+  overflow-x:auto; scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  -ms-overflow-style:none; scrollbar-width:none;
+  padding:4px 2px;
+}
+.league-scroll::-webkit-scrollbar{ display:none; }
+.league-arrow{
+  flex-shrink:0; width:40px; height:40px;
+  border-radius:50%; border:1px solid var(--line);
+  background:var(--bg-card); color:var(--text);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:background .2s, border-color .2s, transform .15s;
+  z-index:2;
+}
+.league-arrow:hover{ background:var(--gold); color:#000; border-color:var(--gold); }
+.league-arrow:active{ transform:scale(.92); }
+.league-dots{
+  display:flex; justify-content:center; gap:8px; margin-top:16px;
+}
+.league-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:var(--line); border:none; cursor:pointer;
+  transition:background .2s, width .2s;
+}
+.league-dot.active{ background:var(--gold); width:24px; border-radius:4px; }
+.cat-visual{
+  height: 170px;
+  position: relative;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.cat-visual svg{ width: 92px; height:92px; }
+.cat-visual img{ width: 100%; height: 100%; object-fit: cover; }
+.cat-body{ padding: 18px 20px 22px; flex:1; display:flex; flex-direction:column; }
+.cat-body h3{ font-family: var(--font-body); text-transform:none; font-size: 17px; font-weight:700; margin-bottom:6px; }
+.cat-body p{ font-size: 13px; color: var(--muted); margin-bottom: 18px; flex:1; }
+.cat-body .btn{ padding: 11px 18px; font-size: 13px; }
+
 .kit-royal{ background: linear-gradient(160deg,#0c1a3a,#070a17); }
 
 /* ============ PRODUCT GRID ============ */
@@ -1163,7 +1207,8 @@ footer{
   transition: border-color .2s;
 }
 .pv-gallery:hover{ border-color: rgba(255,255,255,0.12); }
-.pv-gallery-imgs{ display:flex; flex-direction:column; gap:4px; background:var(--bg); }
+.pv-gallery.single{ background:transparent; border:none; border-radius:0; }
+.pv-gallery-imgs{ display:flex; flex-direction:column; gap:4px; }
 .pv-gallery-imgs img{ width:100%; display:block; }
 .pv-gallery .prod-tag{
   position:absolute; top:14px; left:14px;
@@ -1291,6 +1336,9 @@ footer{
   letter-spacing: 0.01em;
   gap: 10px;
 }
+.pv-submit-btn:disabled{
+  opacity:0.6; cursor:not-allowed; background:#555; color:#ccc;
+}
 .pv-guarantee{
   display:flex; align-items:center; justify-content:center; gap: 6px;
   font-size: 11.5px; color: var(--muted-2); margin-top: 14px;
@@ -1385,5 +1433,105 @@ footer{
   .sg-card{ padding: 20px 14px; }
   .sg-table th{ font-size: 8px; letter-spacing: 0.03em; }
   .sg-table td{ font-size: 11px; }
+}
+
+/* ============ RESPONSIVE FIXES ============ */
+
+/* Filter bar: stack on mobile */
+@media(max-width: 480px){
+  .filter-bar{ flex-direction:column; align-items:stretch; }
+  .filter-search{ min-width:0; flex:none; }
+  .filter-season{ min-width:0; flex:none; }
+  .filter-search input{ width:100%; }
+}
+
+/* League bar: smaller logos on mobile */
+@media(max-width: 480px){
+  .league-bar{ gap:8px; }
+  .league-logo img{ width:32px; height:32px; padding:3px; }
+  .league-card{ width:130px; padding:20px 14px 16px; gap:10px; }
+  .league-card img{ width:60px; height:60px; }
+  .league-card-name{ font-size:12px; }
+}
+@media(max-width: 360px){
+  .league-card{ width:110px; padding:16px 10px 12px; gap:8px; }
+  .league-card img{ width:48px; height:48px; }
+  .league-card-name{ font-size:11px; }
+  .league-logo img{ width:28px; height:28px; padding:2px; }
+}
+
+/* pv-opt-btn: better touch targets for kids age buttons */
+@media(max-width: 360px){
+  .pv-size-group .pv-opt-btn{ min-width:40px; min-height:40px; text-align:center; }
+}
+
+/* Category carousel: hide arrows on very small screens, rely on swipe */
+@media(max-width: 380px){
+  .cat-arrow{ width:32px; height:32px; }
+  .cat-arrow svg{ width:16px; height:16px; }
+}
+
+/* Hero slide arrows: ensure touch-friendly on small screens */
+@media(max-width: 380px){
+  .slide-arrow{ width:36px; height:36px; }
+  .slide-arrow svg{ width:14px; height:14px; }
+}
+
+/* Product view: prevent gallery from being too tall on mobile */
+@media(max-width: 480px){
+  .pv-gallery-imgs{ max-height:360px; overflow:hidden; }
+}
+
+/* Final CTA: ensure button doesn't overflow on very small screens */
+@media(max-width: 360px){
+  .final-cta .btn{ padding:14px 20px; font-size:13px; }
+  .final-cta h2{ font-size:24px; }
+}
+
+/* Promo bar: ensure text doesn't get too small */
+@media(max-width: 360px){
+  .promo-bar{ font-size:11px; }
+  .promo-item{ padding:0 16px; gap:4px; }
+}
+
+/* Steps grid: improve spacing on mobile */
+@media(max-width: 480px){
+  .steps-grid{ gap:32px; }
+  .step-num{ font-size:48px; }
+}
+
+/* Custom section: ensure text wraps properly */
+@media(max-width: 480px){
+  .custom-copy p{ font-size:14px; }
+  .custom-copy h2{ font-size:28px; }
+}
+
+/* Review cards: ensure proper padding on small screens */
+@media(max-width: 360px){
+  .review-card{ padding:18px 14px; }
+  .review-card p{ font-size:13px; }
+}
+
+/* FAQ: ensure question text doesn't overflow */
+@media(max-width: 360px){
+  .faq-q{ font-size:14px; padding:14px 16px; }
+}
+
+/* Location: map visual on mobile */
+@media(max-width: 480px){
+  .map-visual{ height:220px; }
+}
+
+/* Sticky WA: ensure it doesn't overlap footer content */
+@media(max-width: 480px){
+  .sticky-wa{ width:52px; height:52px; bottom:16px; right:16px; }
+  .sticky-wa svg{ width:24px; height:24px; }
+}
+
+/* Nav: ensure proper mobile layout */
+@media(max-width: 480px){
+  .nav-inner{ padding:12px 16px; }
+  .logo{ height:34px; }
+  .nav-cta-mobile{ font-size:12px; padding:8px 12px; }
 }
 

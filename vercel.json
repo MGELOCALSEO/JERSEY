@@ -8,6 +8,8 @@
     { "source": "/national", "destination": "/national.html" },
     { "source": "/retro", "destination": "/retro.html" },
     { "source": "/kids", "destination": "/kids.html" },
+    { "source": "/product/:slug", "destination": "/index.html" },
+    { "source": "/category/:cat", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
