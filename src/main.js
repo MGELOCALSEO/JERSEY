@@ -41,7 +41,7 @@ function cycleImages(id, list, ms){
 }
 
 const SITE_NAME = 'Makelele Jerseys';
-const DEFAULT_TITLE = 'Makelele Jerseys, Original & Custom Football Jerseys, Lagos';
+const DEFAULT_TITLE = 'Makelele Jerseys | Original Football Jerseys in Lagos, Nigeria';
 const DEFAULT_DESC = 'Shop authentic club jerseys, Super Eagles kits, retro collections and custom football shirts. Same-day Lagos delivery, nationwide shipping. Order on WhatsApp.';
 let _productSchemaEl = null;
 
@@ -77,6 +77,31 @@ function setProductSEO(product){
     }
   });
   document.head.appendChild(_productSchemaEl);
+}
+
+const seoUrlMap = {
+  '/chelsea-jersey-lagos':          { cat:'club', team:'Chelsea' },
+  '/manchester-united-jersey-lagos':{ cat:'club', team:'Manchester United' },
+  '/arsenal-jersey-lagos':          { cat:'club', team:'Arsenal' },
+  '/barcelona-jersey-lagos':        { cat:'club', team:'FC Barcelona' },
+  '/real-madrid-jersey-lagos':      { cat:'club', team:'Real Madrid' },
+  '/retro-football-jerseys':        { cat:'retro' },
+  '/custom-football-jerseys':       { cat:'custom' },
+};
+
+function setLocationSEO(team, loc, cat){
+  const title = team
+    ? (team + ' Jersey in ' + loc + ' | ' + SITE_NAME)
+    : (cat === 'retro' ? 'Retro Football Jerseys in ' + loc + ' | ' + SITE_NAME : 'Custom Football Jerseys | ' + SITE_NAME);
+  document.title = title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc) metaDesc.setAttribute('content', 'Buy ' + (team || 'retro football jerseys') + ' in ' + (loc || 'Lagos') + ', Nigeria. Same-day delivery across Lagos & nationwide shipping. Order on WhatsApp.');
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if(ogTitle) ogTitle.setAttribute('content', title);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if(ogDesc) ogDesc.setAttribute('content', 'Buy ' + (team || 'retro football jerseys') + ' in ' + (loc || 'Lagos') + ', Nigeria. Same-day delivery across Lagos & nationwide shipping.');
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if(canonical) canonical.setAttribute('href', 'https://www.makelelejersey.com' + window.location.pathname);
 }
 
 function resetSEO(){
@@ -1267,6 +1292,25 @@ function handlePath(){
       return;
     }
   }
+  const seoEntry = seoUrlMap[path];
+  if(seoEntry){
+    const loc = 'Lagos';
+    showHome();
+    if(seoEntry.cat === 'club'){
+      showCategory('club', undefined, seoEntry.team);
+      setLocationSEO(seoEntry.team, loc, 'club');
+    } else if(seoEntry.cat === 'retro'){
+      showCategory('retro');
+      setLocationSEO(null, loc, 'retro');
+    } else if(seoEntry.cat === 'custom'){
+      requestAnimationFrame(() => {
+        const el = document.getElementById('custom');
+        if(el) el.scrollIntoView({ behavior: 'smooth' });
+      });
+      setLocationSEO(null, loc, 'custom');
+    }
+    return;
+  }
   const sectionMap = { '/collection':'collection', '/custom-kits':'custom', '/reviews':'reviews', '/faq':'faq' };
   if(sectionMap[path]){
     showHome();
@@ -1357,8 +1401,6 @@ document.getElementById('common-search')?.addEventListener('input', function(){
   if(!scroll || !prevBtn || !nextBtn || !dotsWrap) return;
 
   const cards = scroll.querySelectorAll('.league-card');
-  let autoTimer = null;
-  let paused = false;
 
   function getCardWidth(){
     if(!cards.length) return 160;
@@ -1392,24 +1434,9 @@ document.getElementById('common-search')?.addEventListener('input', function(){
   });
 
   scroll.addEventListener('scroll', updateDots, { passive:true });
-  scroll.addEventListener('mouseenter', () => { paused = true; });
-  scroll.addEventListener('mouseleave', () => { paused = false; });
 
-  function autoScroll(){
-    if(!paused){
-      const maxScroll = scroll.scrollWidth - scroll.clientWidth;
-      if(scroll.scrollLeft >= maxScroll - 5){
-        scroll.scrollTo({ left:0, behavior:'smooth' });
-      } else {
-        scroll.scrollBy({ left: getCardWidth(), behavior:'smooth' });
-      }
-    }
-    autoTimer = setTimeout(autoScroll, 3500);
-  }
-  autoTimer = setTimeout(autoScroll, 3500);
-
-  scroll.addEventListener('touchstart', () => { paused = true; }, { passive:true });
-  scroll.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 2000); }, { passive:true });
+  scroll.addEventListener('touchstart', () => {}, { passive:true });
+  scroll.addEventListener('touchend', () => {}, { passive:true });
 })();
 
 (function(){

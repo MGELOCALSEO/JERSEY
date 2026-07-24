@@ -10,6 +10,13 @@
     { "source": "/kids", "destination": "/kids.html" },
     { "source": "/product/:slug", "destination": "/index.html" },
     { "source": "/category/:cat", "destination": "/index.html" },
+    { "source": "/chelsea-jersey-lagos", "destination": "/index.html" },
+    { "source": "/manchester-united-jersey-lagos", "destination": "/index.html" },
+    { "source": "/arsenal-jersey-lagos", "destination": "/index.html" },
+    { "source": "/barcelona-jersey-lagos", "destination": "/index.html" },
+    { "source": "/real-madrid-jersey-lagos", "destination": "/index.html" },
+    { "source": "/retro-football-jerseys", "destination": "/index.html" },
+    { "source": "/custom-football-jerseys", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
