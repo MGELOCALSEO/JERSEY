@@ -80,26 +80,44 @@ function setProductSEO(product){
 }
 
 const seoUrlMap = {
-  '/chelsea-jersey-lagos':          { cat:'club', team:'Chelsea' },
-  '/manchester-united-jersey-lagos':{ cat:'club', team:'Manchester United' },
-  '/arsenal-jersey-lagos':          { cat:'club', team:'Arsenal' },
-  '/barcelona-jersey-lagos':        { cat:'club', team:'FC Barcelona' },
-  '/real-madrid-jersey-lagos':      { cat:'club', team:'Real Madrid' },
-  '/retro-football-jerseys':        { cat:'retro' },
-  '/custom-football-jerseys':       { cat:'custom' },
+  '/chelsea-jersey-lagos':          { type:'team', cat:'club', team:'Chelsea' },
+  '/manchester-united-jersey-lagos':{ type:'team', cat:'club', team:'Manchester United' },
+  '/arsenal-jersey-lagos':          { type:'team', cat:'club', team:'Arsenal' },
+  '/barcelona-jersey-lagos':        { type:'team', cat:'club', team:'FC Barcelona' },
+  '/real-madrid-jersey-lagos':      { type:'team', cat:'club', team:'Real Madrid' },
+  '/retro-football-jerseys':        { type:'retro', cat:'retro' },
+  '/custom-football-jerseys':       { type:'custom' },
+  '/football-jerseys-lekki-lagos':  { type:'city', city:'Lekki, Lagos' },
+  '/football-jerseys-ikeja-lagos':  { type:'city', city:'Ikeja, Lagos' },
+  '/football-jerseys-surulere-lagos':{ type:'city', city:'Surulere, Lagos' },
+  '/football-jerseys-abuja':        { type:'city', city:'Abuja' },
+  '/football-jerseys-port-harcourt':{ type:'city', city:'Port Harcourt' },
+  '/football-jerseys-ibadan':       { type:'city', city:'Ibadan' },
 };
 
-function setLocationSEO(team, loc, cat){
-  const title = team
-    ? (team + ' Jersey in ' + loc + ' | ' + SITE_NAME)
-    : (cat === 'retro' ? 'Retro Football Jerseys in ' + loc + ' | ' + SITE_NAME : 'Custom Football Jerseys | ' + SITE_NAME);
+function setLocationSEO(opts){
+  const team = opts.team, loc = opts.loc, cat = opts.cat, city = opts.city, type = opts.type || 'team';
+  let title, desc;
+  if(type === 'team'){
+    title = team + ' Jersey in ' + loc + ' | ' + SITE_NAME;
+    desc = 'Buy ' + team + ' jersey in ' + loc + ', Nigeria. Same-day delivery across Lagos & nationwide shipping. Order on WhatsApp.';
+  } else if(type === 'city'){
+    title = 'Football Jerseys in ' + city + ' | ' + SITE_NAME;
+    desc = 'Buy original football jerseys in ' + city + ', Nigeria. Same-day delivery & nationwide shipping. Order on WhatsApp.';
+  } else if(type === 'retro'){
+    title = 'Retro Football Jerseys in ' + loc + ' | ' + SITE_NAME;
+    desc = 'Buy retro football jerseys in ' + (loc || 'Lagos') + ', Nigeria. Same-day delivery & nationwide shipping. Order on WhatsApp.';
+  } else {
+    title = 'Custom Football Jerseys | ' + SITE_NAME;
+    desc = 'Custom name and number printing on any jersey in Lagos, Nigeria. Same-day delivery & nationwide shipping. Order on WhatsApp.';
+  }
   document.title = title;
   const metaDesc = document.querySelector('meta[name="description"]');
-  if(metaDesc) metaDesc.setAttribute('content', 'Buy ' + (team || 'retro football jerseys') + ' in ' + (loc || 'Lagos') + ', Nigeria. Same-day delivery across Lagos & nationwide shipping. Order on WhatsApp.');
+  if(metaDesc) metaDesc.setAttribute('content', desc);
   const ogTitle = document.querySelector('meta[property="og:title"]');
   if(ogTitle) ogTitle.setAttribute('content', title);
   const ogDesc = document.querySelector('meta[property="og:description"]');
-  if(ogDesc) ogDesc.setAttribute('content', 'Buy ' + (team || 'retro football jerseys') + ' in ' + (loc || 'Lagos') + ', Nigeria. Same-day delivery across Lagos & nationwide shipping.');
+  if(ogDesc) ogDesc.setAttribute('content', desc);
   const canonical = document.querySelector('link[rel="canonical"]');
   if(canonical) canonical.setAttribute('href', 'https://www.makelelejersey.com' + window.location.pathname);
 }
@@ -1294,20 +1312,21 @@ function handlePath(){
   }
   const seoEntry = seoUrlMap[path];
   if(seoEntry){
-    const loc = 'Lagos';
     showHome();
-    if(seoEntry.cat === 'club'){
+    if(seoEntry.type === 'team'){
       showCategory('club', undefined, seoEntry.team);
-      setLocationSEO(seoEntry.team, loc, 'club');
-    } else if(seoEntry.cat === 'retro'){
+      setLocationSEO({ team: seoEntry.team, loc: 'Lagos', type: 'team' });
+    } else if(seoEntry.type === 'retro'){
       showCategory('retro');
-      setLocationSEO(null, loc, 'retro');
-    } else if(seoEntry.cat === 'custom'){
+      setLocationSEO({ loc: 'Lagos', type: 'retro' });
+    } else if(seoEntry.type === 'custom'){
       requestAnimationFrame(() => {
         const el = document.getElementById('custom');
         if(el) el.scrollIntoView({ behavior: 'smooth' });
       });
-      setLocationSEO(null, loc, 'custom');
+      setLocationSEO({ type: 'custom' });
+    } else if(seoEntry.type === 'city'){
+      setLocationSEO({ city: seoEntry.city, type: 'city' });
     }
     return;
   }

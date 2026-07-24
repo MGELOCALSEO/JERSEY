@@ -17,6 +17,12 @@
     { "source": "/real-madrid-jersey-lagos", "destination": "/index.html" },
     { "source": "/retro-football-jerseys", "destination": "/index.html" },
     { "source": "/custom-football-jerseys", "destination": "/index.html" },
+    { "source": "/football-jerseys-lekki-lagos", "destination": "/index.html" },
+    { "source": "/football-jerseys-ikeja-lagos", "destination": "/index.html" },
+    { "source": "/football-jerseys-surulere-lagos", "destination": "/index.html" },
+    { "source": "/football-jerseys-abuja", "destination": "/index.html" },
+    { "source": "/football-jerseys-port-harcourt", "destination": "/index.html" },
+    { "source": "/football-jerseys-ibadan", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

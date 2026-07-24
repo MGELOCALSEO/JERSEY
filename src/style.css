@@ -789,6 +789,8 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
   .zone-pill{ font-size: 11px; padding: 6px 10px; }
 }
 .zone-pill.nationwide{ color: var(--pitch); border-color: rgba(34,197,94,0.35); }
+a.zone-pill{ text-decoration:none; display:inline-block; cursor:pointer; transition:border-color 0.2s,color 0.2s; }
+a.zone-pill:hover{ border-color: var(--pitch); color: var(--white); }
 
 .map-visual{
   height: 280px; border-radius: var(--radius);
