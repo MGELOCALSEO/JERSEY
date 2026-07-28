@@ -2,6 +2,8 @@
 import { inject } from '@vercel/analytics';
 inject();
 
+import { animate, stagger as animeStagger } from 'animejs';
+
 window.toggleNav = function(){
   const nav = document.querySelector('.nav');
   nav.classList.toggle('nav-open');
@@ -1472,3 +1474,49 @@ document.getElementById('common-search')?.addEventListener('input', function(){
   overlay.addEventListener('click', function(e){ if(e.target === overlay) closeSG(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !overlay.classList.contains('hidden')) closeSG(); });
 })();
+
+/* ============ PRELOADER ============ */
+(function initPreloader(){
+  const preloader = document.getElementById('preloader');
+  if(!preloader) return;
+  let hidden = false;
+  function hidePreloader(){
+    if(hidden) return;
+    hidden = true;
+    preloader.classList.add('hidden');
+    setTimeout(() => { preloader.classList.add('done'); }, 500);
+    observeCards();
+  }
+  if(document.readyState === 'complete'){ hidePreloader(); }
+  else { window.addEventListener('load', hidePreloader); }
+  setTimeout(hidePreloader, 3000);
+})();
+
+/* ============ STAGGER CARD ANIMATION ============ */
+function observeCards(){
+  const cards = document.querySelectorAll('.prod-card, .cat-card');
+  if(!cards.length) return;
+
+  cards.forEach(c => c.style.opacity = '0');
+  const visible = [];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        visible.push(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+    if(visible.length){
+      animate({
+        targets: visible,
+        translateY: [30, 0],
+        opacity: [0, 1],
+        duration: 500,
+        easing: 'easeOutQuad',
+        delay: animeStagger(80),
+      });
+    }
+  }, { threshold: 0.1 });
+
+  cards.forEach(c => observer.observe(c));
+}
