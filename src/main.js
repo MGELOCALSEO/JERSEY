@@ -6,7 +6,29 @@ import { animate, stagger as animeStagger } from 'animejs';
 
 window.toggleNav = function(){
   const nav = document.querySelector('.nav');
-  nav.classList.toggle('nav-open');
+  const wrap = nav.querySelector('.nav-links-wrap');
+  const isOpen = nav.classList.toggle('nav-open');
+  if(isOpen){
+    wrap.style.maxHeight = '0';
+    wrap.style.opacity = '0';
+    wrap.style.display = '';
+    animate({
+      targets: wrap,
+      maxHeight: [0, wrap.scrollHeight + 'px'],
+      opacity: [0, 1],
+      duration: 350,
+      easing: 'easeOutQuad',
+    });
+  } else {
+    animate({
+      targets: wrap,
+      maxHeight: [wrap.scrollHeight + 'px', 0],
+      opacity: [1, 0],
+      duration: 250,
+      easing: 'easeInQuad',
+      complete: () => { wrap.style.maxHeight = ''; }
+    });
+  }
 };
 
 document.addEventListener('click', function(e){
@@ -1485,7 +1507,6 @@ document.getElementById('common-search')?.addEventListener('input', function(){
     hidden = true;
     preloader.classList.add('hidden');
     setTimeout(() => { preloader.classList.add('done'); }, 500);
-    observeCards();
   }
   if(document.readyState === 'complete'){ hidePreloader(); }
   else { window.addEventListener('load', hidePreloader); }
@@ -1494,29 +1515,5 @@ document.getElementById('common-search')?.addEventListener('input', function(){
 
 /* ============ STAGGER CARD ANIMATION ============ */
 function observeCards(){
-  const cards = document.querySelectorAll('.prod-card, .cat-card');
-  if(!cards.length) return;
-
-  cards.forEach(c => c.style.opacity = '0');
-  const visible = [];
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        visible.push(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-    if(visible.length){
-      animate({
-        targets: visible,
-        translateY: [30, 0],
-        opacity: [0, 1],
-        duration: 500,
-        easing: 'easeOutQuad',
-        delay: animeStagger(80),
-      });
-    }
-  }, { threshold: 0.1 });
-
-  cards.forEach(c => observer.observe(c));
+  // cards render normally — no stagger
 }

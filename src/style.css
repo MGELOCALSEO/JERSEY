@@ -182,17 +182,26 @@ h1,h2,h3{
 .nav-toggle{
   display:flex; align-items:center; justify-content:center;
   width:40px; height:40px;
-  color: var(--white); background:none; border:none;
+  color: var(--white); background:none; border:none; cursor:pointer;
   margin-left:auto; margin-right:12px;
-  order:2;
+  order:2; position:relative;
 }
-.nav-toggle svg{ width:24px; height:24px; }
+.nav-toggle svg{ width:24px; height:24px; position:absolute; transition:opacity 0.25s,transform 0.25s; }
+.nav-toggle .nav-close{ opacity:0; transform:rotate(-90deg); }
+.nav-open .nav-toggle .nav-hamburger{ opacity:0; transform:rotate(90deg); }
+.nav-open .nav-toggle .nav-close{ opacity:1; transform:rotate(0deg); }
+.nav-links-wrap{
+  overflow:hidden;
+  transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s;
+}
 .nav-links{
-  display:none;
+  display:flex;
+  flex-direction:column;
   gap:0;
   font-size: 14px;
   font-weight: 500;
   color: var(--muted);
+  padding: 0 20px;
 }
 .nav-links a{
   display:block;
@@ -200,23 +209,13 @@ h1,h2,h3{
   border-top: 1px solid var(--line);
 }
 .nav-links a:hover{ color: var(--white); }
-.nav-open .nav-links{
-  display:flex;
-  flex-direction:column;
-  position:absolute; top:100%; left:0; right:0;
-  background: rgba(11,11,11,0.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-  padding: 6px 20px 14px;
-  z-index: 99;
-}
 .nav-cta{ display:none; }
 .nav-cta-mobile{ padding: 10px 16px; font-size: 13px; order:3; }
 @media(min-width: 860px){
   .nav-toggle{ display:none; }
-  .nav-links{ display:flex; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); flex-direction:row; position:static; background:none; backdrop-filter:none; border:none; padding:0; }
+  .nav-links-wrap{ overflow:visible; max-height:none !important; opacity:1 !important; }
+  .nav-links{ display:flex; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); flex-direction:row; padding:0; }
   .nav-links a{ display:inline; padding:0; border:none; }
-  .nav-open .nav-links{ display:flex; }
   .nav-cta{ display:inline-flex; }
   .nav-cta-mobile{ display:none; }
 }
@@ -817,6 +816,16 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
 .zone-pill.nationwide{ color: var(--pitch); border-color: rgba(34,197,94,0.35); }
 a.zone-pill{ text-decoration:none; display:inline-block; cursor:pointer; transition:border-color 0.2s,color 0.2s; }
 a.zone-pill:hover{ border-color: var(--pitch); color: var(--white); }
+.delivery-worldwide{
+  display:flex; align-items:center; gap:8px;
+  font-size:14px; color:var(--gold); margin-top:20px; padding-top:18px;
+  border-top:1px solid var(--line);
+  line-height:1.5;
+}
+.delivery-worldwide svg{ width:18px; height:18px; flex-shrink:0; color:var(--gold); }
+@media(max-width:480px){
+  .delivery-worldwide{ font-size:13px; }
+}
 
 .map-visual{
   height: 280px; border-radius: var(--radius);
