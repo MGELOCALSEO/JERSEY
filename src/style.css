@@ -177,14 +177,15 @@ h1,h2,h3{
   display:flex; align-items:center; justify-content:space-between;
   padding: 16px 20px;
   max-width: var(--container); margin:0 auto;
+  position:relative;
 }
 .logo{ display:block; height:40px; width:auto; }
 .nav-toggle{
   display:flex; align-items:center; justify-content:center;
   width:40px; height:40px;
   color: var(--white); background:none; border:none; cursor:pointer;
-  margin-left:auto; margin-right:12px;
-  order:2; position:relative;
+  margin-left:auto; margin-right:0;
+  position:relative;
 }
 .nav-toggle svg{ width:24px; height:24px; position:absolute; transition:opacity 0.25s,transform 0.25s; }
 .nav-toggle .nav-close{ opacity:0; transform:rotate(-90deg); }
@@ -192,7 +193,18 @@ h1,h2,h3{
 .nav-open .nav-toggle .nav-close{ opacity:1; transform:rotate(0deg); }
 .nav-links-wrap{
   overflow:hidden;
-  transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.3s;
+  max-height:0;
+  opacity:0;
+  position:absolute;
+  top:100%; left:0; width:100%;
+  background:rgba(11,11,11,0.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  transition:max-height 0.35s ease, opacity 0.25s ease;
+}
+.nav-open .nav-links-wrap{
+  max-height:500px;
+  opacity:1;
 }
 .nav-links{
   display:flex;
@@ -210,14 +222,21 @@ h1,h2,h3{
 }
 .nav-links a:hover{ color: var(--white); }
 .nav-cta{ display:none; }
-.nav-cta-mobile{ padding: 10px 16px; font-size: 13px; order:3; }
+.nav-cta-mobile{ padding: 10px 16px; font-size: 13px; order:-1; }
+
+/* mobile: logo centred, hamburger right */
+@media(max-width:859px){
+  .logo{ position:absolute; left:50%; transform:translateX(-50%); }
+}
+
 @media(min-width: 860px){
   .nav-toggle{ display:none; }
-  .nav-links-wrap{ overflow:visible; max-height:none !important; opacity:1 !important; }
+  .nav-links-wrap{ overflow:visible; max-height:none !important; opacity:1 !important; position:static; background:none; backdrop-filter:none; border-bottom:none; width:auto; transition:none; }
   .nav-links{ display:flex; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); flex-direction:row; padding:0; }
   .nav-links a{ display:inline; padding:0; border:none; }
   .nav-cta{ display:inline-flex; }
   .nav-cta-mobile{ display:none; }
+  .logo{ position:static; transform:none; }
 }
 
 /* ============ HERO ============ */

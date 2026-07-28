@@ -23,6 +23,6 @@
     { "source": "/football-jerseys-abuja", "destination": "/index.html" },
     { "source": "/football-jerseys-port-harcourt", "destination": "/index.html" },
     { "source": "/football-jerseys-ibadan", "destination": "/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!.*\\..*).*)", "destination": "/index.html" }
   ]
 }

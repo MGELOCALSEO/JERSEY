@@ -2,33 +2,8 @@
 import { inject } from '@vercel/analytics';
 inject();
 
-import { animate, stagger as animeStagger } from 'animejs';
-
 window.toggleNav = function(){
-  const nav = document.querySelector('.nav');
-  const wrap = nav.querySelector('.nav-links-wrap');
-  const isOpen = nav.classList.toggle('nav-open');
-  if(isOpen){
-    wrap.style.maxHeight = '0';
-    wrap.style.opacity = '0';
-    wrap.style.display = '';
-    animate({
-      targets: wrap,
-      maxHeight: [0, wrap.scrollHeight + 'px'],
-      opacity: [0, 1],
-      duration: 350,
-      easing: 'easeOutQuad',
-    });
-  } else {
-    animate({
-      targets: wrap,
-      maxHeight: [wrap.scrollHeight + 'px', 0],
-      opacity: [1, 0],
-      duration: 250,
-      easing: 'easeInQuad',
-      complete: () => { wrap.style.maxHeight = ''; }
-    });
-  }
+  document.querySelector('.nav').classList.toggle('nav-open');
 };
 
 document.addEventListener('click', function(e){
@@ -90,7 +65,7 @@ function setProductSEO(product){
     "@type": "Product",
     "name": product.team + ' ' + (product.name || product.kit),
     "description": product.description || '',
-    "image": product.images ? 'https://www.makelelejersey.com' + product.images[0] : '',
+    "image": product.images && product.images[0] ? 'https://www.makelelejersey.com' + product.images[0] : 'https://www.makelelejersey.com/images/misc/jersey-hero.svg',
     "brand": { "@type": "Brand", "name": product.team },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -111,7 +86,39 @@ function setProductSEO(product){
       "priceCurrency": "NGN",
       "price": product.price ? product.price.replace(/[^0-9]/g,'') : '35000',
       "availability": product.inStock !== false ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-      "url": "https://www.makelelejersey.com/product/" + product.slug
+      "url": "https://www.makelelejersey.com/product/" + product.slug,
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "NG"
+        },
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "3000",
+          "currency": "NGN"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 5,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+        "merchantReturnDays": 0
+      }
     }
   });
   document.head.appendChild(_productSchemaEl);
