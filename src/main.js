@@ -43,6 +43,13 @@ function webpUrl(path) {
   return path.replace(/\.(png|jpg|jpeg)$/i, '.webp');
 }
 
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
 function imgTag(src, alt, extra) {
   const wp = webpUrl(src);
   if (wp !== src) {
@@ -1083,6 +1090,14 @@ const commonProducts = [
   { team:'Sporting CP', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Sporting Lisbon 26-27 Home Kit_.png', slug:'sporting-away-26-27', cat:'common', price:'₦35,000', fansDesc:'Sporting CP replica away shirt with heat-pressed crest and comfortable fit.', playerDesc:'Authentic Sporting match away jersey with stitched badge and premium fabric.', description:'Sporting CP 2026/27 away kit — the Lions in a fresh away design.', material:'Premium Polyester', features:['Breathable fabric','Away colours','S – XXL available'], inStock:true },
 ];
 
+shuffleArray(products);
+shuffleArray(clubProducts);
+shuffleArray(nationalProducts);
+shuffleArray(retroProducts);
+shuffleArray(kidsProducts);
+shuffleArray(longSleeveProducts);
+shuffleArray(commonProducts);
+
 /* Unified product lookup by slug */
 const allProducts = [
   ...products,
@@ -1230,7 +1245,7 @@ function renderCategory(cat, league, team){
     const lCfg = lKey ? leagueConfig[lKey] : null;
     const badgeSrc = cat === 'retro' && retroTeamFlag[p.team]
       ? retroTeamFlag[p.team]
-      : (lCfg ? (cat === 'retro' ? lCfg.flag : lCfg.logo) : null);
+      : (lCfg ? lCfg.logo : null);
     const prodPrice = p.price || cfg.price;
     const orderCat = p.cat || cat;
     return `
@@ -1450,7 +1465,7 @@ function renderLeague(leagueId){
     const lCfgBadge = lKey ? leagueConfig[lKey] : null;
     const badgeSrc = src === 'retro' && retroTeamFlag[p.team]
       ? retroTeamFlag[p.team]
-      : (lCfgBadge ? (src === 'retro' ? lCfgBadge.flag : lCfgBadge.logo) : null);
+      : (lCfgBadge ? lCfgBadge.logo : null);
     const prodPrice = p.price || '\u20A635,000';
     return `
     <div class="cat-prod-card" data-slug="${p.slug || ''}">
