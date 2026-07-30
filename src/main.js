@@ -13,13 +13,6 @@ document.addEventListener('click', function(e){
   }
 });
 
-(() => {
-  const avif = new Image();
-  avif.onload = () => document.documentElement.dataset.avif = '1';
-  avif.onerror = () => document.documentElement.dataset.avif = '0';
-  avif.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMj8LAfS8PgAWAAQIABmhbBc=';
-})();
-
 function trackWA(source){
   try{
     if (typeof gtag === 'function') {
@@ -859,11 +852,11 @@ const leagueConfig = {
   'saudi-pro-league': { name:'Saudi Pro League', logo:'/images/football_logos/Roshn_Saudi_League_Logo.svg', flag:'/images/football_logos/saudi_flag.svg' },
   'world-cup':      { name:'World Cup',       logo:'/images/football_logos/england_flag.svg',      flag:'/images/football_logos/england_flag.svg' },
   'eredivisie':     { name:'Eredivisie',       logo:'/images/football_logos/eredivisie_logo.svg',   flag:'/images/football_logos/netherlands_flag.svg' },
-  'primeira-liga':  { name:'Primeira Liga',     logo:'/images/football_logos/primeira_liga_logo.svg', flag:'/images/football_logos/england_flag.svg' },
-  'super-lig':      { name:'Süper Lig',        logo:'/images/football_logos/super_lig_logo.svg',    flag:'/images/football_logos/germany_flag.svg' },
+  'primeira-liga':  { name:'Primeira Liga',     logo:'/images/football_logos/primeira_liga_logo.svg', flag:'/images/football_logos/portugal_flag.svg' },
+  'super-lig':      { name:'Süper Lig',        logo:'/images/football_logos/super_lig_logo.svg',    flag:'/images/football_logos/turkey_flag.svg' },
   'argentine-primera': { name:'Argentine Primera', logo:'/images/football_logos/argentina_primera_logo.svg', flag:'/images/football_logos/argentina_flag.svg' },
   'championship':     { name:'Championship',     logo:'/images/football_logos/england_flag.svg',        flag:'/images/football_logos/england_flag.svg' },
-  'brazilian-serie-a': { name:'Brasileirão', logo:'/images/football_logos/england_flag.svg', flag:'/images/football_logos/brazil_flag.svg' },
+  'brazilian-serie-a': { name:'Brasileirão', logo:'/images/football_logos/brazil_flag.svg', flag:'/images/football_logos/brazil_flag.svg' },
 };
 
 const clubLeague = {
