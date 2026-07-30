@@ -206,15 +206,10 @@ cycleImages('club-imgs', [
 ], 7000);
 
 cycleImages('retro-imgs', [
-  '/images/retro/manchester-united-1998-99-home-kit.jpg',
-  '/images/retro/manchester-united-2007-08-home-kit.jpg',
-  '/images/retro/arsenal-fc-2005-06-home-kit.jpg',
-  '/images/retro/chelsea-fc-2012-13-home-kit.jpg',
-  '/images/retro/fc-barcelona-2010-11-home-kit.jpg',
-  '/images/retro/liverpool-fc-2017-18-home-kit.jpg',
-  '/images/retro/real-madrid-1998-99-home-kit.jpg',
-  '/images/retro/ac-milan-2006-07-home-kit.jpg',
-  '/images/retro/nigeria-1994-95-home-kit.jpg',
+  '/images/retro/Manchester United Home Jersey 1998-1999 front.png',
+  '/images/retro/Arsenal Home Jersey 2002-2004 Front_.png',
+  '/images/retro/Nigeria Home Shirt 1994 front_.png',
+  '/images/retro/Brazil Home Jersey 2002 front.png',
 ], 3500);
 
 cycleImages('kids-imgs', [
