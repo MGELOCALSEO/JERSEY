@@ -84,6 +84,13 @@ const productSlugs = [
   'psv-home-26-27', 'psv-away-26-27', 'psv-third-26-27',
   'corinthians-home-26-27', 'corinthians-away-26-27',
   'sporting-away-26-27',
+  'coventry-home-26-27',
+  'super-eagles-home-26-27',
+  'benfica-home-26-27', 'benfica-away-26-27',
+  'besiktas-home-26-27', 'besiktas-away-26-27', 'besiktas-third-26-27',
+  'boca-home-26-27', 'braga-home-26-27',
+  'porto-home-26-27', 'porto-away-26-27',
+  'sporting-home-26-27', 'strasbourg-home-26-27',
 ];
 
 export default defineConfig({

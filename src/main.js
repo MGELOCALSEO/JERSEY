@@ -850,12 +850,12 @@ const leagueConfig = {
   'serie-a':        { name:'Serie A',         logo:'/images/football_logos/serie_a_logo.png',       flag:'/images/football_logos/italy_flag.svg' },
   'ligue1':         { name:'Ligue 1',         logo:'/images/football_logos/ligue1_logo.png',        flag:'/images/football_logos/france_flag.svg' },
   'saudi-pro-league': { name:'Saudi Pro League', logo:'/images/football_logos/Roshn_Saudi_League_Logo.svg', flag:'/images/football_logos/saudi_flag.svg' },
-  'world-cup':      { name:'World Cup',       logo:'/images/football_logos/england_flag.svg',      flag:'/images/football_logos/england_flag.svg' },
+  'world-cup':      { name:'World Cup',       logo:'/images/football_logos/world_cup_logo.svg',    flag:'/images/football_logos/england_flag.svg' },
   'eredivisie':     { name:'Eredivisie',       logo:'/images/football_logos/eredivisie_logo.svg',   flag:'/images/football_logos/netherlands_flag.svg' },
   'primeira-liga':  { name:'Primeira Liga',     logo:'/images/football_logos/primeira_liga_logo.svg', flag:'/images/football_logos/portugal_flag.svg' },
   'super-lig':      { name:'Süper Lig',        logo:'/images/football_logos/super_lig_logo.svg',    flag:'/images/football_logos/turkey_flag.svg' },
   'argentine-primera': { name:'Argentine Primera', logo:'/images/football_logos/argentina_primera_logo.svg', flag:'/images/football_logos/argentina_flag.svg' },
-  'championship':     { name:'Championship',     logo:'/images/football_logos/england_flag.svg',        flag:'/images/football_logos/england_flag.svg' },
+  'championship':     { name:'Championship',     logo:'/images/football_logos/championship_logo.svg',    flag:'/images/football_logos/england_flag.svg' },
   'brazilian-serie-a': { name:'Brasileirão', logo:'/images/football_logos/brazil_flag.svg', flag:'/images/football_logos/brazil_flag.svg' },
 };
 
@@ -1415,7 +1415,7 @@ function renderLeague(leagueId){
 }
 
 function hideAllViews(){
-  const ids = ['category-view','others-view','long-sleeve-view','common-view','league-view','product-view'];
+  const ids = ['category-view','others-view','long-sleeve-view','common-view','league-view','product-view','not-found'];
   ids.forEach(id => { const el = document.getElementById(id); if(el) el.classList.add('hidden'); });
 }
 
@@ -1627,7 +1627,19 @@ function handlePath(){
     });
     return;
   }
-  showHome();
+  show404();
+}
+
+function show404(){
+  resetSEO();
+  document.title = 'Page Not Found | ' + SITE_NAME;
+  homeSections().forEach(el => {
+    el.dataset._disp = el.style.display;
+    el.style.setProperty('display', 'none', 'important');
+  });
+  hideAllViews();
+  document.getElementById('not-found').classList.remove('hidden');
+  document.body.style.overflow = '';
 }
 
 function navigateTo(path){
