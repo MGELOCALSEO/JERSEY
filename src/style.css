@@ -519,22 +519,6 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
 
 /* ============ SHOP BY LEAGUE ============ */
 #league{ padding: 60px 0; }
-.league-scroll{
-  display:flex; gap:20px; overflow-x:auto;
-  padding: 8px 4px 16px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-}
-@media(max-width: 640px){
-  .league-scroll{
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    padding-right: 20px;
-  }
-}
-.league-scroll::-webkit-scrollbar{ height:6px; }
-.league-scroll::-webkit-scrollbar-thumb{ background:var(--line); border-radius:3px; }
 .league-card{
   flex:0 0 auto; width:160px;
   scroll-snap-align:start;
@@ -651,6 +635,13 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
   -ms-overflow-style:none; scrollbar-width:none;
   padding:4px 2px;
 }
+@media(max-width: 640px){
+  .league-scroll{
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    padding-right: 20px;
+  }
+}
 .league-scroll::-webkit-scrollbar{ display:none; }
 .league-arrow{
   flex-shrink:0; width:40px; height:40px;
@@ -671,19 +662,6 @@ section{ padding: 68px 0; position: relative; scroll-margin-top: 80px; }
   transition:background .2s, width .2s;
 }
 .league-dot.active{ background:var(--gold); width:24px; border-radius:4px; }
-.cat-visual{
-  height: 170px;
-  position: relative;
-  display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
-}
-.cat-visual svg{ width: 92px; height:92px; }
-.cat-visual img{ width: 100%; height: 100%; object-fit: cover; }
-.cat-body{ padding: 18px 20px 22px; flex:1; display:flex; flex-direction:column; }
-.cat-body h3{ font-family: var(--font-body); text-transform:none; font-size: 17px; font-weight:700; margin-bottom:6px; }
-.cat-body p{ font-size: 13px; color: var(--muted); margin-bottom: 18px; flex:1; }
-.cat-body .btn{ padding: 11px 18px; font-size: 13px; }
-
 .kit-royal{ background: linear-gradient(160deg,#0c1a3a,#070a17); }
 
 /* ============ PRODUCT GRID ============ */
