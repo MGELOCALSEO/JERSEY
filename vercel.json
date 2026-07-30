@@ -10,6 +10,7 @@
     { "source": "/kids", "destination": "/kids.html" },
     { "source": "/product/:slug", "destination": "/index.html" },
     { "source": "/category/:cat", "destination": "/index.html" },
+    { "source": "/league/:id", "destination": "/index.html" },
     { "source": "/chelsea-jersey-lagos", "destination": "/index.html" },
     { "source": "/manchester-united-jersey-lagos", "destination": "/index.html" },
     { "source": "/arsenal-jersey-lagos", "destination": "/index.html" },

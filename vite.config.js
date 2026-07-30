@@ -74,6 +74,16 @@ const productSlugs = [
   'portugal-away-long-sleeve-26-27', 'brazil-home-long-sleeve-26-27',
   'brazil-away-long-sleeve-26-27', 'england-home-long-sleeve-26-27',
   'japan-away-long-sleeve-26-27', 'spain-away-long-sleeve-26-27',
+  'chelsea-third-26-27', 'al-hilal-away-26-27',
+  'monaco-third-26-27', 'napoli-third-26-27',
+  'atalanta-home-26-27', 'atalanta-away-26-27',
+  'como-home-26-27',
+  'eintracht-frankfurt-home-26-27', 'eintracht-frankfurt-away-26-27',
+  'rb-leipzig-home-26-27',
+  'ajax-away-26-27', 'ajax-third-26-27',
+  'psv-home-26-27', 'psv-away-26-27', 'psv-third-26-27',
+  'corinthians-home-26-27', 'corinthians-away-26-27',
+  'sporting-away-26-27',
 ];
 
 export default defineConfig({
@@ -97,6 +107,11 @@ export default defineConfig({
         '/category/others', '/category/long-sleeve', '/category/common',
         '/collection', '/custom-kits', '/reviews', '/faq',
         ...productSlugs.map(s => '/product/' + s),
+        ...Object.keys({
+          'premier-league':1, 'laliga':1, 'bundesliga':1, 'serie-a':1, 'ligue1':1,
+          'saudi-pro-league':1, 'eredivisie':1, 'primeira-liga':1, 'super-lig':1,
+          'argentine-primera':1, 'world-cup':1, 'championship':1, 'brazilian-serie-a':1
+        }).map(l => '/league/' + l),
       ]
     })
   ]

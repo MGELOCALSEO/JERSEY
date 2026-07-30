@@ -1170,6 +1170,23 @@ footer{
 /* ============ COMMON JERSEY - COMING SOON ============ */
 #common-view{ padding: 100px 0 60px; scroll-margin-top: 80px; }
 #common-view.hidden{ display:none; }
+#league-view{ padding: 100px 0 60px; scroll-margin-top: 80px; }
+#league-view.hidden{ display:none; }
+.lv-source-bar{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 0 16px; flex-wrap:wrap;
+}
+.lv-source-chip{
+  padding:7px 16px; border-radius:20px;
+  border:1px solid var(--line); background:var(--bg-card);
+  color:var(--muted); font-size:13px; font-weight:600;
+  cursor:pointer; transition:all .2s;
+}
+.lv-source-chip:hover{ border-color:var(--muted-2); color:var(--white); }
+.lv-source-chip.active{
+  background:var(--gold); border-color:var(--gold);
+  color:#0B0B0B;
+}
 .coming-soon-card{
   max-width:560px; margin:0 auto;
   background:var(--bg-card); border:1px solid var(--line);
@@ -1571,7 +1588,8 @@ footer{
 @media(max-width: 480px){
   #others-view,
   #long-sleeve-view,
-  #common-view{ padding: 70px 0 40px; }
+  #common-view,
+  #league-view{ padding: 70px 0 40px; }
 }
 
 /* Hero overlay: reduce bottom padding on mobile */

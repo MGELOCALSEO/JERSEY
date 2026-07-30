@@ -218,43 +218,43 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       <div class="league-scroll" id="league-scroll">
-      <a class="league-card" href="/category/club?league=premier-league">
+      <a class="league-card" href="/league/premier-league">
         <img src="/images/football_logos/premier_league_logo.png" alt="Premier League">
         <span class="league-card-name">Premier League</span>
       </a>
-      <a class="league-card" href="/category/club?league=laliga">
+      <a class="league-card" href="/league/laliga">
         <img src="/images/football_logos/laliga_logo.png" alt="La Liga">
         <span class="league-card-name">La Liga</span>
       </a>
-      <a class="league-card" href="/category/club?league=bundesliga">
+      <a class="league-card" href="/league/bundesliga">
         <img src="/images/football_logos/bundesliga_logo.png" alt="Bundesliga">
         <span class="league-card-name">Bundesliga</span>
       </a>
-      <a class="league-card" href="/category/club?league=serie-a">
+      <a class="league-card" href="/league/serie-a">
         <img src="/images/football_logos/serie_a_logo.png" alt="Serie A">
         <span class="league-card-name">Serie A</span>
       </a>
-      <a class="league-card" href="/category/club?league=ligue1">
+      <a class="league-card" href="/league/ligue1">
         <img src="/images/football_logos/ligue1_logo.png" alt="Ligue 1">
         <span class="league-card-name">Ligue 1</span>
       </a>
-      <a class="league-card" href="/category/club?league=saudi-pro-league">
+      <a class="league-card" href="/league/saudi-pro-league">
         <img src="/images/football_logos/Roshn_Saudi_League_Logo.svg" alt="Saudi Pro League">
         <span class="league-card-name">Saudi Pro League</span>
       </a>
-      <a class="league-card" href="/category/club?league=eredivisie">
+      <a class="league-card" href="/league/eredivisie">
         <img src="/images/football_logos/eredivisie_logo.svg" alt="Eredivisie">
         <span class="league-card-name">Eredivisie</span>
       </a>
-      <a class="league-card" href="/category/club?league=primeira-liga">
+      <a class="league-card" href="/league/primeira-liga">
         <img src="/images/football_logos/primeira_liga_logo.svg" alt="Primeira Liga">
         <span class="league-card-name">Primeira Liga</span>
       </a>
-      <a class="league-card" href="/category/club?league=super-lig">
+      <a class="league-card" href="/league/super-lig">
         <img src="/images/football_logos/super_lig_logo.svg" alt="Süper Lig">
         <span class="league-card-name">Süper Lig</span>
       </a>
-      <a class="league-card" href="/category/club?league=argentine-primera">
+      <a class="league-card" href="/league/argentine-primera">
         <img src="/images/football_logos/argentina_primera_logo.svg" alt="Argentine Primera">
         <span class="league-card-name">Argentine Primera</span>
       </a>
@@ -623,6 +623,40 @@
       </div>
     </div>
     <div class="cat-prod-grid" id="common-grid"></div>
+  </div>
+</section>
+
+<!-- ============ LEAGUE VIEW ============ -->
+<section id="league-view" class="hidden">
+  <div class="wrap">
+    <div class="cv-head">
+      <div class="cv-breadcrumb"><a href="/">Home</a><span class="cv-bc-sep">/</span><span id="lv-bc-title">League</span></div>
+      <div class="section-head">
+        <div class="eyebrow">League Collection</div>
+        <h2 id="lv-title">League Jerseys</h2>
+        <p id="lv-subtitle">Browse all jerseys from this competition.</p>
+      </div>
+    </div>
+    <div class="league-bar" id="lv-league-bar"></div>
+    <div class="filter-bar">
+      <div class="filter-search">
+        <input type="text" id="lv-search" placeholder="Search by team or kit..." autocomplete="off">
+      </div>
+      <div class="filter-season">
+        <select id="lv-season">
+          <option value="">All Seasons</option>
+        </select>
+      </div>
+    </div>
+    <div class="lv-source-bar" id="lv-source-bar">
+      <button class="lv-source-chip active" data-src="all">All</button>
+      <button class="lv-source-chip" data-src="club">Club</button>
+      <button class="lv-source-chip" data-src="common">Common</button>
+      <button class="lv-source-chip" data-src="retro">Retro</button>
+      <button class="lv-source-chip" data-src="long-sleeve">Long Sleeve</button>
+    </div>
+    <div class="cat-prod-grid" id="lv-grid"></div>
+    <div class="cv-pagination" id="lv-pagination"></div>
   </div>
 </section>
 
