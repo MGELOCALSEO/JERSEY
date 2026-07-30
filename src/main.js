@@ -35,14 +35,28 @@ function trackWA(source){
 function cycleImages(id, list, ms){
   const el = document.getElementById(id);
   if(!el) return;
+  const wpList = list.map(webpUrl);
   let i = 0;
-  setInterval(() => { i = (i + 1) % list.length; el.src = list[i]; }, ms);
+  setInterval(() => { i = (i + 1) % wpList.length; el.src = wpList[i]; }, ms);
 }
 
 const SITE_NAME = 'Makelele Jerseys';
 const DEFAULT_TITLE = 'Makelele Jerseys | Original Football Jerseys in Lagos, Nigeria';
 const DEFAULT_DESC = 'Shop authentic club jerseys, Super Eagles kits, retro collections and custom football shirts. Same-day Lagos delivery, nationwide shipping. Order on WhatsApp.';
 let _productSchemaEl = null;
+
+function webpUrl(path) {
+  if (!path) return '';
+  return path.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+}
+
+function imgTag(src, alt, extra) {
+  const wp = webpUrl(src);
+  if (wp !== src) {
+    return '<picture><source srcset="' + wp + '" type="image/webp"><img src="' + src + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '></picture>';
+  }
+  return '<img src="' + src + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '>';
+}
 
 function setProductSEO(product){
   document.title = product.team + ' ' + (product.name || product.kit) + ' | ' + SITE_NAME;
@@ -325,7 +339,7 @@ function showProductView(btn, productData, fromRouter){
   const gallery = document.getElementById('pv-gallery-imgs');
   if(gallery){
     gallery.innerHTML = images.map(src =>
-      '<img src="' + src + '" alt="' + team + ' ' + kit + '" loading="lazy">'
+      imgTag(src, team + ' ' + kit)
     ).join('');
   }
   const galleryWrap = document.getElementById('pv-gallery');
@@ -1146,7 +1160,7 @@ function renderCategory(cat, league, team){
       <div class="cat-prod-visual">
         <span class="cat-prod-price">${prodPrice}</span>
         ${(p.images && p.images.length > 1) ? '<span class="cat-prod-views">2 Views</span>' : ''}
-        <img src="${p.images?.[0] || p.img}" alt="${p.team} ${p.kit}" loading="lazy">
+        ${imgTag(p.images?.[0] || p.img, p.team + ' ' + p.kit)}
       </div>
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
@@ -1365,7 +1379,7 @@ function renderLeague(leagueId){
       <div class="cat-prod-visual">
         <span class="cat-prod-price">${prodPrice}</span>
         ${(p.images && p.images.length > 1) ? '<span class="cat-prod-views">2 Views</span>' : ''}
-        <img src="${p.images?.[0] || p.img}" alt="${p.team} ${p.kit}" loading="lazy">
+        ${imgTag(p.images?.[0] || p.img, p.team + ' ' + p.kit)}
       </div>
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfgBadge.name + '"> ' : ''}${p.team}</div>
@@ -1407,7 +1421,7 @@ function renderLongSleeve(){
     <div class="cat-prod-card" data-slug="${p.slug}">
       <div class="cat-prod-visual">
         <span class="cat-prod-price">&#8358;45,000</span>
-        <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
+        ${imgTag(p.img, p.team + ' ' + p.kit)}
       </div>
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
@@ -1478,7 +1492,7 @@ function renderCommon(){
     <div class="cat-prod-card" data-slug="${p.slug}">
       <div class="cat-prod-visual">
         <span class="cat-prod-price">&#8358;35,000 / &#8358;55,000</span>
-        <img src="${p.img}" alt="${p.team} ${p.kit}" loading="lazy">
+        ${imgTag(p.img, p.team + ' ' + p.kit)}
       </div>
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
