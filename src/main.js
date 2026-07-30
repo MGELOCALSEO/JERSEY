@@ -1114,12 +1114,23 @@ function renderCategory(cat, league, team){
       p.team.toLowerCase().includes(searchVal) ||
       p.kit.toLowerCase().includes(searchVal)
     );
-    const commonMatches = commonProducts.filter(p =>
-      p.team.toLowerCase().includes(searchVal) ||
-      p.kit.toLowerCase().includes(searchVal)
-    );
-    if(commonMatches.length > 0){
-      list = [...list, ...commonMatches.map(p => ({ ...p, _fromCommon: true }))];
+    const crossArrays = [
+      { list: commonProducts, tag: 'Common Jersey' },
+      { list: clubProducts, tag: 'Club Jersey' },
+      { list: nationalProducts, tag: 'National Jersey' },
+      { list: retroProducts, tag: 'Retro Jersey' },
+      { list: kidsProducts, tag: 'Kids Jersey' },
+      { list: longSleeveProducts, tag: 'Long Sleeve Jersey' },
+    ];
+    for(const arr of crossArrays){
+      if(arr.list === cfg.list) continue;
+      const matches = arr.list.filter(p =>
+        p.team.toLowerCase().includes(searchVal) ||
+        p.kit.toLowerCase().includes(searchVal)
+      );
+      if(matches.length > 0){
+        list = [...list, ...matches.map(p => ({ ...p, _fromCross: true }))];
+      }
     }
   }
   if(leagueBar){
@@ -1147,13 +1158,19 @@ function renderCategory(cat, league, team){
   const pageList = list.slice(start, start + PER_PAGE);
 
   grid.innerHTML = pageList.map(p => {
-    const isCommon = p._fromCommon;
-    const lKey = isCommon ? commonLeague[p.team] : ((cat === 'club' || cat === 'retro') ? teamLeague[p.team] : null);
+    const isCross = p._fromCross;
+    let lKey = null;
+    if(isCross){
+      lKey = commonLeague[p.team] || clubLeague[p.team] || retroLeague[p.team] || longSleeveLeague[p.team] || null;
+    } else {
+      lKey = (cat === 'club' || cat === 'retro') ? teamLeague[p.team] : null;
+    }
     const lCfg = lKey ? leagueConfig[lKey] : null;
     const badgeSrc = cat === 'retro' && retroTeamFlag[p.team]
       ? retroTeamFlag[p.team]
       : (lCfg ? (cat === 'retro' ? lCfg.flag : lCfg.logo) : null);
     const prodPrice = p.price || cfg.price;
+    const orderCat = p.cat || cat;
     return `
     <div class="cat-prod-card" data-slug="${p.slug || ''}">
       <div class="cat-prod-visual">
@@ -1164,7 +1181,7 @@ function renderCategory(cat, league, team){
       <div class="cat-prod-body">
         <div class="team">${badgeSrc ? '<img class="league-badge" src="' + badgeSrc + '" alt="' + lCfg.name + '"> ' : ''}${p.team}</div>
         <h3>${p.kit}</h3>
-        <button class="btn btn-primary btn-block" data-order-cat data-cat="${isCommon ? 'common' : cat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
+        <button class="btn btn-primary btn-block" data-order-cat data-cat="${orderCat}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Order Now</button>
       </div>
     </div>`;
   }).join('');
@@ -1412,7 +1429,15 @@ function hideAllViews(){
 function renderLongSleeve(){
   const grid = document.getElementById('ls-grid');
   if(!grid) return;
-  grid.innerHTML = longSleeveProducts.map(p => {
+  const searchVal = (document.getElementById('ls-search')?.value || '').trim().toLowerCase();
+  let list = longSleeveProducts;
+  if(searchVal){
+    list = list.filter(p =>
+      p.team.toLowerCase().includes(searchVal) ||
+      p.kit.toLowerCase().includes(searchVal)
+    );
+  }
+  grid.innerHTML = list.map(p => {
     const lKey = longSleeveLeague[p.team];
     const lCfg = lKey ? leagueConfig[lKey] : null;
     const badgeSrc = lCfg ? lCfg.logo : null;
@@ -1431,7 +1456,7 @@ function renderLongSleeve(){
   }).join('');
   grid.querySelectorAll('.ls-view-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const prod = longSleeveProducts.find(p => p.slug === btn.dataset.slug);
+      const prod = findProductBySlug(btn.dataset.slug);
       if(prod) showProductView(btn, { ...prod, images: [prod.img], tag: 'Long Sleeve Jersey' }, false);
     });
   });
@@ -1475,22 +1500,33 @@ function renderCommon(){
       p.team.toLowerCase().includes(searchVal) ||
       p.kit.toLowerCase().includes(searchVal)
     );
-    const clubMatches = clubProducts.filter(p =>
-      p.team.toLowerCase().includes(searchVal) ||
-      p.kit.toLowerCase().includes(searchVal)
-    );
-    if(clubMatches.length > 0){
-      list = [...list, ...clubMatches.map(p => ({ ...p, _fromClub: true }))];
+    const crossArrays = [
+      { list: clubProducts, tag: 'Club Jersey' },
+      { list: nationalProducts, tag: 'National Jersey' },
+      { list: retroProducts, tag: 'Retro Jersey' },
+      { list: kidsProducts, tag: 'Kids Jersey' },
+      { list: longSleeveProducts, tag: 'Long Sleeve Jersey' },
+    ];
+    for(const arr of crossArrays){
+      const matches = arr.list.filter(p =>
+        p.team.toLowerCase().includes(searchVal) ||
+        p.kit.toLowerCase().includes(searchVal)
+      );
+      if(matches.length > 0){
+        list = [...list, ...matches.map(p => ({ ...p, _fromCross: true }))];
+      }
     }
   }
   grid.innerHTML = list.map(p => {
-    const lKey = commonLeague[p.team];
+    const isCross = p._fromCross;
+    const lKey = commonLeague[p.team] || clubLeague[p.team] || retroLeague[p.team] || longSleeveLeague[p.team] || null;
     const lCfg = lKey ? leagueConfig[lKey] : null;
     const badgeSrc = lCfg ? lCfg.logo : null;
+    const prodPrice = p._fromCross ? (p.price || '₦35,000') : '&#8358;35,000 / &#8358;55,000';
     return `
     <div class="cat-prod-card" data-slug="${p.slug}">
       <div class="cat-prod-visual">
-        <span class="cat-prod-price">&#8358;35,000 / &#8358;55,000</span>
+        <span class="cat-prod-price">${prodPrice}</span>
         ${imgTag(p.img, p.team + ' ' + p.kit)}
       </div>
       <div class="cat-prod-body">
@@ -1502,8 +1538,8 @@ function renderCommon(){
   }).join('');
   grid.querySelectorAll('.ls-view-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const prod = commonProducts.find(p => p.slug === btn.dataset.slug);
-      if(prod) showProductView(btn, { ...prod, images: [prod.img], tag: 'Common Jersey' }, false);
+      const prod = findProductBySlug(btn.dataset.slug);
+      if(prod) showProductView(btn, { ...prod, images: [prod.img], tag: prod.tag || 'Common Jersey' }, false);
     });
   });
 }
@@ -1656,6 +1692,12 @@ let _commonSearchTimer;
 document.getElementById('common-search')?.addEventListener('input', function(){
   clearTimeout(_commonSearchTimer);
   _commonSearchTimer = setTimeout(renderCommon, 300);
+});
+
+let _lsSearchTimer;
+document.getElementById('ls-search')?.addEventListener('input', function(){
+  clearTimeout(_lsSearchTimer);
+  _lsSearchTimer = setTimeout(renderLongSleeve, 300);
 });
 
 let _leagueSearchTimer;
