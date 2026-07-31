@@ -2,16 +2,22 @@
 import { inject } from '@vercel/analytics';
 inject();
 
-window.toggleNav = function(){
-  document.querySelector('.nav').classList.toggle('nav-open');
-};
-
-document.addEventListener('click', function(e){
-  const nav = document.querySelector('.nav');
-  if(nav.classList.contains('nav-open') && !nav.contains(e.target)){
-    nav.classList.remove('nav-open');
-  }
+// Nav bar & dropdowns (Alpine.js)
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+document.addEventListener('alpine:init', () => {
+  Alpine.data('navMenu', () => ({
+    navOpen: false,
+  }));
+  Alpine.data('navItem', () => ({
+    open: false,
+    toggle(){ this.open = !this.open; },
+    enter(){ if(matchMedia('(hover: hover)').matches) this.open = true; },
+    leave(){ if(matchMedia('(hover: hover)').matches) this.open = false; },
+    close(){ this.open = false; },
+  }));
 });
+Alpine.start();
 
 function trackWA(source){
   try{
@@ -795,7 +801,6 @@ const nationalProducts = [
   { team:'Portugal', kit:'Away 26/27', img:'/images/Country/Portugal Away Jersey 26_27.jpg', images:['/images/Country/Portugal Away Jersey 26_27.jpg'], slug:'portugal-away-26-27', cat:'national', price:'₦35,000', description:'Portugal\'s 2026/27 away kit — a sleek alternative for the Seleção.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','FPF badge','Regular fit'], inStock:true },
   { team:'Netherlands', kit:'Home 26/27', img:'/images/Country/Netherlands Home Jersey 26_27.jpg', images:['/images/Country/Netherlands Home Jersey 26_27.jpg'], slug:'netherlands-home-26-27', cat:'national', price:'₦35,000', description:'Netherlands\' 2026/27 home kit in iconic orange. The Oranje in full flight.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','KNVB crest','Vibrant orange'], inStock:true },
   { team:'Belgium', kit:'Home 26/27', img:'/images/Country/Belgium Home Jersey 26_27.jpg', images:['/images/Country/Belgium Home Jersey 26_27.jpg'], slug:'belgium-home-26-27', cat:'national', price:'₦30,000', description:'Belgium\'s 2026/27 home kit — the Red Devils in classic red.', material:'100% Recycled Polyester', features:['Adidas design','RBFA crest','Athletic fit'], inStock:true },
-  { team:'Italy', kit:'Home 26/27', img:'/images/Country/Italy Home Jersey 26_27.jpg', images:['/images/Country/Italy Home Jersey 26_27.jpg'], slug:'italy-home-26-27', cat:'national', price:'₦35,000', description:'Italy\'s 2026/27 home kit — the Azzurri in iconic blue.', material:'100% Recycled Polyester', features:['Adidas design','FIGC crest','Classic blue'], inStock:true },
   { team:'Croatia', kit:'Home 26/27', img:'/images/Country/Croatia Home Jersey 26_27.png', images:['/images/Country/Croatia Home Jersey 26_27.png'], slug:'croatia-home-26-27', cat:'national', price:'₦30,000', description:'Croatia\'s 2026/27 home kit — the iconic red and white chequers.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','HNS crest','Classic chequers'], inStock:true },
   { team:'Mexico', kit:'Home 26/27', img:'/images/Country/Mexico Home Jersey 26_27.jpg', images:['/images/Country/Mexico Home Jersey 26_27.jpg'], slug:'mexico-home-26-27', cat:'national', price:'₦30,000', description:'Mexico\'s 2026/27 home kit — El Tri in classic green.', material:'100% Recycled Polyester', features:['Adidas design','FMF crest','Bold green'], inStock:true },
   { team:'Mexico', kit:'Away 26/27', img:'/images/Country/Mexico Away Jersey 26_27.jpg', images:['/images/Country/Mexico Away Jersey 26_27.jpg'], slug:'mexico-away-26-27', cat:'national', price:'₦30,000', description:'Mexico\'s 2026/27 away kit — a fresh alternative for El Tri.', material:'100% Recycled Polyester', features:['Adidas design','FMF badge','Clean white'], inStock:true },
@@ -917,7 +922,7 @@ const leagueConfig = {
   'serie-a':        { name:'Serie A',         logo:'/images/football_logos/serie_a_logo.png',       flag:'/images/football_logos/italy_flag.svg' },
   'ligue1':         { name:'Ligue 1',         logo:'/images/football_logos/ligue1_logo.png',        flag:'/images/football_logos/france_flag.svg' },
   'saudi-pro-league': { name:'Saudi Pro League', logo:'/images/football_logos/Roshn_Saudi_League_Logo.svg', flag:'/images/football_logos/saudi_flag.svg' },
-  'world-cup':      { name:'World Cup',       logo:'/images/football_logos/world_cup_logo.svg',    flag:'/images/football_logos/england_flag.svg' },
+  'world-cup':      { name:'World Cup',       logo:'/images/football_logos/world_cup_logo.svg',    flag:'/images/football_logos/world_cup_logo.svg' },
   'eredivisie':     { name:'Eredivisie',       logo:'/images/football_logos/eredivisie_logo.svg',   flag:'/images/football_logos/netherlands_flag.svg' },
   'primeira-liga':  { name:'Primeira Liga',     logo:'/images/football_logos/primeira_liga_logo.svg', flag:'/images/football_logos/portugal_flag.svg' },
   'super-lig':      { name:'Süper Lig',        logo:'/images/football_logos/super_lig_logo.svg',    flag:'/images/football_logos/turkey_flag.svg' },
@@ -1082,7 +1087,7 @@ const commonProducts = [
   { team:'Strasbourg', kit:'Home 26/27', img:'/images/COMMON JERSEYS/Strasbourg Home Jersey 26_27.png', slug:'strasbourg-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Strasbourg replica home shirt — great quality at a great price.', playerDesc:'Pro-level Strasbourg home jersey with authentic crest and performance fabric.', description:'Strasbourg 2026/27 home kit — the Racing in classic blue.', material:'Premium Polyester', features:['Breathable fabric','Club crest','S – XXL available'], inStock:true },
   { team:'Corinthians', kit:'Home 26/27', img:'/images/club/2026-27 shirts/Corinthians Home Jersey 26_27.png', slug:'corinthians-home-26-27', cat:'common', price:'₦35,000', fansDesc:'Corinthians replica home shirt with the iconic black & white.', playerDesc:'Authentic Corinthians match jersey with stitched crest and premium finish.', description:'Corinthians 2026/27 home kit — the Timão in classic black & white.', material:'Premium Polyester', features:['Breathable fabric','Classic design','S – XXL available'], inStock:true },
   { team:'Corinthians', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Corinthians Away Jersey 26_27.png', slug:'corinthians-away-26-27', cat:'common', price:'₦35,000', fansDesc:'Corinthians replica away shirt in a striking design.', playerDesc:'Pro-level Corinthians away kit with stitched crest and lightweight fabric.', description:'Corinthians 2026/27 away kit — a fresh alternative for the Timão.', material:'Premium Polyester', features:['Breathable fabric','Distinctive design','S – XXL available'], inStock:true },
-  { team:'Sporting CP', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Sporting Lisbon 26-27 Home Kit_.png', slug:'sporting-away-26-27', cat:'common', price:'₦35,000', fansDesc:'Sporting CP replica away shirt with heat-pressed crest and comfortable fit.', playerDesc:'Authentic Sporting match away jersey with stitched badge and premium fabric.', description:'Sporting CP 2026/27 away kit — the Lions in a fresh away design.', material:'Premium Polyester', features:['Breathable fabric','Away colours','S – XXL available'], inStock:true },
+  { team:'Sporting CP', kit:'Away 26/27', img:'/images/club/2026-27 shirts/Sporting Lisbon 26-27 Away Kit_.png', slug:'sporting-away-26-27', cat:'common', price:'₦35,000', fansDesc:'Sporting CP replica away shirt with heat-pressed crest and comfortable fit.', playerDesc:'Authentic Sporting match away jersey with stitched badge and premium fabric.', description:'Sporting CP 2026/27 away kit — the Lions in a fresh away design.', material:'Premium Polyester', features:['Breathable fabric','Away colours','S – XXL available'], inStock:true },
 ];
 
 shuffleArray(products);
@@ -1094,15 +1099,20 @@ shuffleArray(longSleeveProducts);
 shuffleArray(commonProducts);
 
 /* Unified product lookup by slug */
-const allProducts = [
-  ...products,
+const _allSeen = new Set();
+const _all = [];
+for(const src of [
   ...clubProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: getKitType(p.kit) || catConfig[p.cat]?.label || 'Kit' })),
   ...nationalProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...retroProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...kidsProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: catConfig[p.cat]?.label || 'Kit' })),
   ...longSleeveProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: 'Long Sleeve Jersey' })),
   ...commonProducts.map(p => ({ ...p, id: p.slug, name: p.kit, tag: 'Common Jersey' })),
-];
+  ...products,
+]){
+  if(!_allSeen.has(src.slug)){ _allSeen.add(src.slug); _all.push(src); }
+}
+const allProducts = _all;
 function findProductBySlug(slug){ return allProducts.find(p => p.slug === slug); }
 
 function getKitType(kit){
