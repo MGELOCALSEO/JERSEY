@@ -250,8 +250,10 @@ h1,h2,h3{
 }
 
 @media(min-width: 860px){
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ flex:0 0 auto; }
   .nav-toggle{ display:none; }
-  .nav-links-wrap{ overflow:visible; max-height:none !important; opacity:1 !important; position:static; background:none; backdrop-filter:none; border-bottom:none; width:auto; transition:none; }
+  .nav-links-wrap{ flex:1 1 auto; display:flex; justify-content:center; overflow:visible; max-height:none !important; opacity:1 !important; position:static; background:none; backdrop-filter:none; border-bottom:none; width:auto; transition:none; }
   .nav-links{ display:flex; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); flex-direction:row; padding:0; }
   .nav-links > li > a{ display:inline; padding:0; border:none; flex:0 0 auto; }
   .nav-item{ flex-wrap:nowrap; }
