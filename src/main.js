@@ -137,6 +137,7 @@ function setProductSEO(product){
       },
       "hasMerchantReturnPolicy": {
         "@type": "MerchantReturnPolicy",
+        "applicableCountry": "NG",
         "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
         "merchantReturnDays": 0
       }
