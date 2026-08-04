@@ -180,7 +180,7 @@ h1,h2,h3{
   max-width: var(--container); margin:0 auto;
   position:relative;
 }
-.logo{ display:block; height:72px; width:auto; }
+.logo{ display:block; height:80px; width:auto; }
 .nav-toggle{
   display:flex; align-items:center; justify-content:center;
   width:40px; height:40px;
