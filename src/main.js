@@ -12,6 +12,7 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('navItem', () => ({
     open: false,
     toggle(){ this.open = !this.open; },
+    clickLabel(){ if(matchMedia('(hover: hover)').matches) this.open = true; else this.open = !this.open; },
     enter(){ if(matchMedia('(hover: hover)').matches) this.open = true; },
     leave(){ if(matchMedia('(hover: hover)').matches) this.open = false; },
     close(){ this.open = false; },

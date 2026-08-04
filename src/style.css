@@ -235,6 +235,7 @@ h1,h2,h3{
 .nav-caret:hover{ color: var(--white); }
 .nav-caret-ico{ width:14px; height:14px; transition:transform 0.2s ease; }
 .nav-caret[aria-expanded="true"] .nav-caret-ico{ transform:rotate(180deg); }
+.nav-item > a[aria-expanded="true"]{ color: var(--white); }
 .dropdown-menu{ list-style:none; width:100%; padding: 0 0 12px 20px; }
 .dropdown-menu a{ display:block; padding: 9px 0; font-weight:400; }
 .nav-cta{ display:none; }

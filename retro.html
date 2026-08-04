@@ -38,7 +38,7 @@
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
         <li class="nav-item has-dropdown" x-data="navItem" @mouseenter="enter()" @mouseleave="leave()" @click.outside="close()" @keydown.escape.window="close()">
-          <a href="/category/club">Club Jerseys</a>
+          <a href="/category/club" @click.prevent="clickLabel()" aria-haspopup="true" :aria-expanded="open">Club Jerseys</a>
           <button class="nav-caret" type="button" :aria-expanded="open" aria-label="Open Club Jerseys menu" @click.prevent="toggle()"><svg class="nav-caret-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
           <ul class="dropdown-menu" x-show="open" x-cloak>
             <li><a href="/category/club">All Club Jerseys</a></li>
@@ -55,7 +55,7 @@
           </ul>
         </li>
         <li class="nav-item has-dropdown" x-data="navItem" @mouseenter="enter()" @mouseleave="leave()" @click.outside="close()" @keydown.escape.window="close()">
-          <a href="/category/national">National jersey</a>
+          <a href="/category/national" @click.prevent="clickLabel()" aria-haspopup="true" :aria-expanded="open">National jersey</a>
           <button class="nav-caret" type="button" :aria-expanded="open" aria-label="Open National jersey menu" @click.prevent="toggle()"><svg class="nav-caret-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
           <ul class="dropdown-menu" x-show="open" x-cloak>
             <li><a href="/category/national">All National Jerseys</a></li>
@@ -72,7 +72,7 @@
           </ul>
         </li>
         <li class="nav-item has-dropdown" x-data="navItem" @mouseenter="enter()" @mouseleave="leave()" @click.outside="close()" @keydown.escape.window="close()">
-          <a href="/category/retro">Retro Jersey</a>
+          <a href="/category/retro" @click.prevent="clickLabel()" aria-haspopup="true" :aria-expanded="open">Retro Jersey</a>
           <button class="nav-caret" type="button" :aria-expanded="open" aria-label="Open Retro Jersey menu" @click.prevent="toggle()"><svg class="nav-caret-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
           <ul class="dropdown-menu" x-show="open" x-cloak>
             <li><a href="/category/retro">All Retro Jerseys</a></li>
@@ -85,7 +85,7 @@
           </ul>
         </li>
         <li class="nav-item has-dropdown" x-data="navItem" @mouseenter="enter()" @mouseleave="leave()" @click.outside="close()" @keydown.escape.window="close()">
-          <a href="/custom-kits">Customized Jersey</a>
+          <a href="/custom-kits" @click.prevent="clickLabel()" aria-haspopup="true" :aria-expanded="open">Customized Jersey</a>
           <button class="nav-caret" type="button" :aria-expanded="open" aria-label="Open Customized Jersey menu" @click.prevent="toggle()"><svg class="nav-caret-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
           <ul class="dropdown-menu" x-show="open" x-cloak>
             <li><a href="/custom-kits">Custom Name &amp; Number</a></li>
