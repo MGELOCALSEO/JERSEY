@@ -241,11 +241,12 @@ h1,h2,h3{
 .nav-cta{ display:none; }
 .nav-cta-mobile{ padding: 10px 16px; font-size: 13px; order:-1; }
 
-/* mobile: logo left, buttons right */
+/* mobile: Order button left, logo center, hamburger right */
 @media(max-width:859px){
-  .logo{ position:static; transform:none; flex:1 1 auto; height:64px; width:auto; }
-  .nav-toggle{ flex:0 0 auto; }
-  .nav-cta-mobile{ order:0; }
+  .nav-inner{ gap: 12px; }
+  .logo{ position:static; transform:none; flex:1 1 auto; height:64px; width:auto; order:2; }
+  .nav-toggle{ flex:0 0 auto; order:3; }
+  .nav-cta-mobile{ order:1; }
 }
 
 @media(min-width: 860px){
