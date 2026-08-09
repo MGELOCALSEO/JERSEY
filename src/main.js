@@ -228,11 +228,83 @@ cycleImages('kids-imgs', [
   '/images/kids/Real Madrid  Kids.jpg',
 ], 3500);
 
+const badgeConfig = {
+  // EPL Teams
+  'Manchester United':  { league: 'EPL', ucl: true, champion: true },
+  'Arsenal':            { league: 'EPL', ucl: true, champion: true },
+  'Chelsea':            { league: 'EPL', ucl: true, champion: true },
+  'Liverpool':          { league: 'EPL', ucl: true, champion: true },
+  'Manchester City':    { league: 'EPL', ucl: true, champion: true },
+  'Tottenham':          { league: 'EPL', ucl: true, champion: true },
+  'Newcastle':          { league: 'EPL', ucl: true, champion: true },
+  'Aston Villa':        { league: 'EPL', ucl: true, champion: true },
+  'Brighton':           { league: 'EPL', ucl: false, champion: true },
+  'Bournemouth':        { league: 'EPL', ucl: false, champion: true },
+  'Brentford':          { league: 'EPL', ucl: false, champion: true },
+  'Everton':            { league: 'EPL', ucl: false, champion: true },
+  'Coventry':           { league: 'EPL', ucl: false, champion: true },
+  'Sunderland':         { league: 'EPL', ucl: false, champion: true },
+  // La Liga Teams
+  'Real Madrid':        { league: 'La Liga', ucl: true, champion: true },
+  'FC Barcelona':       { league: 'La Liga', ucl: true, champion: true },
+  'Atletico Madrid':    { league: 'La Liga', ucl: true, champion: true },
+  'Villarreal':         { league: 'La Liga', ucl: false, champion: true },
+  // Serie A Teams
+  'AC Milan':           { league: 'Serie A', ucl: true, champion: true },
+  'Inter Milan':        { league: 'Serie A', ucl: true, champion: true },
+  'Juventus':           { league: 'Serie A', ucl: true, champion: true },
+  'AS Roma':            { league: 'Serie A', ucl: false, champion: true },
+  'Napoli':             { league: 'Serie A', ucl: true, champion: true },
+  'Lazio':              { league: 'Serie A', ucl: false, champion: true },
+  'Atalanta':           { league: 'Serie A', ucl: true, champion: true },
+  'Fiorentina':         { league: 'Serie A', ucl: false, champion: true },
+  'Como':               { league: 'Serie A', ucl: false, champion: true },
+  'Venezia':            { league: 'Serie A', ucl: false, champion: true },
+  // Bundesliga Teams
+  'Bayern Munich':      { league: 'Bundesliga', ucl: true, champion: true },
+  'Dortmund':           { league: 'Bundesliga', ucl: true, champion: true },
+  'Eintracht Frankfurt':{ league: 'Bundesliga', ucl: false, champion: true },
+  'RB Leipzig':         { league: 'Bundesliga', ucl: true, champion: true },
+  // Ligue 1 Teams
+  'PSG':                { league: 'Ligue 1', ucl: true, champion: true },
+  'Lyon':               { league: 'Ligue 1', ucl: false, champion: true },
+  'Marseille':          { league: 'Ligue 1', ucl: false, champion: true },
+  'Monaco':             { league: 'Ligue 1', ucl: false, champion: true },
+  'Lens':               { league: 'Ligue 1', ucl: false, champion: true },
+  // Eredivisie Teams
+  'Ajax':               { league: 'Eredivisie', ucl: true, champion: true },
+  'PSV':                { league: 'Eredivisie', ucl: false, champion: true },
+  // Saudi Pro League Teams
+  'Al Nassr':           { league: 'Saudi Pro', ucl: false, champion: true },
+  'Al-Hilal':           { league: 'Saudi Pro', ucl: false, champion: true },
+  'Al-Ittihad':         { league: 'Saudi Pro', ucl: false, champion: true },
+  // African Teams
+  'Nigeria':            { confederation: 'CAF', worldCup: true, wcChampion: false },
+  'Morocco':            { confederation: 'CAF', worldCup: true, wcChampion: false },
+  // European Teams
+  'England':            { confederation: 'UEFA', worldCup: true, wcChampion: false },
+  'France':             { confederation: 'UEFA', worldCup: true, wcChampion: false },
+  'Spain':              { confederation: 'UEFA', worldCup: true, wcChampion: true, nationsLeague: true },
+  'Germany':            { confederation: 'UEFA', worldCup: true, wcChampion: false },
+  'Portugal':           { confederation: 'UEFA', worldCup: true, wcChampion: false },
+  'Netherlands':        { confederation: 'UEFA', worldCup: true, wcChampion: false },
+  // South American Teams
+  'Argentina':          { confederation: 'CONMEBOL', worldCup: true, wcChampion: false },
+  'Brazil':             { confederation: 'CONMEBOL', worldCup: true, wcChampion: false },
+  // Other National Teams
+  'Japan':              { confederation: 'AFC', worldCup: true, wcChampion: false },
+  'South Korea':        { confederation: 'AFC', worldCup: true, wcChampion: false },
+  'Mexico':             { confederation: 'CONCACAF', worldCup: true, wcChampion: false },
+  'USA':                { confederation: 'CONCACAF', worldCup: true, wcChampion: false },
+  'Canada':             { confederation: 'CONCACAF', worldCup: true, wcChampion: false },
+  'Australia':          { confederation: 'AFC', worldCup: true, wcChampion: false }
+};
+
 const products = [
   { id:'prod-1', team:'Manchester United', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'man-united-home-26-27', description:'The 2026/27 Manchester United home kit delivers the classic red devil look with modern performance fabric. Breathable mesh panels and a tailored fit make it match-day ready.', material:'100% Recycled Polyester', features:['Dri-FIT moisture management','Breathable mesh side panels','Authentic club crest','Ribbed crew neck collar'], inStock:true, images:['/images/club/2026-27%20shirts/Manchester%20United%20Home%20Jersey%2026_27.png'] },
   { id:'prod-2', team:'Arsenal', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'arsenal-home-26-27', description:'Arsenal\'s 2026/27 home shirt features the iconic red body with white sleeves, updated with a sleek modern cut and premium fabric finish.', material:'100% Recycled Polyester', features:['Aeroready technology','Lightweight woven fabric','Emirates sponsor print','Authentic Arsenal badge'], inStock:true, images:['/images/club/2026-27%20shirts/Arsenal%20Home%20Jersey%2026_27.png'] },
   { id:'prod-3', team:'Real Madrid', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'real-madrid-home-26-27', description:'The king of European football returns with a clean white home kit for 2026/27. Subtle detailing and premium construction set this apart.', material:'100% Recycled Polyester', features:['Dri-FIT ADV technology','Structured fit','Gold club crest detailing','UV protection'], inStock:true, images:['/images/club/2026-27%20shirts/Real%20Madrid%20Home%20Jersey%2026_27.png'] },
-  { id:'prod-4', team:'Super Eagles', name:'Home Jersey 26/27', tag:'Home Kit', cat:'national', price:'₦30,000', slug:'super-eagles-home-26-27', description:'Rep the Naija spirit with the Super Eagles 2026/27 home kit. Bold green design with intricate pattern details inspired by Nigerian culture.', material:'100% Polyester', features:['Lightweight breathable fabric','NFF official design','Bold cultural pattern','Comfortable regular fit'], inStock:true, images:['/images/national/nigeria-2026-home-kit.jpg'] },
+  { id:'prod-4', team:'Super Eagles', name:'Home Jersey 26/27', tag:'Home Kit', cat:'national', price:'₦35,000', slug:'super-eagles-home-26-27', description:'Rep the Naija spirit with the Super Eagles 2026/27 home kit. Bold green design with intricate pattern details inspired by Nigerian culture.', material:'100% Polyester', features:['Lightweight breathable fabric','NFF official design','Bold cultural pattern','Comfortable regular fit'], inStock:true, images:['/images/national/nigeria-2026-home-kit.jpg'] },
   { id:'prod-5', team:'FC Barcelona', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'fc-barcelona-home-26-27', description:'Barcelona\'s 2026/27 home kit blends the traditional blaugrana stripes with a fresh modern twist. Premium quality you can feel.', material:'100% Recycled Polyester', features:['Nike Dri-FIT','Moisture-wicking fabric','Barca crest','Athletic fit'], inStock:true, images:['/images/club/2026-27%20shirts/Barcelona%20Home%20Jersey%2026_27.png'] },
   { id:'prod-6', team:'Chelsea', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'chelsea-home-26-27', description:'Chelsea\'s 2026/27 home jersey brings the blues with a sharp, clean design. Built for comfort on and off the pitch.', material:'100% Recycled Polyester', features:['Dri-FIT technology','Breathable construction','Crest heat-transfer','Regular fit'], inStock:true, images:['/images/club/2026-27%20shirts/Chelsea%20Home%20Jersey%2026_27.png'] },
   { id:'prod-7', team:'Coventry', name:'Home Jersey 26/27', tag:'Home Kit', cat:'club', price:'₦35,000', slug:'coventry-home-26-27', description:'Coventry City\'s 2026/27 home kit — the Sky Blues in classic blue.', material:'100% Recycled Polyester', features:['Hummel design','Sky Blue','Coventry crest'], inStock:false, images:['/images/club/2026-27%20shirts/Coventry%20Home%20Jersey%2026_27.png'] },
@@ -270,9 +342,57 @@ function updatePriceDisplay(){
   const pref = document.getElementById('pv-preference').value;
   const baseVal = parseInt(form.dataset.baseVal) || 35000;
   const hasCustom = pref === 'customized';
+  const badgeCheckboxes = document.querySelectorAll('input[name="pv-badge"]:checked');
+  const badgeCount = badgeCheckboxes.length;
+  const badgeSurcharge = badgeCount * 2000;
   document.getElementById('pv-custom-row').style.display = hasCustom ? '' : 'none';
-  const total = baseVal + (hasCustom ? 5000 : 0);
+  const total = baseVal + (hasCustom ? 5000 : 0) + badgeSurcharge;
   document.getElementById('pv-total').textContent = '\u20A6' + total.toLocaleString();
+}
+
+function getAvailableBadges(team) {
+  const config = badgeConfig[team];
+  if (!config) return [];
+  const badges = [];
+  if (config.league) {
+    badges.push({ id: 'league', label: config.league, price: 2000 });
+    if (config.ucl) badges.push({ id: 'ucl', label: 'UCL', price: 2000 });
+    if (config.champion) badges.push({ id: 'champion', label: config.league + ' Champions', price: 2000 });
+  }
+  if (config.confederation) {
+    if (config.confederation === 'CAF') badges.push({ id: 'afcon', label: 'AFCON', price: 2000 });
+    else if (config.confederation === 'UEFA') {
+      badges.push({ id: 'euro', label: 'Euro', price: 2000 });
+      if (config.nationsLeague) badges.push({ id: 'nations-league', label: 'Nations League', price: 2000 });
+    } else if (config.confederation === 'CONMEBOL') badges.push({ id: 'copa-america', label: 'Copa America', price: 2000 });
+    if (config.worldCup) badges.push({ id: 'world-cup', label: 'World Cup', price: 2000 });
+    if (config.wcChampion) badges.push({ id: 'fifa-champion', label: 'FIFA Champions', price: 2000 });
+  }
+  return badges;
+}
+
+function renderBadges(team) {
+  const container = document.querySelector('.pv-badge-group');
+  if (!container) return;
+  container.innerHTML = '';
+  const badges = getAvailableBadges(team);
+  badges.forEach(function(badge) {
+    const label = document.createElement('label');
+    label.className = 'pv-badge-opt';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.name = 'pv-badge';
+    input.value = badge.label;
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(badge.label + ' (+₦2,000)'));
+    label.addEventListener('click', function(e) {
+      e.preventDefault();
+      input.checked = !input.checked;
+      label.classList.toggle('checked', input.checked);
+      updatePriceDisplay();
+    });
+    container.appendChild(label);
+  });
 }
 
 function showProductView(btn, productData, fromRouter){
@@ -286,7 +406,6 @@ function showProductView(btn, productData, fromRouter){
   document.getElementById('pv-custom-name').value = '';
   document.getElementById('pv-custom-number').value = '';
   document.getElementById('pv-location').value = '';
-  document.getElementById('pv-badge').value = 'None';
   document.getElementById('pv-version').value = 'fans';
   document.querySelector('.pv-version-group .pv-opt-btn[data-version="fans"]')?.classList.add('active');
   document.querySelector('.pv-version-group .pv-opt-btn[data-version="player"]')?.classList.remove('active');
@@ -336,6 +455,7 @@ function showProductView(btn, productData, fromRouter){
     tag = 'Custom';
   }
 
+  renderBadges(team);
   document.getElementById('pv-team').textContent = team;
   document.getElementById('pv-name').textContent = kit;
   document.getElementById('pv-price-display').textContent = priceText;
@@ -587,7 +707,8 @@ window.submitProductOrder = function(e){
   const team = form.dataset.team || '';
   const kit = form.dataset.kit || '';
   const size = document.getElementById('pv-size').value;
-  const badge = document.getElementById('pv-badge').value;
+  const badgeCheckboxes = document.querySelectorAll('input[name="pv-badge"]:checked');
+  const badges = Array.from(badgeCheckboxes).map(function(cb) { return cb.value; });
   const pref = document.getElementById('pv-preference').value;
   const name = document.getElementById('pv-custom-name').value.trim();
   const number = document.getElementById('pv-custom-number').value.trim();
@@ -599,7 +720,7 @@ window.submitProductOrder = function(e){
   msg += '\nProduct: ' + team + ' ' + kit;
   if(version) msg += '\nVersion: ' + (version === 'player' ? 'Player Version' : 'Fans Version');
   msg += '\nSize: ' + size;
-  if(badge && badge !== 'None') msg += '\nBadge: ' + badge;
+  if(badges.length > 0) msg += '\nBadge(s): ' + badges.join(', ');
   msg += '\nPreference: ' + (pref === 'customized' ? 'Customized' : 'Plain');
   if(pref === 'customized'){
     if(name) msg += '\nName: ' + name;
@@ -784,8 +905,8 @@ const clubProducts = [
 ];
 
 const nationalProducts = [
-  { team:'Nigeria', kit:'Home 26/27', img:'/images/Country/Nigeria Home Jersey 26_27.png', images:['/images/Country/Nigeria Home Jersey 26_27.png','/images/national/nigeria-2026-away.png'], slug:'nigeria-home-26-27', cat:'national', price:'₦30,000', description:'Rep the Naija spirit with the Super Eagles 2026/27 home kit. Bold green with cultural patterns.', material:'100% Polyester', features:['Lightweight breathable fabric','NFF official design','Bold cultural pattern'], inStock:true },
-  { team:'Nigeria', kit:'Away 26/27', img:'/images/Country/Nigeria Away Jersey 26_27.png', images:['/images/Country/Nigeria Away Jersey 26_27.png','/images/national/nigeria-2026-away.png'], slug:'nigeria-away-26-27', cat:'national', price:'₦30,000', description:'The Super Eagles away kit for 2026/27 in a clean, sharp design.', material:'100% Polyester', features:['Lightweight fabric','NFF badge','Regular fit'], inStock:true },
+  { team:'Nigeria', kit:'Home 26/27', img:'/images/Country/Nigeria Home Jersey 26_27.png', images:['/images/Country/Nigeria Home Jersey 26_27.png','/images/national/nigeria-2026-away.png'], slug:'nigeria-home-26-27', cat:'national', price:'₦35,000', description:'Rep the Naija spirit with the Super Eagles 2026/27 home kit. Bold green with cultural patterns.', material:'100% Polyester', features:['Lightweight breathable fabric','NFF official design','Bold cultural pattern'], inStock:true },
+  { team:'Nigeria', kit:'Away 26/27', img:'/images/Country/Nigeria Away Jersey 26_27.png', images:['/images/Country/Nigeria Away Jersey 26_27.png','/images/national/nigeria-2026-away.png'], slug:'nigeria-away-26-27', cat:'national', price:'₦35,000', description:'The Super Eagles away kit for 2026/27 in a clean, sharp design.', material:'100% Polyester', features:['Lightweight fabric','NFF badge','Regular fit'], inStock:true },
   { team:'Argentina', kit:'Home 26/27', img:'/images/Country/2026-27 Argentina Home Shirt  back.webp', images:['/images/Country/2026-27 Argentina Home Shirt  back.webp','/images/Country/Argentina Home Jersey 26_27.jpg'], slug:'argentina-home-26-27', cat:'national', price:'₦35,000', description:'Argentina\'s 2026/27 home kit in the legendary albiceleste stripes. World Cup champions vibes.', material:'100% Recycled Polyester', features:['AFA badge','Dri-FIT technology','Classic design'], inStock:true },
   { team:'Argentina', kit:'Away 26/27 (Messi)', img:'/images/Country/2026-27 Argentina Away Shirt Messi  front.webp', images:['/images/Country/2026-27 Argentina Away Shirt Messi  front.webp','/images/Country/2026-27 Argentina Away Shirt Messi  back.webp'], slug:'argentina-away-messi-26-27', cat:'national', price:'₦40,000', description:'Argentina\'s 2026/27 away kit featuring Messi\'s name and number front and back. A must-have for fans.', material:'100% Recycled Polyester', features:['Messi 10 printing','AFA badge','Premium fabric'], inStock:true },
   { team:'Argentina', kit:'Polo Jersey 26/27', img:'/images/Country/Argentina Polo Jersey 26_27.jpg', images:['/images/Country/Argentina Polo Jersey 26_27.jpg'], slug:'argentina-polo-26-27', cat:'national', price:'₦35,000', description:'Argentina\'s 2026/27 polo-style jersey. Smart casual for matchday and beyond.', material:'100% Polyester', features:['Polo collar design','AFA crest','Premium cotton blend'], inStock:true },

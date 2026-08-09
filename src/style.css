@@ -1330,6 +1330,22 @@ footer{
   text-transform: uppercase; letter-spacing: 0.04em;
 }
 .pv-label small{ text-transform:none; letter-spacing:0; font-weight:400; color: var(--muted-2); }
+.pv-badge-group{ display:flex; flex-wrap:wrap; gap: 8px; }
+.pv-badge-opt{
+  display:flex; align-items:center; gap:8px; cursor:pointer;
+  padding: 11px 20px; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--bg-card);
+  color: var(--white); font-size: 14px; font-weight: 600;
+  transition: border-color .15s, background .15s, transform .1s;
+  user-select:none;
+}
+.pv-badge-opt:hover{ border-color: var(--muted-2); transform: translateY(-1px); }
+.pv-badge-opt:active{ transform: translateY(0); }
+.pv-badge-opt.checked{
+  border-color: var(--pitch); background: var(--pitch-dim);
+  color: var(--pitch);
+}
+.pv-badge-opt input[type="checkbox"]{ display:none; }
 .pv-size-group, .pv-pref-group, .pv-version-group{ display:flex; flex-wrap:wrap; gap: 8px; }
 .pv-opt-btn{
   padding: 11px 20px; border: 1px solid var(--line);
