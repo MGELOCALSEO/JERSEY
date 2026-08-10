@@ -873,7 +873,7 @@
           <ul class="pv-features" id="pv-features"></ul>
         </div>
 
-        <form id="product-form" onsubmit="submitProductOrder(event)">
+        <form id="product-form">
           <div class="pv-form-card">
             <div class="pv-form-card-title">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20.38 3.46L16 2 12 5.69 8 2l-4.38 1.46a2 2 0 00-1.34 1.86v14.36A2 2 0 004.62 21.54L8 20l4 3.69L16 20l4.38 1.54a2 2 0 002.34-1.86V5.32a2 2 0 00-1.34-1.86z"/></svg>
@@ -939,16 +939,23 @@
             <div class="price-breakdown">
               <div class="price-line"><span id="pv-label">Jersey Price</span><span id="pv-base">₦35,000</span></div>
               <div class="price-line" id="pv-custom-row"><span>Custom Printing</span><span>+ ₦5,000</span></div>
+              <div class="price-line" id="pv-badge-row" style="display:none"><span>Additional Badge(s)</span><span id="pv-badge-cost">+ ₦0</span></div>
               <div class="price-line price-total"><span>Total</span><span id="pv-total">₦40,000</span></div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block pv-submit-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
-              Send Order on WhatsApp
-            </button>
+            <div class="pv-submit-group">
+              <button type="submit" class="btn btn-primary btn-block pv-submit-btn" onclick="submitProductOrder(event)">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg>
+                WhatsApp
+              </button>
+              <button type="button" class="btn btn-secondary btn-block pv-submit-btn" onclick="submitProductOrderEmail(event)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Email
+              </button>
+            </div>
             <p class="pv-guarantee">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Secure order via WhatsApp &bull; Same-day Lagos delivery
+              Same-day Lagos delivery &bull; Choose your preferred contact method
             </p>
           </div>
         </form>

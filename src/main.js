@@ -32,6 +32,18 @@ function trackWA(source){
   } catch(e){}
 }
 
+function trackOrder(method, source){
+  try{
+    if (typeof gtag === 'function') {
+      gtag('event', 'order_submit', { method: method, source: source });
+    }
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'OrderSubmit', { method: method, source: source });
+    }
+    console.log('[track] order_submit:', method, source);
+  } catch(e){}
+}
+
 function cycleImages(id, list, ms){
   const el = document.getElementById(id);
   if(!el) return;
@@ -346,6 +358,13 @@ function updatePriceDisplay(){
   const badgeCount = badgeCheckboxes.length;
   const badgeSurcharge = badgeCount * 2000;
   document.getElementById('pv-custom-row').style.display = hasCustom ? '' : 'none';
+  const badgeRow = document.getElementById('pv-badge-row');
+  if(badgeCount > 0){
+    badgeRow.style.display = '';
+    document.getElementById('pv-badge-cost').textContent = '+ \u20A6' + badgeSurcharge.toLocaleString();
+  } else {
+    badgeRow.style.display = 'none';
+  }
   const total = baseVal + (hasCustom ? 5000 : 0) + badgeSurcharge;
   document.getElementById('pv-total').textContent = '\u20A6' + total.toLocaleString();
 }
@@ -384,7 +403,7 @@ function renderBadges(team) {
     input.name = 'pv-badge';
     input.value = badge.label;
     label.appendChild(input);
-    label.appendChild(document.createTextNode(badge.label + ' (+₦2,000)'));
+    label.appendChild(document.createTextNode(badge.label));
     label.addEventListener('click', function(e) {
       e.preventDefault();
       input.checked = !input.checked;
@@ -493,16 +512,19 @@ function showProductView(btn, productData, fromRouter){
     stockEl.classList.add('out-of-stock');
     stockText.textContent = 'Out of Stock';
   }
-  const submitBtn = document.querySelector('.pv-submit-btn');
-  if(submitBtn){
+  document.querySelectorAll('.pv-submit-btn').forEach(function(btn){
     if(inStock){
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg> Send Order on WhatsApp';
+      btn.disabled = false;
+      if(btn.classList.contains('btn-primary')){
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.14.29-.27.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.16 1.34.26.13.41.11.56-.07.16-.18.66-.77.84-1.04.18-.26.35-.22.6-.13.24.09 1.55.73 1.82.87.26.13.44.2.5.31.06.13.06.7-.16 1.32z"/></svg> WhatsApp';
+      } else {
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email';
+      }
     } else {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Coming Soon — Not Yet Available';
+      btn.disabled = true;
+      btn.textContent = 'Coming Soon — Not Yet Available';
     }
-  }
+  });
 
   const descEl = document.getElementById('pv-desc');
   descEl.innerHTML = description ? '<p>' + description + '</p>' : '';
@@ -707,12 +729,28 @@ window.submitProductOrder = function(e){
   const team = form.dataset.team || '';
   const kit = form.dataset.kit || '';
   const size = document.getElementById('pv-size').value;
-  const badgeCheckboxes = document.querySelectorAll('input[name="pv-badge"]:checked');
-  const badges = Array.from(badgeCheckboxes).map(function(cb) { return cb.value; });
+  if(!size){
+    document.getElementById('pv-size').focus();
+    alert('Please select a size.');
+    return;
+  }
+  const location = document.getElementById('pv-location').value.trim();
+  if(!location){
+    document.getElementById('pv-location').focus();
+    alert('Please enter your delivery location.');
+    return;
+  }
   const pref = document.getElementById('pv-preference').value;
   const name = document.getElementById('pv-custom-name').value.trim();
   const number = document.getElementById('pv-custom-number').value.trim();
-  const location = document.getElementById('pv-location').value.trim();
+  if(pref === 'customized' && (!name || !number)){
+    if(!name) document.getElementById('pv-custom-name').focus();
+    else document.getElementById('pv-custom-number').focus();
+    alert('Please enter both name and number for customized jerseys.');
+    return;
+  }
+  const badgeCheckboxes = document.querySelectorAll('input[name="pv-badge"]:checked');
+  const badges = Array.from(badgeCheckboxes).map(function(cb) { return cb.value; });
   const total = document.getElementById('pv-total').textContent;
   const version = document.getElementById('pv-version')?.value || '';
 
@@ -730,7 +768,56 @@ window.submitProductOrder = function(e){
   msg += '\nTotal: ' + total;
 
   window.open('https://wa.me/2347030112427?text=' + encodeURIComponent(msg), '_blank');
-  trackWA('custom-submit');
+  trackOrder('whatsapp', 'product-form');
+};
+
+window.submitProductOrderEmail = function(e){
+  e.preventDefault();
+  const form = document.getElementById('product-form');
+  const team = form.dataset.team || '';
+  const kit = form.dataset.kit || '';
+  const size = document.getElementById('pv-size').value;
+  if(!size){
+    document.getElementById('pv-size').focus();
+    alert('Please select a size.');
+    return;
+  }
+  const location = document.getElementById('pv-location').value.trim();
+  if(!location){
+    document.getElementById('pv-location').focus();
+    alert('Please enter your delivery location.');
+    return;
+  }
+  const pref = document.getElementById('pv-preference').value;
+  const name = document.getElementById('pv-custom-name').value.trim();
+  const number = document.getElementById('pv-custom-number').value.trim();
+  if(pref === 'customized' && (!name || !number)){
+    if(!name) document.getElementById('pv-custom-name').focus();
+    else document.getElementById('pv-custom-number').focus();
+    alert('Please enter both name and number for customized jerseys.');
+    return;
+  }
+  const badgeCheckboxes = document.querySelectorAll('input[name="pv-badge"]:checked');
+  const badges = Array.from(badgeCheckboxes).map(function(cb) { return cb.value; });
+  const total = document.getElementById('pv-total').textContent;
+  const version = document.getElementById('pv-version')?.value || '';
+
+  let body = 'Hi Makelele Jerseys,\n\nI\'d like to order:\n\n';
+  body += 'Product: ' + team + ' ' + kit + '\n';
+  if(version) body += 'Version: ' + (version === 'player' ? 'Player Version' : 'Fans Version') + '\n';
+  body += 'Size: ' + size + '\n';
+  if(badges.length > 0) body += 'Badge(s): ' + badges.join(', ') + '\n';
+  body += 'Preference: ' + (pref === 'customized' ? 'Customized' : 'Plain') + '\n';
+  if(pref === 'customized'){
+    if(name) body += 'Name: ' + name + '\n';
+    if(number) body += 'Number: ' + number + '\n';
+  }
+  body += 'Delivery Location: ' + location + '\n';
+  body += 'Total: ' + total + '\n';
+
+  var subject = 'Jersey Order - ' + team + ' ' + kit;
+  window.location.href = 'mailto:hello@makelelejersey.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  trackOrder('email', 'product-form');
 };
 
 

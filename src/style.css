@@ -1404,6 +1404,16 @@ footer{
   padding: 22px;
 }
 .pv-price-card .price-breakdown{ background: none; border: none; padding: 0; margin-bottom: 18px; }
+.pv-submit-group{
+  display: flex; gap: 10px; width: 100%;
+}
+.pv-submit-group .pv-submit-btn{
+  flex: 1; margin: 0;
+}
+.btn-secondary{
+  background: var(--bg-card); color: var(--text); border: 1px solid var(--line);
+}
+.btn-secondary:hover{ background: var(--line); }
 .pv-submit-btn{
   padding: 18px 28px !important;
   font-size: 16px !important;
@@ -1435,6 +1445,7 @@ footer{
   .pv-opt-btn{ padding: 9px 16px; font-size: 13px; }
   .pv-form-card, .pv-price-card, .pv-details-card{ padding: 18px 16px; }
   .pv-submit-btn{ padding: 16px 24px !important; font-size: 15px !important; }
+  .pv-submit-group{ flex-direction: column; gap: 8px; }
   .pv-gallery-imgs img{ max-height: 400px; object-fit: cover; }
 }
 @media(max-width: 360px){
