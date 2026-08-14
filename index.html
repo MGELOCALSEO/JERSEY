@@ -74,6 +74,17 @@
 }
 </script>
 
+<script>
+fetch("https://api.localo.com/api/structured_data/B21eZ6TVrzGOo2WYOPFMtbvsCTRNIk8oacmgWmACpIY/local_business")
+.then(response => response.json())
+.then(data => {
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(data);
+  document.head.appendChild(script);
+});
+</script>
+
   <link rel="preload" href="/images/hero/Liverpool-Kit Jersey Banner for 2026 27.webp" as="image">
   <link rel="preload" href="/images/hero/Moises-Caicedo-Cole-Palmer , 2026 27 Home Jersey banner.webp" as="image">
   <link rel="preload" href="/images/hero/Real Madrid 2026 27.webp" as="image">
