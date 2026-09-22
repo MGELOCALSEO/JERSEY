@@ -62,6 +62,10 @@ function webpUrl(path) {
   return path.replace(/\.(png|jpg|jpeg)$/i, '.webp');
 }
 
+function assetUrl(path) {
+  return encodeURI(path || '');
+}
+
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -72,9 +76,9 @@ function shuffleArray(arr) {
 function imgTag(src, alt, extra) {
   const wp = webpUrl(src);
   if (wp !== src) {
-    return '<picture><source srcset="' + wp + '" type="image/webp"><img src="' + src + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '></picture>';
+    return '<picture><source srcset="' + assetUrl(wp) + '" type="image/webp"><img src="' + assetUrl(src) + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '></picture>';
   }
-  return '<img src="' + src + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '>';
+  return '<img src="' + assetUrl(src) + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '>';
 }
 
 function setProductSEO(product){
