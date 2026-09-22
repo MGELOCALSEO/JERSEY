@@ -47,7 +47,7 @@ function trackOrder(method, source){
 function cycleImages(id, list, ms){
   const el = document.getElementById(id);
   if(!el) return;
-  const wpList = list.map(webpUrl);
+  const wpList = list.map(item => assetUrl(webpUrl(item)));
   let i = 0;
   setInterval(() => { i = (i + 1) % wpList.length; el.src = wpList[i]; }, ms);
 }
@@ -57,13 +57,14 @@ const DEFAULT_TITLE = 'Makelele Jerseys | Original Football Jerseys in Lagos, Ni
 const DEFAULT_DESC = 'Shop authentic club jerseys, Super Eagles kits, retro collections and custom football shirts. Same-day Lagos delivery, nationwide shipping. Order on WhatsApp.';
 let _productSchemaEl = null;
 
-function webpUrl(path) {
+function assetUrl(path) {
   if (!path) return '';
-  return path.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+  return path.replace(/ /g, '%20');
 }
 
-function assetUrl(path) {
-  return encodeURI(path || '');
+function webpUrl(path) {
+  if (!path) return '';
+  return assetUrl(path).replace(/\.(png|jpg|jpeg)$/i, '.webp');
 }
 
 function shuffleArray(arr) {
@@ -74,11 +75,12 @@ function shuffleArray(arr) {
 }
 
 function imgTag(src, alt, extra) {
+  const cleanSrc = assetUrl(src);
   const wp = webpUrl(src);
-  if (wp !== src) {
-    return '<picture><source srcset="' + assetUrl(wp) + '" type="image/webp"><img src="' + assetUrl(src) + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '></picture>';
+  if (wp !== cleanSrc) {
+    return '<picture><source srcset="' + wp + '" type="image/webp"><img src="' + cleanSrc + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '></picture>';
   }
-  return '<img src="' + assetUrl(src) + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '>';
+  return '<img src="' + cleanSrc + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '>';
 }
 
 function setProductSEO(product){
