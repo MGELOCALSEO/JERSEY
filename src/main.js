@@ -481,16 +481,47 @@ function showProductView(btn, productData, fromRouter){
   document.getElementById('pv-name').textContent = kit;
   document.getElementById('pv-price-display').textContent = priceText;
   const gallery = document.getElementById('pv-gallery-imgs');
+  const thumbs = document.getElementById('pv-thumbs');
   if(gallery){
-    gallery.innerHTML = images.map(src =>
-      imgTag(src, team + ' ' + kit)
+    gallery.innerHTML = images.map((src, index) =>
+      '<div class="pv-gallery-frame' + (index === 0 ? ' active' : '') + '" data-gallery-index="' + index + '">' + imgTag(src, team + ' ' + kit) + '</div>'
     ).join('');
+  }
+  if(thumbs){
+    thumbs.innerHTML = images.length > 1 ? images.map((src, index) =>
+      '<button type="button" class="pv-thumb' + (index === 0 ? ' active' : '') + '" data-gallery-index="' + index + '" aria-label="View image ' + (index + 1) + '">' + imgTag(src, team + ' ' + kit) + '</button>'
+    ).join('') : '';
+    thumbs.querySelectorAll('.pv-thumb').forEach(button => {
+      button.addEventListener('click', () => {
+        const index = button.dataset.galleryIndex;
+        gallery?.querySelectorAll('.pv-gallery-frame').forEach(frame => frame.classList.toggle('active', frame.dataset.galleryIndex === index));
+        thumbs.querySelectorAll('.pv-thumb').forEach(item => item.classList.toggle('active', item === button));
+      });
+    });
   }
   const galleryWrap = document.getElementById('pv-gallery');
   if(galleryWrap){
     galleryWrap.classList.toggle('single', images.length < 2);
   }
   document.getElementById('pv-tag').textContent = tag;
+  const statusEl = document.getElementById('pv-status');
+  if(statusEl){
+    const isNew = /26\/27/.test(kit);
+    statusEl.textContent = isNew ? 'New Season' : 'Quality Checked';
+    statusEl.classList.toggle('new-season', isNew);
+  }
+
+  const relatedGrid = document.getElementById('pv-related-grid');
+  if(relatedGrid){
+    const related = allProducts.filter(product => product.slug !== slug && (product.cat === cat || product.team === team)).slice(0, 4);
+    relatedGrid.innerHTML = related.map(product => `
+      <a class="pv-related-card" href="/product/${product.slug}">
+        <div class="pv-related-image">${imgTag(product.images?.[0] || product.img, product.team + ' ' + (product.name || product.kit))}</div>
+        <div class="pv-related-body"><span>${product.team}</span><strong>${product.name || product.kit}</strong><b>${product.price || '₦35,000'}</b></div>
+      </a>
+    `).join('');
+    document.getElementById('pv-related')?.classList.toggle('hidden', related.length === 0);
+  }
 
   const catNames = { club:'Club Jerseys', national:'National Teams', retro:'Retro Collection', kids:'Kids Jerseys', common:'Common Jerseys', 'long-sleeve':'Long Sleeve Jerseys' };
   const bcCat = document.getElementById('pv-bc-cat');
