@@ -858,6 +858,195 @@ a.zone-pill:hover{ border-color: var(--pitch); color: var(--white); }
   .delivery-worldwide{ font-size:13px; }
 }
 
+
+/* ============ MATCHDAY STORE DIRECTION ============ */
+:root{
+  --bg: #101211;
+  --bg-card: #191c1a;
+  --bg-elevated: #232724;
+  --line: rgba(238,240,232,0.12);
+  --white: #F4F2EA;
+  --muted: #B2B6AD;
+  --muted-2: #747B73;
+  --pitch: #A8D46F;
+  --pitch-dim: rgba(168,212,111,0.14);
+  --gold: #D7B56D;
+  --gold-dim: rgba(215,181,109,0.14);
+  --radius: 8px;
+}
+
+body{
+  background:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    var(--bg);
+  background-size: 48px 48px;
+}
+
+.nav{
+  background: rgba(16,18,17,0.92);
+  border-bottom-color: rgba(215,181,109,0.2);
+}
+.nav-cta,
+.nav-cta-mobile{ border-radius: 5px; }
+
+.hero{
+  min-height: min(78vh, 780px);
+  border-bottom: 1px solid rgba(215,181,109,0.24);
+}
+.hero-visual{ background: #090a09; }
+.slide-shade{
+  background: linear-gradient(90deg, rgba(10,12,11,0.84) 0%, rgba(10,12,11,0.42) 54%, rgba(10,12,11,0.08) 100%);
+}
+.wc-label{
+  left: clamp(20px, 5vw, 72px);
+  bottom: clamp(20px, 4vw, 46px);
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+.wc-cta{
+  right: clamp(20px, 5vw, 72px);
+  bottom: clamp(20px, 4vw, 46px);
+  border-radius: 5px;
+  background: var(--pitch);
+  border-color: var(--pitch);
+  color: #17200f;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+}
+.wc-cta:hover{ background: var(--white); border-color: var(--white); }
+.slide-arrow{
+  width: 40px; height: 40px;
+  border-radius: 5px;
+  background: rgba(16,18,17,0.7);
+  border-color: rgba(244,242,234,0.25);
+}
+
+section:not(.custom-section){
+  position: relative;
+}
+#league{
+  background: rgba(255,255,255,0.025);
+  border-bottom: 1px solid var(--line);
+}
+#collection,
+#featured{ background: var(--bg); }
+.section-head{ max-width: 700px; }
+.section-head h2{ letter-spacing: 0; }
+.section-head p{ max-width: 560px; }
+
+.league-card{
+  background: transparent;
+  border-color: transparent;
+  border-radius: 5px;
+  min-width: 128px;
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.league-card:hover{
+  background: var(--bg-card);
+  border-color: var(--line);
+  transform: translateY(-2px);
+}
+.league-card-name{ color: var(--muted); }
+
+.cat-card,
+.prod-card,
+.cat-prod-card{
+  border-radius: 8px;
+  background: rgba(25,28,26,0.92);
+  border-color: var(--line);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+.cat-card:hover,
+.prod-card:hover,
+.cat-prod-card:hover{ border-color: rgba(215,181,109,0.55); }
+.cat-visual,
+.prod-visual,
+.cat-prod-visual{
+  background: #e7e5dc;
+}
+.cat-body h3,
+.prod-body h3,
+.cat-prod-body h3{ color: var(--white); }
+.cat-body .btn,
+.prod-body .btn,
+.cat-prod-body .btn{ border-radius: 5px; }
+.prod-tag{
+  border-radius: 4px;
+  background: rgba(16,18,17,0.84);
+  color: var(--gold);
+}
+.cat-prod-price{
+  border-radius: 4px;
+  background: var(--pitch);
+  color: #17200f;
+}
+
+.custom-section{
+  background: linear-gradient(135deg, #1c241d 0%, #101211 68%);
+  border-color: rgba(215,181,109,0.22);
+}
+.custom-preview{ border-radius: 8px; border-color: rgba(215,181,109,0.25); }
+
+@media(max-width: 640px){
+  .hero{ min-height: auto; }
+  .hero-visual{ height: 68vw; min-height: 310px; max-height: 470px; }
+  .wc-label{ bottom: 18px; font-size: 17px; }
+  .wc-cta{ right: 16px; bottom: 16px; padding: 11px 14px; font-size: 12px; }
+  .cat-scroll{ gap: 12px; }
+  .cat-visual{ height: 145px; }
+}
+
+/* ============ MATCHDAY MOTION ============ */
+.slide.active img{
+  animation: hero-image-drift 8s ease-out both;
+}
+@keyframes hero-image-drift{
+  from{ transform: scale(1.02); }
+  to{ transform: scale(1.07); }
+}
+.cat-card,
+.prod-card,
+.cat-prod-card{
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.cat-card:hover,
+.prod-card:hover,
+.cat-prod-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px rgba(0,0,0,0.2);
+}
+.cat-card img,
+.prod-card img,
+.cat-prod-card img{
+  transition: transform .5s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+}
+.cat-card:hover img,
+.prod-card:hover img,
+.cat-prod-card:hover img{
+  transform: scale(1.035);
+  filter: saturate(1.05);
+}
+.motion-ready .motion-reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .65s ease var(--reveal-delay, 0ms), transform .65s ease var(--reveal-delay, 0ms);
+}
+.motion-ready .motion-reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+@media(prefers-reduced-motion: reduce){
+  .slide.active img,
+  .cat-card img,
+  .prod-card img,
+  .cat-prod-card img{ animation:none; transition:none; }
+  .motion-ready .motion-reveal,
+  .motion-ready .motion-reveal.is-visible{
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 .map-visual{
   height: 280px; border-radius: var(--radius);
   background:

@@ -75,12 +75,8 @@ function shuffleArray(arr) {
 }
 
 function imgTag(src, alt, extra) {
-  const cleanSrc = assetUrl(src);
   const wp = webpUrl(src);
-  if (wp !== cleanSrc) {
-    return '<picture><source srcset="' + wp + '" type="image/webp"><img src="' + cleanSrc + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '></picture>';
-  }
-  return '<img src="' + cleanSrc + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '>';
+  return '<img src="' + wp + '" alt="' + (alt || '') + '" loading="lazy"' + (extra ? ' ' + extra : '') + '>';
 }
 
 function setProductSEO(product){
@@ -1969,6 +1965,26 @@ document.getElementById('cv-back-btn')?.addEventListener('click', function(e){
 
 window.addEventListener('popstate', handlePath);
 handlePath();
+
+function initMotion(){
+  if(!('IntersectionObserver' in window)) return;
+  document.body.classList.add('motion-ready');
+  const revealTargets = document.querySelectorAll('section:not(.hidden), .section-head, .cat-card, .prod-card, .custom-preview, .review-card, .step-card');
+  revealTargets.forEach((el, index) => {
+    el.classList.add('motion-reveal');
+    el.style.setProperty('--reveal-delay', Math.min(index % 4, 3) * 70 + 'ms');
+  });
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      currentObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+  revealTargets.forEach(el => observer.observe(el));
+}
+
+initMotion();
 
 function applyCategoryFilters(){
   const view = document.getElementById('category-view');
