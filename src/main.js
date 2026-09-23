@@ -1402,6 +1402,10 @@ function renderCategory(cat, league, team){
   if(seasonVal){
     list = list.filter(p => getSeason(p) === seasonVal);
   }
+  const selectedTeam = document.getElementById('cv-team')?.value || '';
+  if(selectedTeam){
+    list = list.filter(p => p.team === selectedTeam);
+  }
   const searchVal = (document.getElementById('cv-search')?.value || '').trim().toLowerCase();
   if(searchVal){
     list = list.filter(p =>
@@ -1518,6 +1522,9 @@ function showCategory(cat, league, team){
   if(searchEl) searchEl.value = '';
   const seasonEl = document.getElementById('cv-season');
   if(seasonEl) seasonEl.value = '';
+  populateCategoryTeamFilter(cat);
+  const teamEl = document.getElementById('cv-team');
+  if(teamEl) teamEl.value = '';
   populateSeasonSelect(cat);
   if(!renderCategory(cat, league, team)) return;
   homeSections().forEach(el => {
@@ -1725,6 +1732,8 @@ function renderLongSleeve(){
   if(!grid) return;
   const searchVal = (document.getElementById('ls-search')?.value || '').trim().toLowerCase();
   let list = longSleeveProducts;
+  const selectedTeam = document.getElementById('ls-team')?.value || '';
+  if(selectedTeam) list = list.filter(p => p.team === selectedTeam);
   if(searchVal){
     list = list.filter(p =>
       p.team.toLowerCase().includes(searchVal) ||
@@ -1764,6 +1773,7 @@ function showLongSleeve(){
     el.style.setProperty('display', 'none', 'important');
   });
   hideAllViews();
+  populateOtherTeamFilters();
   renderLongSleeve();
   document.getElementById('long-sleeve-view').classList.remove('hidden');
   document.body.style.overflow = '';
@@ -1778,6 +1788,7 @@ function showCommon(){
     el.style.setProperty('display', 'none', 'important');
   });
   hideAllViews();
+  populateOtherTeamFilters();
   renderCommon();
   document.getElementById('common-view').classList.remove('hidden');
   document.body.style.overflow = '';
@@ -1789,6 +1800,8 @@ function renderCommon(){
   if(!grid) return;
   const searchVal = (document.getElementById('common-search')?.value || '').trim().toLowerCase();
   let list = commonProducts;
+  const selectedTeam = document.getElementById('common-team')?.value || '';
+  if(selectedTeam) list = list.filter(p => p.team === selectedTeam);
   if(searchVal){
     list = list.filter(p =>
       p.team.toLowerCase().includes(searchVal) ||
@@ -2004,11 +2017,34 @@ function applyCategoryFilters(){
   renderCategory(cat, league, team);
 }
 
+function populateTeamFilter(id, list){
+  const select = document.getElementById(id);
+  if(!select) return;
+  const current = select.value;
+  const teams = [...new Set(list.map(product => product.team))].sort();
+  select.innerHTML = '<option value="">All Teams</option>' + teams.map(team =>
+    '<option value="' + team.replace(/"/g, '&quot;') + '">' + team + '</option>'
+  ).join('');
+  if(teams.includes(current)) select.value = current;
+}
+
+function populateCategoryTeamFilter(cat){
+  const cfg = catConfig[cat];
+  if(cfg) populateTeamFilter('cv-team', cfg.list);
+}
+
+function populateOtherTeamFilters(){
+  populateTeamFilter('ls-team', longSleeveProducts);
+  populateTeamFilter('common-team', commonProducts);
+}
+
 let _searchTimer;
 document.getElementById('cv-search')?.addEventListener('input', function(){
   clearTimeout(_searchTimer);
   _searchTimer = setTimeout(applyCategoryFilters, 300);
 });
+
+document.getElementById('cv-team')?.addEventListener('change', applyCategoryFilters);
 
 document.getElementById('cv-season')?.addEventListener('change', function(){
   applyCategoryFilters();
@@ -2019,12 +2055,14 @@ document.getElementById('common-search')?.addEventListener('input', function(){
   clearTimeout(_commonSearchTimer);
   _commonSearchTimer = setTimeout(renderCommon, 300);
 });
+document.getElementById('common-team')?.addEventListener('change', renderCommon);
 
 let _lsSearchTimer;
 document.getElementById('ls-search')?.addEventListener('input', function(){
   clearTimeout(_lsSearchTimer);
   _lsSearchTimer = setTimeout(renderLongSleeve, 300);
 });
+document.getElementById('ls-team')?.addEventListener('change', renderLongSleeve);
 
 let _leagueSearchTimer;
 document.getElementById('lv-search')?.addEventListener('input', function(){

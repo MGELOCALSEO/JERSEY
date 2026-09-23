@@ -1152,13 +1152,14 @@ footer{
 /* ============ STICKY WHATSAPP ============ */
 .sticky-wa{
   position: fixed; bottom: max(18px, env(safe-area-inset-bottom)); right: max(18px, env(safe-area-inset-right)); z-index: 200;
-  width: 58px; height:58px; border-radius: 50%;
+  min-width: 58px; height:58px; padding: 0 18px; border-radius: 8px;
   background: var(--pitch);
-  display:flex; align-items:center; justify-content:center;
+  display:flex; align-items:center; justify-content:center; gap: 9px;
   box-shadow: 0 10px 30px -8px rgba(34,197,94,0.65);
   animation: pulse-wa 2.6s ease-in-out infinite;
 }
 .sticky-wa svg{ width:28px; height:28px; color:#051209; }
+.sticky-wa-label{ color:#17200f; font-size:13px; font-weight:800; white-space:nowrap; }
 
 /* ============ BACK TO TOP ============ */
 .back-to-top{
@@ -1799,8 +1800,9 @@ footer{
 
 /* Sticky WA: ensure it doesn't overlap footer content */
 @media(max-width: 480px){
-  .sticky-wa{ width:52px; height:52px; bottom:16px; right:16px; }
+  .sticky-wa{ left:16px; right:16px; bottom:16px; width:auto; height:52px; padding:0 18px; }
   .sticky-wa svg{ width:24px; height:24px; }
+  .sticky-wa-label{ font-size:13px; }
 }
 
 /* Nav: ensure proper mobile layout */
